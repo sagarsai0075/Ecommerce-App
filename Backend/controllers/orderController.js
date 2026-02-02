@@ -1,4 +1,6 @@
 const Order = require('../models/order');
+const Cart = require('../models/cart');
+
 
 // @desc   Create new order
 // @route  POST /api/orders
@@ -29,7 +31,17 @@ const createOrder = async (req, res) => {
     });
 
     const createdOrder = await order.save();
-    res.status(201).json(createdOrder);
+
+// 🧹 CLEAR USER CART AFTER ORDER
+const Cart = require('../models/cart');
+const cart = await Cart.findOne({ user: req.user });
+
+if (cart) {
+  cart.cartItems = [];
+  await cart.save();
+}
+
+res.status(201).json(createdOrder);
 
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
