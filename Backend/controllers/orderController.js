@@ -120,13 +120,35 @@ const markOrderDelivered = async (req, res) => {
   }
 };
 
+// @desc   Mark order as paid (Dummy / COD)
+// @route  PUT /api/orders/:id/pay
+// @access Private
+const markOrderPaid = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    order.isPaid = true;
+    order.paidAt = Date.now();
+
+    const updatedOrder = await order.save();
+    res.json(updatedOrder);
+
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
 module.exports = {
   createOrder,
   getMyOrders,
   getOrderById,
   getAllOrders,
-  markOrderDelivered
+  markOrderDelivered,
+  markOrderPaid
 };
 
 
