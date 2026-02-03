@@ -63,8 +63,7 @@ const loginUser = async (req, res) => {
   process.env.JWT_SECRET,
   { expiresIn: '1d' }
 );
-
-
+//#region 
     res.status(200).json({
       message: 'Login successful',
       token,

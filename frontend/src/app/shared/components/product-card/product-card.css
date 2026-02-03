@@ -1,0 +1,16 @@
+.card {
+  background: white;
+  border: 1px solid var(--color-border);
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.price {
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+a {
+  color: var(--color-primary);
+  font-size: 14px;
+}

@@ -1,0 +1,8 @@
+<div class="card">
+  <h3>{{ product.name }}</h3>
+  <p class="price">₹{{ product.price }}</p>
+
+  <a [routerLink]="['/products', product._id]">
+    View Details
+  </a>
+</div>

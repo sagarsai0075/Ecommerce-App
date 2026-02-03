@@ -1,0 +1,63 @@
+/* =========================
+   CSS RESET (NEUTRAL)
+========================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =========================
+   ROOT VARIABLES (THEME ONLY)
+========================= */
+:root {
+  --color-primary: #2563eb;
+  --color-bg: #f9fafb;
+  --color-text: #0f172a;
+  --color-border: #e5e7eb;
+  --color-white: #ffffff;
+}
+
+/* =========================
+   BASE ELEMENTS
+========================= */
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+/* =========================
+   GENERIC ELEMENT RESET
+========================= */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* =========================
+   UTILITY CLASSES (OPTIONAL)
+========================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.hidden {
+  display: none;
+}
