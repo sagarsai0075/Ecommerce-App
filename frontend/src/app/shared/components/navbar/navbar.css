@@ -1,0 +1,13 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.search input {
+  padding: 6px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}

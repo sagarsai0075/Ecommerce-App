@@ -1,11 +1,26 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { CartService } from '../../../core/services/cart';
+import { OrderService } from '../../../core/services/order';
 
 @Component({
-  selector: 'app-checkout-page',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './checkout-page.html',
-  styleUrl: './checkout-page.css',
+  styleUrls: ['./checkout-page.css']
 })
 export class CheckoutPage {
 
+  constructor(
+    private cartService: CartService,
+    private orderService: OrderService,
+    private router: Router
+  ) {}
+
+  placeOrder() {
+    this.orderService.placeOrder().subscribe(() => {
+      this.router.navigateByUrl('/orders');
+    });
+  }
 }

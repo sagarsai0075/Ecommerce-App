@@ -1,1 +1,20 @@
-<p>cart-page works!</p>
+<div class="container">
+  <h2>Your Cart</h2>
+
+  <div *ngIf="items.length === 0">Cart is empty</div>
+
+  <div *ngFor="let item of items" class="cart-item">
+    <h4>{{ item.product.name }}</h4>
+    <p>₹{{ item.product.price }}</p>
+
+    <div class="qty">
+      <button (click)="decrease(item)">-</button>
+      <span>{{ item.quantity }}</span>
+      <button (click)="increase(item)">+</button>
+    </div>
+
+    <button (click)="remove(item)">Remove</button>
+  </div>
+
+  <h3 *ngIf="items.length > 0">Total: ₹{{ total }}</h3>
+</div>

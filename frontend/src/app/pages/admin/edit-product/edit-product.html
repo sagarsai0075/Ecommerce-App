@@ -1,1 +1,7 @@
-<p>edit-product works!</p>
+<div class="container">
+  <h2>Edit Products</h2>
+
+  <div *ngFor="let product of products">
+    {{ product.name }} - ₹{{ product.price }}
+  </div>
+</div>

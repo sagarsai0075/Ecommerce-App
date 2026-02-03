@@ -1,11 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Product } from '../../../core/services/product';
 
 @Component({
-  selector: 'app-edit-product',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './edit-product.html',
-  styleUrl: './edit-product.css',
+  styleUrls: ['./edit-product.css']
 })
-export class EditProduct {
+export class EditProduct implements OnInit {
 
+  products: Product[] = [];
+
+  constructor(private productService: Product) {}
+
+  ngOnInit(): void {
+    this.productService.getAllProducts().subscribe((data: Product[]) => {
+      this.products = data;
+    });
+  }
 }

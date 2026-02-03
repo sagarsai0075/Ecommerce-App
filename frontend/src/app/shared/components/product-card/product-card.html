@@ -2,6 +2,8 @@
   <h3>{{ product.name }}</h3>
   <p class="price">₹{{ product.price }}</p>
 
+  <button (click)="addToCart()">Add to Cart</button>
+
   <a [routerLink]="['/products', product._id]">
     View Details
   </a>

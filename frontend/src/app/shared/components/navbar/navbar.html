@@ -1,1 +1,25 @@
-<p>navbar works!</p>
+<nav class="nav">
+
+  <!-- Show ONLY after login -->
+  <a routerLink="/products" *ngIf="authService.isLoggedIn()">Products</a>
+
+  <!-- SEARCH BAR (only when logged in) -->
+  <form
+    class="search"
+    *ngIf="authService.isLoggedIn()"
+    (ngSubmit)="search()"
+  >
+    <input
+      type="text"
+      placeholder="Search products"
+      [(ngModel)]="searchText"
+      name="search"
+    />
+  </form>
+
+  <a routerLink="/cart" *ngIf="authService.isLoggedIn()">Cart</a>
+  <a routerLink="/orders" *ngIf="authService.isLoggedIn()">Orders</a>
+  <a routerLink="/admin" *ngIf="authService.isAdmin()">Admin</a>
+
+  <button *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</button>
+</nav>

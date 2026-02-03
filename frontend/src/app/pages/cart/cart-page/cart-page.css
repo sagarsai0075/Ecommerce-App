@@ -1,0 +1,11 @@
+.cart-item {
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 0;
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0;
+}

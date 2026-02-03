@@ -19,11 +19,20 @@ export class Product {
 
   constructor(private http: HttpClient) {}
 
-  getAllProducts() {
-    return this.http.get<Product[]>(this.baseUrl);
+ getAllProducts(search?: string) {
+  if (search) {
+    return this.http.get<Product[]>(`${this.baseUrl}?search=${search}`);
   }
+  return this.http.get<Product[]>(this.baseUrl);
+}
+
 
   getProductById(id: string) {
     return this.http.get<Product>(`${this.baseUrl}/${id}`);
   }
+  createProduct(data: any) {
+  return this.http.post(this.baseUrl, data);
+}
+
+
 }

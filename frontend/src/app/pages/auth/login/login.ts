@@ -30,6 +30,8 @@ export class Login {
         this.authService.saveToken(res.token);
         this.router.navigateByUrl('/products');
       }
+      
     });
   }
+  
 }
