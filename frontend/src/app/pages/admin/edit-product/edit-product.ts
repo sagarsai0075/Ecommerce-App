@@ -19,4 +19,5 @@ export class EditProduct implements OnInit {
       this.products = data;
     });
   }
+  
 }

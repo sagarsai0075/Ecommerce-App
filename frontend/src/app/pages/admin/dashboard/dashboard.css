@@ -1,5 +1,56 @@
-a {
-  display: inline-block;
-  margin-top: 12px;
-  color: var(--color-primary);
+/* ==============================
+   ADMIN DASHBOARD
+============================== */
+
+.admin-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+
+  margin-top: 30px;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* Tile */
+.admin-tile {
+  background: rgba(255,255,255,0.96);
+  color: #1f2933;
+
+  padding: 30px 20px;
+  border-radius: 15px;
+
+  text-align: center;
+
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  transition: 0.3s;
+}
+
+.admin-tile i {
+  font-size: 32px;
+}
+
+/* Hover */
+.admin-tile:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Colors */
+.admin-tile.add i {
+  color: #16a34a;
+}
+
+.admin-tile.edit i {
+  color: #2563eb;
+}
+
+.admin-tile span {
+  font-weight: 600;
+  font-size: 16px;
 }

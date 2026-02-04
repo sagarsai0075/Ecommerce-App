@@ -3,6 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth';
 
 export const authGuard: CanActivateFn = () => {
+
   const auth = inject(AuthService);
   const router = inject(Router);
 
@@ -10,6 +11,8 @@ export const authGuard: CanActivateFn = () => {
     return true;
   }
 
-  router.navigateByUrl('/login');
+  // Send to public home
+ router.navigateByUrl('/');
+
   return false;
 };

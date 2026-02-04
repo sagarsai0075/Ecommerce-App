@@ -1,20 +1,53 @@
-<div class="container">
-  <h2>Your Cart</h2>
+<div class="container cart-page">
 
-  <div *ngIf="items.length === 0">Cart is empty</div>
+  <!-- TITLE -->
+  <h2 class="page-title">
+    <i class="fa-solid fa-cart-shopping"></i> Your Cart
+  </h2>
 
-  <div *ngFor="let item of items" class="cart-item">
-    <h4>{{ item.product.name }}</h4>
-    <p>₹{{ item.product.price }}</p>
-
-    <div class="qty">
-      <button (click)="decrease(item)">-</button>
-      <span>{{ item.quantity }}</span>
-      <button (click)="increase(item)">+</button>
-    </div>
-
-    <button (click)="remove(item)">Remove</button>
+  <!-- EMPTY CART -->
+  <div *ngIf="items.length === 0" class="empty-cart">
+    <i class="fa-solid fa-face-frown"></i>
+    Your cart is empty
   </div>
 
-  <h3 *ngIf="items.length > 0">Total: ₹{{ total }}</h3>
+  <!-- CART ITEMS -->
+  <div *ngFor="let item of items" class="cart-item">
+
+    <div class="cart-info">
+      <h4>{{ item.product.name }}</h4>
+      <p class="price">₹{{ item.product.price }}</p>
+    </div>
+
+    <!-- QUANTITY -->
+    <div class="qty">
+
+      <button class="qty-btn" (click)="decrease(item)">-</button>
+
+      <span>{{ item.quantity }}</span>
+
+      <button class="qty-btn" (click)="increase(item)">+</button>
+
+    </div>
+
+    <!-- REMOVE -->
+    <button class="btn-danger remove-btn" (click)="remove(item)">
+      <i class="fa-solid fa-trash"></i>
+    </button>
+
+  </div>
+
+  <!-- TOTAL -->
+  <div *ngIf="items.length > 0" class="cart-total">
+
+    <h3>
+      Total: <span>₹{{ total }}</span>
+    </h3>
+
+    <button class="btn-primary checkout-btn">
+      <i class="fa-solid fa-credit-card"></i> Checkout
+    </button>
+
+  </div>
+
 </div>

@@ -1,0 +1,40 @@
+<div class="form-container">
+
+  <h2>
+    <i class="fa-solid fa-user-lock"></i> Login
+  </h2>
+
+  <form [formGroup]="form" (ngSubmit)="login()">
+
+    <!-- EMAIL -->
+    <div class="input-box mb-2">
+      <input
+        type="email"
+        placeholder="📧 Enter your email"
+        formControlName="email"
+      />
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="input-box mb-2">
+      <input
+        type="password"
+        placeholder="🔒 Enter your password"
+        formControlName="password"
+      />
+    </div>
+
+    <!-- BUTTON -->
+    <button type="submit" class="btn-primary w-100 mt-2">
+      <i class="fa-solid fa-right-to-bracket"></i> Login
+    </button>
+
+  </form>
+
+  <!-- REGISTER LINK -->
+  <p class="text-center mt-2">
+    Don’t have an account?
+    <a routerLink="/register">Register</a>
+  </p>
+
+</div>

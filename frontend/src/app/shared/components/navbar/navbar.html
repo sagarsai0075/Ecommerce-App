@@ -1,25 +1,54 @@
 <nav class="nav">
 
-  <!-- Show ONLY after login -->
-  <a routerLink="/products" *ngIf="authService.isLoggedIn()">Products</a>
+  <!-- LOGO -->
+  <a routerLink="/products">
+    <i class="fa-solid fa-store"></i> MyShop
+  </a>
 
-  <!-- SEARCH BAR (only when logged in) -->
-  <form
-    class="search"
-    *ngIf="authService.isLoggedIn()"
-    (ngSubmit)="search()"
-  >
+  <!-- SEARCH -->
+  <form class="search" (ngSubmit)="search()">
+
     <input
       type="text"
-      placeholder="Search products"
+      placeholder="🔍 Search products..."
       [(ngModel)]="searchText"
       name="search"
     />
+
   </form>
 
-  <a routerLink="/cart" *ngIf="authService.isLoggedIn()">Cart</a>
-  <a routerLink="/orders" *ngIf="authService.isLoggedIn()">Orders</a>
-  <a routerLink="/admin" *ngIf="authService.isAdmin()">Admin</a>
+  <!-- BEFORE LOGIN -->
+  <div *ngIf="!authService.isLoggedIn()" class="auth-box">
 
-  <button *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</button>
+    <a routerLink="/login">
+      <i class="fa-solid fa-right-to-bracket"></i> Login
+    </a>
+
+    <a routerLink="/register">
+      <i class="fa-solid fa-user-plus"></i> Register
+    </a>
+
+  </div>
+
+  <!-- AFTER LOGIN -->
+  <div *ngIf="authService.isLoggedIn()" class="menu">
+
+    <a routerLink="/products">
+      <i class="fa-solid fa-box"></i> Products
+    </a>
+
+    <a routerLink="/cart">
+      <i class="fa-solid fa-cart-shopping"></i> Cart
+    </a>
+
+    <a routerLink="/orders">
+      <i class="fa-solid fa-receipt"></i> Orders
+    </a>
+
+    <button (click)="logout()">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+    </button>
+
+  </div>
+
 </nav>

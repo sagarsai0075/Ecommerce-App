@@ -11,9 +11,15 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  register(data: { name: string; email: string; password: string }) {
-    return this.http.post(`${this.baseUrl}/register`, data);
-  }
+ register(data: {
+  name: string;
+  email: string;
+  password: string;
+  number: string;   // ✅ ADD THIS
+}) {
+  return this.http.post(`${this.baseUrl}/register`, data);
+}
+
 
   login(data: { email: string; password: string }) {
     return this.http.post<{ token: string }>(`${this.baseUrl}/login`, data);

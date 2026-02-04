@@ -1,9 +1,24 @@
-h2 {
-  margin-bottom: 16px;
+/* ==============================
+   PRODUCTS PAGE
+============================== */
+
+.products-page {
+  margin-top: 30px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
+/* Title */
+.page-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #ffffff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* Loader */
+.loader-box {
+  text-align: center;
+  font-size: 18px;
+  padding: 40px;
+  color: #ffffff;
 }

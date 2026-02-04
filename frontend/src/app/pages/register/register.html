@@ -1,0 +1,62 @@
+<div class="auth-page">
+
+  <div class="form-container">
+
+    <h2>
+      <i class="fa-solid fa-user-plus"></i> Create Account
+    </h2>
+
+    <form [formGroup]="form" (ngSubmit)="register()">
+
+      <!-- NAME -->
+      <div class="mb-2">
+        <input
+          type="text"
+          placeholder="👤 Full Name"
+          formControlName="name"
+        />
+      </div>
+
+      <!-- EMAIL -->
+      <div class="mb-2">
+        <input
+          type="email"
+          placeholder="📧 Email Address"
+          formControlName="email"
+        />
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="mb-2">
+        <input
+          type="password"
+          placeholder="🔒 Password"
+          formControlName="password"
+        />
+      </div>
+
+      <!-- MOBILE -->
+      <div class="mb-2">
+        <input
+          type="tel"
+          placeholder="📱 Mobile Number"
+          formControlName="number"
+        />
+      </div>
+
+      <!-- BUTTON -->
+      <button type="submit" class="btn-primary w-100 mt-2">
+        <i class="fa-solid fa-user-check"></i> Register
+      </button>
+
+    </form>
+
+    <!-- LOGIN LINK -->
+    <p class="text-center mt-2">
+      Already have an account?
+      <a routerLink="/login">Login</a>
+    </p>
+
+  </div>
+
+</div>

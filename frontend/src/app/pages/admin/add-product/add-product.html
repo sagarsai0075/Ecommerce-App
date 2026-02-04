@@ -1,10 +1,51 @@
-<div class="container">
-  <h2>Add Product</h2>
+<div class="container admin-page">
 
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <input placeholder="Name" formControlName="name" />
-    <input placeholder="Price" formControlName="price" />
-    <textarea placeholder="Description" formControlName="description"></textarea>
-    <button type="submit">Save</button>
-  </form>
+  <!-- TITLE -->
+  <h2 class="page-title">
+    <i class="fa-solid fa-plus"></i> Add New Product
+  </h2>
+
+  <div class="admin-card">
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <!-- NAME -->
+      <div class="mb-2">
+        <label>Product Name</label>
+        <input
+          type="text"
+          placeholder="Enter product name"
+          formControlName="name"
+        />
+      </div>
+
+      <!-- PRICE -->
+      <div class="mb-2">
+        <label>Price (₹)</label>
+        <input
+          type="number"
+          placeholder="Enter price"
+          formControlName="price"
+        />
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="mb-2">
+        <label>Description</label>
+        <textarea
+          rows="4"
+          placeholder="Enter description"
+          formControlName="description"
+        ></textarea>
+      </div>
+
+      <!-- BUTTON -->
+      <button type="submit" class="btn-primary w-100 mt-2">
+        <i class="fa-solid fa-floppy-disk"></i> Save Product
+      </button>
+
+    </form>
+
+  </div>
+
 </div>

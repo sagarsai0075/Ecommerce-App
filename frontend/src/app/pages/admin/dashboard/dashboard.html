@@ -1,6 +1,30 @@
-<div class="container">
-  <h2>Admin Dashboard</h2>
+<div class="container admin-page">
 
-  <a routerLink="/admin/add-product">Add Product</a><br />
-  <a routerLink="/admin/edit-product">Edit Products</a>
+  <!-- TITLE -->
+  <h2 class="page-title">
+    <i class="fa-solid fa-user-shield"></i> Admin Dashboard
+  </h2>
+
+  <div class="admin-dashboard">
+
+    <!-- ADD PRODUCT -->
+    <a
+      routerLink="/admin/add-product"
+      class="admin-tile add"
+    >
+      <i class="fa-solid fa-circle-plus"></i>
+      <span>Add Product</span>
+    </a>
+
+    <!-- EDIT PRODUCT -->
+    <a
+      routerLink="/admin/edit-product"
+      class="admin-tile edit"
+    >
+      <i class="fa-solid fa-pen-to-square"></i>
+      <span>Edit Products</span>
+    </a>
+
+  </div>
+
 </div>
