@@ -1,0 +1,96 @@
+/* ==============================
+   NAVBAR (PREMIUM)
+============================== */
+
+.nav {
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  padding: 14px 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LOGO */
+.nav > a {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* SEARCH */
+.search {
+  flex: 1;
+  max-width: 420px;
+  margin: 0 30px;
+}
+
+.search input {
+  width: 100%;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-size: 14px;
+
+  background: rgba(255,255,255,0.95);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.search input:focus {
+  outline: none;
+  background: white;
+}
+
+/* MENU */
+.auth-box,
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* LINKS */
+.nav a {
+  color: #ffffff;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Underline hover effect */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: #ffffff;
+  transition: 0.3s;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* LOGOUT BUTTON */
+.menu button {
+  background: #ef4444;
+  color: white;
+
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-size: 13px;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.menu button:hover {
+  background: #dc2626;
+  transform: scale(1.05);
+}

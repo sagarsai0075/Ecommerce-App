@@ -1,0 +1,42 @@
+<div class="home-page">
+
+  <div class="home-card">
+
+    <h1>
+      <i class="fa-solid fa-store"></i>
+      Welcome to <span>MyShop</span>
+    </h1>
+
+    <!-- BEFORE LOGIN -->
+    <p *ngIf="!authService.isLoggedIn()">
+      🛍️ Please login to start shopping
+    </p>
+
+    <div *ngIf="!authService.isLoggedIn()" class="home-actions">
+
+      <a routerLink="/login" class="btn-primary">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </a>
+
+      <a routerLink="/register" class="btn-secondary">
+        <i class="fa-solid fa-user-plus"></i> Register
+      </a>
+
+    </div>
+
+    <!-- AFTER LOGIN -->
+    <div *ngIf="authService.isLoggedIn()">
+
+      <p>
+        ✅ You are logged in. Start browsing products!
+      </p>
+
+      <a routerLink="/products" class="btn-primary mt-2">
+        <i class="fa-solid fa-bag-shopping"></i> Shop Now
+      </a>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,60 @@
+/* ==============================
+   HOME PAGE
+============================== */
+
+.home-page {
+  min-height: 80vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-card {
+  background: rgba(255,255,255,0.95);
+  color: #1f2933;
+
+  padding: 40px 35px;
+  border-radius: 18px;
+
+  text-align: center;
+  max-width: 500px;
+
+  box-shadow: 0 6px 25px rgba(0,0,0,0.35);
+}
+
+/* Title */
+.home-card h1 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #1d4ed8;
+}
+
+.home-card span {
+  color: #16a34a;
+}
+
+/* Text */
+.home-card p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Actions */
+.home-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Secondary button */
+.btn-secondary {
+  background: #0ea5e9;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.btn-secondary:hover {
+  background: #0284c7;
+}

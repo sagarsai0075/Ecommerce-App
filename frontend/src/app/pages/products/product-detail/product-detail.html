@@ -1,0 +1,28 @@
+<div class="container product-detail-page" *ngIf="product">
+
+  <div class="product-detail-card">
+
+    <!-- PRODUCT NAME -->
+    <h2>
+      <i class="fa-solid fa-mobile-screen"></i>
+      {{ product.name }}
+    </h2>
+
+    <!-- PRICE -->
+    <p class="price">
+      ₹{{ product.price }}
+    </p>
+
+    <!-- DESCRIPTION -->
+    <p class="description">
+      {{ product.description }}
+    </p>
+
+    <!-- ACTION BUTTON -->
+    <button class="btn-primary mt-2">
+      <i class="fa-solid fa-cart-plus"></i> Add to Cart
+    </button>
+
+  </div>
+
+</div>

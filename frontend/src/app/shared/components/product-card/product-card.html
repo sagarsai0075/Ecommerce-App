@@ -1,0 +1,25 @@
+<div class="card product-card">
+
+  <!-- PRODUCT NAME -->
+  <h3>{{ product.name }}</h3>
+
+  <!-- PRICE -->
+  <p class="price">₹{{ product.price }}</p>
+
+  <!-- ACTIONS -->
+  <div class="card-actions">
+
+    <button class="btn-primary" (click)="addToCart()">
+      <i class="fa-solid fa-cart-plus"></i> Add
+    </button>
+
+    <a
+      class="details-btn"
+      [routerLink]="['/products', product._id]"
+    >
+      <i class="fa-solid fa-eye"></i> View
+    </a>
+
+  </div>
+
+</div>
