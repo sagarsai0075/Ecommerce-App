@@ -3,7 +3,7 @@
   <div class="form-container">
 
     <h2 class="form-title">
-      <i ></i>
+      <i class="bi bi-person-plus"></i>
       Create Account
     </h2>
 
@@ -11,6 +11,7 @@
 
       <!-- NAME -->
       <div class="input-box">
+
         <label>
           <i class="bi bi-person"></i> Full Name
         </label>
@@ -20,10 +21,25 @@
           placeholder="Enter your full name"
           formControlName="name"
         />
+
+        <small class="error"
+          *ngIf="form.get('name')?.touched && form.get('name')?.invalid">
+
+          <span *ngIf="form.get('name')?.errors?.['required']">
+            Name is required
+          </span>
+
+          <span *ngIf="form.get('name')?.errors?.['minlength']">
+            Minimum 3 characters required
+          </span>
+
+        </small>
+
       </div>
 
       <!-- EMAIL -->
       <div class="input-box">
+
         <label>
           <i class="bi bi-envelope"></i> Email
         </label>
@@ -33,25 +49,55 @@
           placeholder="Enter your email"
           formControlName="email"
         />
+
+        <small class="error"
+          *ngIf="form.get('email')?.touched && form.get('email')?.invalid">
+
+          <span *ngIf="form.get('email')?.errors?.['required']">
+            Email is required
+          </span>
+
+          <span *ngIf="form.get('email')?.errors?.['email']">
+            Enter valid email
+          </span>
+
+        </small>
+
       </div>
 
       <!-- PASSWORD -->
       <div class="input-box">
+
         <label>
           <i class="bi bi-lock"></i> Password
         </label>
 
         <input
           type="password"
-          placeholder="Create a password"
+          placeholder="Create password"
           formControlName="password"
         />
+
+        <small class="error"
+          *ngIf="form.get('password')?.touched && form.get('password')?.invalid">
+
+          <span *ngIf="form.get('password')?.errors?.['required']">
+            Password is required
+          </span>
+
+          <span *ngIf="form.get('password')?.errors?.['minlength']">
+            Minimum 6 characters required
+          </span>
+
+        </small>
+
       </div>
 
       <!-- MOBILE -->
       <div class="input-box">
+
         <label>
-          <i class="bi bi-phone"></i> Mobile Number
+          <i class="bi bi-phone"></i> Mobile
         </label>
 
         <input
@@ -59,23 +105,45 @@
           placeholder="Enter mobile number"
           formControlName="number"
         />
+
+        <small class="error"
+          *ngIf="form.get('number')?.touched && form.get('number')?.invalid">
+
+          <span *ngIf="form.get('number')?.errors?.['required']">
+            Mobile is required
+          </span>
+
+          <span *ngIf="form.get('number')?.errors?.['pattern']">
+            Enter valid 10-digit number
+          </span>
+
+        </small>
+
       </div>
 
       <!-- BUTTON -->
-      <button type="submit" class="btn-primary w-100">
+      <button
+        type="submit"
+        class="btn-primary w-100"
+        [disabled]="form.invalid">
+
         <i class="bi bi-person-check"></i>
         Register
+
       </button>
 
     </form>
 
     <!-- LOGIN LINK -->
     <p class="register-text">
+
       Already have an account?
+
       <a routerLink="/login">
         <i class="bi bi-box-arrow-in-right"></i>
         Login
       </a>
+
     </p>
 
   </div>

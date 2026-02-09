@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CartService, CartItem } from '../../../core/services/cart';
 
 @Component({
   standalone: true,
@@ -10,10 +9,7 @@ import { CartService, CartItem } from '../../../core/services/cart';
 })
 export class CartPage implements OnInit {
 
-  // ✅ Always array
-  items: CartItem[] = [];
-
-  constructor(private cartService: CartService) {}
+  items: any[] = [];
 
   ngOnInit(): void {
     this.loadCart();
@@ -24,62 +20,69 @@ export class CartPage implements OnInit {
   // ===============================
   loadCart() {
 
-    this.cartService.getCart().subscribe((data: any) => {
+    const storedCart = localStorage.getItem('cart');
 
-      console.log('Cart API Response:', data);
+    if (storedCart) {
+      this.items = JSON.parse(storedCart);
+    } else {
+      this.items = [];
+    }
 
-      // ✅ Extract items array
-      this.items = data?.items || [];
-
-    });
+    console.log('Cart Items:', this.items);
   }
 
   // ===============================
   // INCREASE
   // ===============================
-  increase(item: CartItem) {
+  increase(item: any) {
 
-    this.cartService
-      .updateQuantity(item.product._id, item.quantity + 1)
-      .subscribe(() => this.loadCart());
+    item.qty++;
 
+    this.saveCart();
   }
 
   // ===============================
   // DECREASE
   // ===============================
-  decrease(item: CartItem) {
+  decrease(item: any) {
 
-    if (item.quantity <= 1) return;
+    if (item.qty <= 1) return;
 
-    this.cartService
-      .updateQuantity(item.product._id, item.quantity - 1)
-      .subscribe(() => this.loadCart());
+    item.qty--;
 
+    this.saveCart();
   }
 
   // ===============================
   // REMOVE
   // ===============================
-  remove(item: CartItem) {
+  remove(item: any) {
 
-    this.cartService
-      .removeFromCart(item.product._id)
-      .subscribe(() => this.loadCart());
+    this.items = this.items.filter(i => i.name !== item.name);
 
+    this.saveCart();
   }
 
   // ===============================
-  // TOTAL PRICE
+  // SAVE CART
+  // ===============================
+  saveCart() {
+
+    localStorage.setItem('cart', JSON.stringify(this.items));
+
+    this.loadCart();
+  }
+
+  // ===============================
+  // TOTAL
   // ===============================
   get total(): number {
 
     return this.items.reduce(
       (sum, item) =>
-        sum + (item.product.price * item.quantity),
+        sum + (item.price * item.qty),
       0
     );
-
   }
 
 }

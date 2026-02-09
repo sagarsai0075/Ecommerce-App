@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth';
+import { Router } from '@angular/router';
+
 
 @Component({
   standalone: true,
@@ -10,7 +12,11 @@ import { AuthService } from '../../../core/services/auth';
 })
 export class Home implements OnInit, OnDestroy {
 
-  constructor(public authService: AuthService) {}
+constructor(
+  public authService: AuthService,
+  private router: Router
+) {}
+
 
   // ================= VIEW CHILD =================
   @ViewChild('productContainer') productContainer!: ElementRef;
@@ -24,6 +30,9 @@ export class Home implements OnInit, OnDestroy {
   totalSlides = 5;
   intervalId: any;
   isPaused = false;
+  quantities: { [key: string]: number } = {};
+addedMap: { [key: string]: boolean } = {};
+
 
   // ================= LIFE CYCLE =================
 
@@ -84,6 +93,41 @@ export class Home implements OnInit, OnDestroy {
       container.scrollLeft = container.scrollWidth / 2;
     }
   }
+
+addToCart(product: any) {
+
+  const qty = this.quantities[product.name] || 1;
+
+  let cart: any[] = [];
+  const storedCart = localStorage.getItem('cart');
+
+  if (storedCart) {
+    cart = JSON.parse(storedCart);
+  }
+
+  const existing = cart.find(
+    item => item.name === product.name
+  );
+
+  if (existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({
+      ...product,
+      qty: qty
+    });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+
+  // Mark as added
+  this.addedMap[product.name] = true;
+  this.router.navigate(['/cart']);
+}
+
+
+
+
 
   // ================= CAROUSEL =================
 

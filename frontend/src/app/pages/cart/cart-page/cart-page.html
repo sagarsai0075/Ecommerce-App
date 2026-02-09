@@ -13,13 +13,21 @@
 
   <!-- CART ITEMS -->
   <div
-    *ngFor="let item of items || []"
+    *ngFor="let item of items"
     class="cart-item"
   >
 
+    <!-- PRODUCT IMAGE -->
+    <img
+      [src]="item.image"
+      alt="{{ item.name }}"
+      class="cart-img"
+    />
+
+    <!-- INFO -->
     <div class="cart-info">
-      <h4>{{ item.product.name }}</h4>
-      <p class="price">₹{{ item.product.price }}</p>
+      <h4>{{ item.name }}</h4>
+      <p class="price">₹{{ item.price }}</p>
     </div>
 
     <!-- QUANTITY -->
@@ -33,7 +41,7 @@
         -
       </button>
 
-      <span>{{ item.quantity }}</span>
+      <span>{{ item.qty }}</span>
 
       <button
         type="button"

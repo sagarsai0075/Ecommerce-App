@@ -13,7 +13,7 @@ import { AuthService } from '../../../core/services/auth';
 })
 export class Navbar {
 
-  userName: string = '';
+  userName = '';
   showDropdown = false;
 
   searchText = '';
@@ -27,24 +27,27 @@ export class Navbar {
     this.loadUser();
   }
 
-  // ===============================
-  // DROPDOWN CONTROL
-  // ===============================
+  /* ==========================
+     DROPDOWN
+  ========================== */
 
-  toggleDropdown(event: Event) {
-    event.stopPropagation(); // Prevent auto close
+  toggleDropdown(event: MouseEvent) {
+    event.stopPropagation();
     this.showDropdown = !this.showDropdown;
   }
 
-  // Close when clicking outside
-  @HostListener('document:click')
-  closeDropdown() {
-    this.showDropdown = false;
+  @HostListener('document:click', ['$event'])
+  closeOnOutsideClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (!target.closest('.user-dropdown')) {
+      this.showDropdown = false;
+    }
   }
 
-  // ===============================
-  // LOGIN
-  // ===============================
+  /* ==========================
+     LOGIN
+  ========================== */
 
   login() {
     if (!this.email || !this.password) return;
@@ -54,26 +57,18 @@ export class Navbar {
       password: this.password
     }).subscribe({
       next: (res: any) => {
-
         this.authService.saveToken(res.token);
         localStorage.setItem('user', JSON.stringify(res.user));
-
         this.loadUser();
-
-        this.email = '';
-        this.password = '';
-
-        this.router.navigateByUrl('/products');
+        this.router.navigateByUrl('/home');
       },
-      error: () => {
-        alert('Invalid credentials');
-      }
+      error: () => alert('Invalid credentials')
     });
   }
 
-  // ===============================
-  // SEARCH
-  // ===============================
+  /* ==========================
+     SEARCH
+  ========================== */
 
   search() {
     if (!this.searchText.trim()) return;
@@ -85,31 +80,26 @@ export class Navbar {
     this.searchText = '';
   }
 
-  // ===============================
-  // LOGOUT
-  // ===============================
+  /* ==========================
+     LOGOUT
+  ========================== */
 
   logout() {
     localStorage.removeItem('user');
-
-    this.showDropdown = false;
-
     this.authService.logout();
-
+    this.showDropdown = false;
     this.router.navigateByUrl('/login');
   }
 
-  // ===============================
-  // LOAD USER
-  // ===============================
+  /* ==========================
+     LOAD USER
+  ========================== */
 
   loadUser() {
     const user = localStorage.getItem('user');
-
     if (user) {
       const parsed = JSON.parse(user);
       this.userName = parsed.name || parsed.email;
     }
   }
-
 }

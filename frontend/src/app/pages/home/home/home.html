@@ -143,7 +143,13 @@
 
         </div>
 
-        <button>Add to Cart</button>
+ <button
+  (click)="addToCart(p)"
+  [class.added]="addedMap[p.name]"
+>
+  {{ addedMap[p.name] ? 'Added ✓' : 'Add to Cart' }}
+</button>
+
 
       </div>
 

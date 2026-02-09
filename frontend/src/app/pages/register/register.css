@@ -1,21 +1,34 @@
-/* AUTH PAGE CENTER */
+/* PAGE CENTER */
 .auth-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
-/* FORM WIDTH */
+
+/* FORM CARD */
 .form-container {
-  max-width: 400px;
+margin-top: 2px;
+  background: white;
+  padding: 30px 25px;
+  border-radius: 10px;
   width: 100%;
-  margin-top: 10px;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.form-title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
 }
 
 /* INPUT BOX */
 .input-box {
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .input-box label {
@@ -25,6 +38,7 @@
   color: #555;
 }
 
+/* INPUT */
 .input-box input {
   width: 100%;
   padding: 10px 12px;
@@ -32,7 +46,7 @@
   border-radius: 6px;
   font-size: 14px;
   outline: none;
-  transition: border 0.3s;
+  transition: all 0.3s;
 }
 
 .input-box input:focus {
@@ -42,7 +56,7 @@
 /* BUTTON */
 .btn-primary {
   background: #007bff;
-  color: #fff;
+  color: white;
   border: none;
   padding: 12px;
   font-size: 15px;
@@ -55,20 +69,61 @@
   background: #0056b3;
 }
 
+.btn-primary:disabled {
+  background: #9bbce8;
+  cursor: not-allowed;
+}
+
 /* FULL WIDTH */
 .w-100 {
   width: 100%;
 }
 
-/* ICON SPACING */
+/* ICON */
 .bi {
   margin-right: 6px;
-  font-size: 15px;
 }
 
-/* LOGIN LINK */
+/* LINK */
 .register-text {
   text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.register-text a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
+}
+
+/* ERROR */
+.error {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+/* INVALID */
+input.ng-invalid.ng-touched {
+  border-color: #dc3545;
+  background: #fff5f5;
+}
+
+/* VALID */
+input.ng-valid.ng-touched {
+  border-color: #28a745;
+  background: #f6fff8;
+}
+
+
+.register-text {
+  text-align: center;      /* Center text */
   margin-top: 15px;
   font-size: 14px;
   color: #555;
@@ -78,9 +133,9 @@
   color: #007bff;
   text-decoration: none;
   font-weight: 500;
-  display: inline-flex;
+  display: inline-flex;    /* Align icon + text */
   align-items: center;
-  gap: 4px;
+  gap: 5px;
 }
 
 .register-text a:hover {

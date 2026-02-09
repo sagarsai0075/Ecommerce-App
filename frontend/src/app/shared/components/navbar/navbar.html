@@ -1,22 +1,15 @@
 <nav class="nav">
 
   <!-- LOGO -->
-<a routerLink="/products" class="logo">
-  <img src="assets/icon.ico" alt="ShopEazy" class="logo-img">
-  <span>ShopEazy</span>
-</a>
-
+  <a routerLink="/" class="logo">
+    <img src="assets/icon.ico" class="logo-img" />
+    <span>ShopEazy</span>
+  </a>
 
   <!-- SEARCH -->
   <form class="search" (ngSubmit)="search()">
     <i class="bi bi-search search-icon"></i>
-
-    <input
-      type="text"
-      placeholder="Search products..."
-      [(ngModel)]="searchText"
-      name="search"
-    />
+    <input type="text" placeholder="Search products..." [(ngModel)]="searchText" name="search" />
   </form>
 
   <!-- AFTER LOGIN -->
@@ -27,39 +20,37 @@
       <i class="bi bi-cart3"></i>
       Cart
     </a>
-
+    <a routerLink="/orders">
+      <i class="bi bi-bag"></i>
+      Orders
+    </a>
     <!-- USER DROPDOWN -->
-    <div
-      class="user-dropdown"
-      (click)="toggleDropdown($event)"
-    >
+    <div class="user-dropdown">
 
-      <span class="user-name">
+      <span class="user-name" (click)="toggleDropdown($event)">
         <i class="bi bi-person-circle"></i>
         {{ userName }}
       </span>
 
-      <!-- DROPDOWN MENU -->
-      <div
-        class="dropdown-menu"
-        *ngIf="showDropdown"
-        (click)="$event.stopPropagation()"
-      >
-
+      <!-- CUSTOM DROPDOWN (NO BOOTSTRAP CLASS) -->
+      <div class="user-menu" *ngIf="showDropdown" (click)="$event.stopPropagation()">
         <a routerLink="/profile">
           <i class="bi bi-person"></i>
           My Profile
         </a>
 
-        <a routerLink="/orders">
-          <i class="bi bi-bag"></i>
-          Orders
-        </a>
+       
 
         <a routerLink="/coupons">
           <i class="bi bi-ticket"></i>
           Coupons
         </a>
+
+       <a routerLink="/seller">
+  <i class="bi bi-shop"></i>
+  Become a Seller
+</a>
+
 
         <hr />
 
@@ -67,11 +58,8 @@
           <i class="bi bi-box-arrow-right"></i>
           Logout
         </button>
-
       </div>
 
     </div>
-
   </div>
-
 </nav>
