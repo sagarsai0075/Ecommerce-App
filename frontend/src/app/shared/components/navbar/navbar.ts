@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -13,19 +13,39 @@ import { AuthService } from '../../../core/services/auth';
 })
 export class Navbar {
 
-  // Search
-  searchText = '';
+  userName: string = '';
+  showDropdown = false;
 
-  // Login form
+  searchText = '';
   email = '';
   password = '';
 
   constructor(
     public authService: AuthService,
     private router: Router
-  ) {}
+  ) {
+    this.loadUser();
+  }
 
-  // LOGIN FROM NAVBAR
+  // ===============================
+  // DROPDOWN CONTROL
+  // ===============================
+
+  toggleDropdown(event: Event) {
+    event.stopPropagation(); // Prevent auto close
+    this.showDropdown = !this.showDropdown;
+  }
+
+  // Close when clicking outside
+  @HostListener('document:click')
+  closeDropdown() {
+    this.showDropdown = false;
+  }
+
+  // ===============================
+  // LOGIN
+  // ===============================
+
   login() {
     if (!this.email || !this.password) return;
 
@@ -34,7 +54,11 @@ export class Navbar {
       password: this.password
     }).subscribe({
       next: (res: any) => {
+
         this.authService.saveToken(res.token);
+        localStorage.setItem('user', JSON.stringify(res.user));
+
+        this.loadUser();
 
         this.email = '';
         this.password = '';
@@ -47,7 +71,10 @@ export class Navbar {
     });
   }
 
+  // ===============================
   // SEARCH
+  // ===============================
+
   search() {
     if (!this.searchText.trim()) return;
 
@@ -58,9 +85,31 @@ export class Navbar {
     this.searchText = '';
   }
 
+  // ===============================
   // LOGOUT
+  // ===============================
+
   logout() {
+    localStorage.removeItem('user');
+
+    this.showDropdown = false;
+
     this.authService.logout();
+
     this.router.navigateByUrl('/login');
   }
+
+  // ===============================
+  // LOAD USER
+  // ===============================
+
+  loadUser() {
+    const user = localStorage.getItem('user');
+
+    if (user) {
+      const parsed = JSON.parse(user);
+      this.userName = parsed.name || parsed.email;
+    }
+  }
+
 }

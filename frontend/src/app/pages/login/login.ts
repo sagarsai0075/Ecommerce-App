@@ -24,14 +24,30 @@ export class Login {
     });
   }
 
-  login() {
-    this.authService.login(this.form.value).subscribe({
-      next: (res: { token: string }) => {
-        this.authService.saveToken(res.token);
-        this.router.navigateByUrl('/products');
+ login() {
+
+  if (this.form.invalid) return;
+
+  this.authService.login(this.form.value).subscribe({
+
+    next: (res: any) => {
+
+      this.authService.saveToken(res.token);
+
+      if (res.user) {
+        this.authService.saveUser(res.user);
       }
-      
-    });
-  }
+
+      // Redirect to HOME
+      this.router.navigate(['/']); // or '/home'
+    },
+
+    error: () => {
+      alert('Invalid email or password');
+    }
+
+  });
+}
+
   
 }

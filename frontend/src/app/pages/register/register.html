@@ -2,59 +2,80 @@
 
   <div class="form-container">
 
-    <h2>
-      <i class="fa-solid fa-user-plus"></i> Create Account
+    <h2 class="form-title">
+      <i ></i>
+      Create Account
     </h2>
 
     <form [formGroup]="form" (ngSubmit)="register()">
 
       <!-- NAME -->
-      <div class="mb-2">
+      <div class="input-box">
+        <label>
+          <i class="bi bi-person"></i> Full Name
+        </label>
+
         <input
           type="text"
-          placeholder="👤 Full Name"
+          placeholder="Enter your full name"
           formControlName="name"
         />
       </div>
 
       <!-- EMAIL -->
-      <div class="mb-2">
+      <div class="input-box">
+        <label>
+          <i class="bi bi-envelope"></i> Email
+        </label>
+
         <input
           type="email"
-          placeholder="📧 Email Address"
+          placeholder="Enter your email"
           formControlName="email"
         />
       </div>
 
       <!-- PASSWORD -->
-      <div class="mb-2">
+      <div class="input-box">
+        <label>
+          <i class="bi bi-lock"></i> Password
+        </label>
+
         <input
           type="password"
-          placeholder="🔒 Password"
+          placeholder="Create a password"
           formControlName="password"
         />
       </div>
 
       <!-- MOBILE -->
-      <div class="mb-2">
+      <div class="input-box">
+        <label>
+          <i class="bi bi-phone"></i> Mobile Number
+        </label>
+
         <input
           type="tel"
-          placeholder="📱 Mobile Number"
+          placeholder="Enter mobile number"
           formControlName="number"
         />
       </div>
 
       <!-- BUTTON -->
-      <button type="submit" class="btn-primary w-100 mt-2">
-        <i class="fa-solid fa-user-check"></i> Register
+      <button type="submit" class="btn-primary w-100">
+        <i class="bi bi-person-check"></i>
+        Register
       </button>
 
     </form>
 
     <!-- LOGIN LINK -->
-    <p class="text-center mt-2">
+    <p class="register-text">
       Already have an account?
-      <a routerLink="/login">Login</a>
+      <a routerLink="/login">
+        <i class="bi bi-box-arrow-in-right"></i>
+        Login
+      </a>
     </p>
 
   </div>

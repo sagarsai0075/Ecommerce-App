@@ -1,40 +1,53 @@
 <div class="form-container">
 
-  <h2>
-    <i class="fa-solid fa-user-lock"></i> Login
+  <h2 class="form-title">
+    <i ></i>
+    Login
   </h2>
 
   <form [formGroup]="form" (ngSubmit)="login()">
 
     <!-- EMAIL -->
-    <div class="input-box mb-2">
+    <div class="input-box">
+      <label>
+        <i class="bi bi-envelope"></i> Email
+      </label>
+
       <input
         type="email"
-        placeholder="📧 Enter your email"
+        placeholder="Enter your email"
         formControlName="email"
       />
     </div>
 
     <!-- PASSWORD -->
-    <div class="input-box mb-2">
+    <div class="input-box">
+      <label>
+        <i class="bi bi-lock"></i> Password
+      </label>
+
       <input
         type="password"
-        placeholder="🔒 Enter your password"
+        placeholder="Enter your password"
         formControlName="password"
       />
     </div>
 
     <!-- BUTTON -->
-    <button type="submit" class="btn-primary w-100 mt-2">
-      <i class="fa-solid fa-right-to-bracket"></i> Login
+    <button type="submit" class="btn-primary w-100">
+      <i class="bi bi-box-arrow-in-right"></i>
+      Login
     </button>
 
   </form>
 
   <!-- REGISTER LINK -->
-  <p class="text-center mt-2">
+  <p class="register-text">
     Don’t have an account?
-    <a routerLink="/register">Register</a>
+    <a routerLink="/register">
+      <i class="bi bi-person-plus"></i>
+      Register
+    </a>
   </p>
 
 </div>

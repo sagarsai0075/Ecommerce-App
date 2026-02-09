@@ -12,7 +12,10 @@
   </div>
 
   <!-- CART ITEMS -->
-  <div *ngFor="let item of items" class="cart-item">
+  <div
+    *ngFor="let item of items || []"
+    class="cart-item"
+  >
 
     <div class="cart-info">
       <h4>{{ item.product.name }}</h4>
@@ -22,16 +25,32 @@
     <!-- QUANTITY -->
     <div class="qty">
 
-      <button class="qty-btn" (click)="decrease(item)">-</button>
+      <button
+        type="button"
+        class="qty-btn"
+        (click)="decrease(item)"
+      >
+        -
+      </button>
 
       <span>{{ item.quantity }}</span>
 
-      <button class="qty-btn" (click)="increase(item)">+</button>
+      <button
+        type="button"
+        class="qty-btn"
+        (click)="increase(item)"
+      >
+        +
+      </button>
 
     </div>
 
     <!-- REMOVE -->
-    <button class="btn-danger remove-btn" (click)="remove(item)">
+    <button
+      type="button"
+      class="btn-danger remove-btn"
+      (click)="remove(item)"
+    >
       <i class="fa-solid fa-trash"></i>
     </button>
 
@@ -44,7 +63,7 @@
       Total: <span>₹{{ total }}</span>
     </h3>
 
-    <button class="btn-primary checkout-btn">
+    <button type="button" class="btn-primary checkout-btn">
       <i class="fa-solid fa-credit-card"></i> Checkout
     </button>
 

@@ -1,7 +1,88 @@
-form {
-  max-width: 320px;
+/* AUTH PAGE CENTER */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-input {
-  margin-bottom: 12px;
+/* FORM WIDTH */
+.form-container {
+  max-width: 400px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* INPUT BOX */
+.input-box {
+  margin-bottom: 15px;
+}
+
+.input-box label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.input-box input:focus {
+  border-color: #007bff;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+/* FULL WIDTH */
+.w-100 {
+  width: 100%;
+}
+
+/* ICON SPACING */
+.bi {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+/* LOGIN LINK */
+.register-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.register-text a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
 }

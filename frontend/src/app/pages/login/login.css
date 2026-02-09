@@ -1,9 +1,91 @@
-/* LOGIN EXTRA */
+/* FORM CONTAINER */
+.form-container {
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* TITLE */
+.form-title {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* INPUT BOX */
+.input-box {
+  margin-bottom: 15px;
+}
+
+.input-box label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #555;
+}
 
 .input-box input {
   width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s;
 }
 
+.input-box input:focus {
+  border-color: #007bff;
+}
+
+/* BUTTON */
+.btn-primary {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+/* FULL WIDTH */
 .w-100 {
   width: 100%;
+}
+
+/* REGISTER TEXT */
+/* ICON SPACING */
+.bi {
+  margin-right: 6px;
+  font-size: 15px;
+}
+
+/* REGISTER LINK FIX */
+.register-text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.register-text a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
 }

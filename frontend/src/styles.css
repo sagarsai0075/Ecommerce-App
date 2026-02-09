@@ -32,12 +32,13 @@ body {
     url("https://images.unsplash.com/photo-1607082349566-187342175e2f");
 
   background-size: cover;
-  background-position: center;
+  background-position: center 30%; /* 👈 Move image down */
   background-repeat: no-repeat;
   background-attachment: fixed;
 
   color: #f8fafc;
 }
+
 
 /* ==============================
    LINKS

@@ -1,41 +1,156 @@
-<div class="home-page">
+<!-- CATEGORY BAR -->
+<div class="category-nav">
 
-  <div class="home-card">
+  <ul class="menu">
 
-    <h1>
-      <i class="fa-solid fa-store"></i>
-      Welcome to <span>MyShop</span>
-    </h1>
+    <li>
+      Mobiles
+      <ul class="dropdown">
+        <li>Samsung</li>
+        <li>Apple</li>
+        <li>OnePlus</li>
+        <li>Redmi</li>
+        <li>Realme</li>
+      </ul>
+    </li>
 
-    <!-- BEFORE LOGIN -->
-    <p *ngIf="!authService.isLoggedIn()">
-      🛍️ Please login to start shopping
-    </p>
+    <li>
+      Electronics
+      <ul class="dropdown">
+        <li>Laptops</li>
+        <li>Headphones</li>
+        <li>Cameras</li>
+        <li>Speakers</li>
+      </ul>
+    </li>
 
-    <div *ngIf="!authService.isLoggedIn()" class="home-actions">
+    <li>
+      Fashion
+      <ul class="dropdown">
+        <li>Men</li>
+        <li>Women</li>
+        <li>Kids</li>
+        <li>Footwear</li>
+      </ul>
+    </li>
 
-      <a routerLink="/login" class="btn-primary">
-        <i class="fa-solid fa-right-to-bracket"></i> Login
-      </a>
+    <li>
+      TVs & Appliances
+      <ul class="dropdown">
+        <li>Smart TV</li>
+        <li>Washing Machine</li>
+        <li>AC</li>
+        <li>Refrigerator</li>
+      </ul>
+    </li>
 
-      <a routerLink="/register" class="btn-secondary">
-        <i class="fa-solid fa-user-plus"></i> Register
-      </a>
+    <li>
+      Home & Furniture
+      <ul class="dropdown">
+        <li>Sofa</li>
+        <li>Beds</li>
+        <li>Kitchen</li>
+        <li>Decor</li>
+      </ul>
+    </li>
+
+    <li>
+      Books
+      <ul class="dropdown">
+        <li>Fiction</li>
+        <li>Non-Fiction</li>
+        <li>Comics</li>
+        <li>Study Materials</li>
+      </ul>
+    </li>
+
+    <!-- New Kitchen Category -->
+    <li>
+      Kitchen
+      <ul class="dropdown">
+        <li>Cookware</li>
+        <li>Utensils</li>
+        <li>Appliances</li>
+        <li>Storage</li>
+      </ul>
+    </li>
+
+  </ul>
+
+</div>
+
+<!-- HOME PAGE -->
+
+<!-- CAROUSEL -->
+<div class="carousel" (mouseenter)="pauseAutoSlide()" (mouseleave)="resumeAutoSlide()">
+
+  <button class="arrow left" (click)="prevSlide()">❮</button>
+
+  <div class="slides" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
+    <img src="assets/Banners/main.webp" alt="">
+    
+    <img src="assets/Banners/ph.png" alt="">
+    <img src="assets/Banners/ss.jpg" alt="">
+    <img src="assets/Banners/jj.webp" alt="">
+    <img src="assets/Banners/sss.jpg" alt="">
+
+  </div>
+
+  <button class="arrow right" (click)="nextSlide()">❯</button>
+
+</div>
+
+
+<!-- PRODUCTS -->
+<!-- PRODUCTS -->
+
+<!-- PRODUCTS -->
+
+<div class="products">
+
+  <h2 class="sec">Best Deals on Smartphones</h2>
+
+  <div class="product-slider">
+
+    <!-- LEFT ARROW -->
+    <button class="p-arrow left" (click)="scrollLeft()">❮</button>
+
+    <!-- PRODUCT LIST -->
+    <div class="product-wrapper" #productContainer>
+
+     <div class="product-card" *ngFor="let p of infinitePhones">
+
+
+        <!-- OFFER BADGE -->
+        <span class="offer-badge" *ngIf="p.discount">
+          {{ p.discount }}% OFF
+        </span>
+
+        <img [src]="p.image" [alt]="p.name" />
+
+        <h2 class="section-title">{{ p.name }}</h2>
+
+        <!-- PRICE -->
+        <div class="price-box">
+
+          <span class="old-price" *ngIf="p.discount">
+            ₹{{ p.price }}
+          </span>
+
+          <span class="new-price">
+            ₹{{ getDiscountedPrice(p.price, p.discount) }}
+          </span>
+
+        </div>
+
+        <button>Add to Cart</button>
+
+      </div>
 
     </div>
 
-    <!-- AFTER LOGIN -->
-    <div *ngIf="authService.isLoggedIn()">
-
-      <p>
-        ✅ You are logged in. Start browsing products!
-      </p>
-
-      <a routerLink="/products" class="btn-primary mt-2">
-        <i class="fa-solid fa-bag-shopping"></i> Shop Now
-      </a>
-
-    </div>
+    <!-- RIGHT ARROW -->
+    <button class="p-arrow right" (click)="scrollRight()">❯</button>
 
   </div>
 
