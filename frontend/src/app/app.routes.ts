@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { Home } from './pages/home/home/home';
@@ -12,10 +13,13 @@ import { OrderHistory } from './pages/orders/order-history/order-history';
 import { Dashboard } from './pages/admin/dashboard/dashboard';
 import { AddProduct } from './pages/admin/add-product/add-product';
 import { EditProduct } from './pages/admin/edit-product/edit-product';
-
+import { Products } from './pages/products/products';
+import { Profile } from './pages/profile/profile';
+import { Coupons } from './pages/coupons/coupons';
+import { Seller } from './pages/seller/seller';
 export const routes: Routes = [
 
-  // 🔥 DEFAULT ROUTE (VERY IMPORTANT)
+  // 🔥 DEFAULT
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
   { path: 'home', component: Home },
@@ -24,12 +28,22 @@ export const routes: Routes = [
 
   { path: 'login', component: Login },
 
+  // ✅ PRODUCTS (NEW)
+  { path: 'products/:category', component: Products },
+
   { path: 'cart', component: CartPage, canActivate: [authGuard] },
 
   { path: 'checkout', component: CheckoutPage, canActivate: [authGuard] },
 
   { path: 'orders', component: OrderHistory, canActivate: [authGuard] },
+  // USER PAGES
+  { path: 'profile', component: Profile, canActivate: [authGuard] },
 
+  { path: 'coupons', component: Coupons, canActivate: [authGuard] },
+
+  { path: 'seller', component: Seller, canActivate: [authGuard] },
+
+  // ADMIN
   {
     path: 'admin',
     component: Dashboard,
@@ -48,6 +62,7 @@ export const routes: Routes = [
     canActivate: [adminGuard]
   },
 
-  // 🔥 WILDCARD (MUST BE LAST)
+  // 🔥 WILDCARD (LAST)
   { path: '**', redirectTo: 'home' }
+
 ];

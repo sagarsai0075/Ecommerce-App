@@ -1,7 +1,8 @@
 <nav class="nav">
 
   <!-- LOGO -->
-  <a routerLink="/" class="logo">
+  <a href="/" class="logo">
+
     <img src="assets/icon.ico" class="logo-img" />
     <span>ShopEazy</span>
   </a>
@@ -11,6 +12,20 @@
     <i class="bi bi-search search-icon"></i>
     <input type="text" placeholder="Search products..." [(ngModel)]="searchText" name="search" />
   </form>
+<!-- BEFORE LOGIN -->
+<div *ngIf="!authService.isLoggedIn()" class="auth-box">
+
+  <a routerLink="/login" class="auth-btn login-btn">
+    <i class="bi bi-box-arrow-in-right"></i>
+    Login
+  </a>
+
+  <a routerLink="/register" class="auth-btn register-btn">
+    <i class="bi bi-person-plus"></i>
+    Register
+  </a>
+
+</div>
 
   <!-- AFTER LOGIN -->
   <div *ngIf="authService.isLoggedIn()" class="menu">

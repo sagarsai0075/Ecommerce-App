@@ -71,9 +71,14 @@
       Total: <span>₹{{ total }}</span>
     </h3>
 
-    <button type="button" class="btn-primary checkout-btn">
-      <i class="fa-solid fa-credit-card"></i> Checkout
-    </button>
+   <button
+  type="button"
+  class="btn-primary checkout-btn"
+  (click)="goToCheckout()"
+>
+  <i class="fa-solid fa-credit-card"></i> Checkout
+</button>
+
 
   </div>
 

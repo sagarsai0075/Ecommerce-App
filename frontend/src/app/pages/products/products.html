@@ -1,0 +1,154 @@
+<div class="page-layout">
+
+  <!-- LEFT FILTER -->
+  <aside class="filter-panel">
+
+  <!-- SORT -->
+  <div class="filter-block">
+    <h4>Sort By</h4>
+
+    <label>
+      <input type="radio" name="sort" />
+      Newest First
+    </label>
+
+    <label>
+      <input type="radio" name="sort" />
+      Price: Low to High
+    </label>
+
+    <label>
+      <input type="radio" name="sort" />
+      Price: High to Low
+    </label>
+  </div>
+
+  <hr />
+
+  <!-- PRICE RANGE -->
+  <div class="filter-block">
+    <h4>Price Range</h4>
+
+    <label>
+      <input type="checkbox" />
+      ₹0 – ₹500
+    </label>
+
+    <label>
+      <input type="checkbox" />
+      ₹500 – ₹1,000
+    </label>
+
+    <label>
+      <input type="checkbox" />
+      ₹1,000 – ₹2,000
+    </label>
+
+    <label>
+      <input type="checkbox" />
+      ₹2,000 – ₹5,000
+    </label>
+
+    <label>
+      <input type="checkbox" />
+      ₹5,000 & Above
+    </label>
+  </div>
+
+  <hr />
+
+  <!-- BRAND -->
+  <div class="filter-block">
+    <h4>Brand</h4>
+
+    <label><input type="checkbox" /> Samsung</label>
+    <label><input type="checkbox" /> Apple</label>
+    <label><input type="checkbox" /> OnePlus</label>
+    <label><input type="checkbox" /> Redmi</label>
+    <label><input type="checkbox" /> Vivo</label>
+  </div>
+
+  <hr />
+
+  <!-- CUSTOMER RATING -->
+  <div class="filter-block">
+    <h4>Customer Ratings</h4>
+
+    <label>
+      <input type="checkbox" />
+      ⭐⭐⭐⭐ & above
+    </label>
+
+    <label>
+      <input type="checkbox" />
+      ⭐⭐⭐ & above
+    </label>
+
+    <label>
+      <input type="checkbox" />
+      ⭐⭐ & above
+    </label>
+  </div>
+
+</aside>
+
+
+  <!-- RIGHT CONTENT -->
+  <section class="content">
+
+    <div class="product-card" *ngFor="let p of products">
+
+      <!-- IMAGE -->
+      <div class="img-box">
+        <img [src]="p.image" />
+      </div>
+
+      <!-- DETAILS -->
+      <div class="info-box">
+
+        <div class="top-row">
+          <span class="sponsored">Sponsored</span>
+        </div>
+
+        <h3>{{ p.name }}</h3>
+
+        <div class="rating">
+          ⭐ 4.3 <span>89 Ratings</span>
+        </div>
+
+        <ul>
+          <li>Ultra HD (4K)</li>
+          <li>Mini LED</li>
+          <li>1 Year Warranty</li>
+        </ul>
+
+        <label class="compare">
+          <input type="checkbox"> Add to Compare
+        </label>
+
+      </div>
+
+      <!-- PRICE -->
+      <div class="price-box">
+
+        <div class="price">₹{{ getFinalPrice(p) }}</div>
+
+        <div class="old" *ngIf="p.discount">
+          ₹{{ p.price }}
+        </div>
+
+        <div class="off">
+          {{ p.discount }}% off
+        </div>
+
+       
+
+        <button (click)="addToCart(p)">Add to Cart</button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

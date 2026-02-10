@@ -55,7 +55,6 @@
 .search input {
   padding: 8px 12px 8px 36px;
   border-radius: 20px;
-
   border: none;
   outline: none;
 }
@@ -64,7 +63,6 @@
   position: absolute;
   left: 12px;
   top: 50%;
-
   transform: translateY(-50%);
   color: #64748b;
   font-size: 16px;
@@ -92,23 +90,20 @@
   position: relative;
 }
 
-/* Hover underline */
+/* Hover underline (EXCEPT auth buttons) */
 
-.nav a:not(.logo)::after {
+.nav a:not(.logo):not(.auth-btn)::after {
   content: "";
   position: absolute;
-
   left: 0;
   bottom: -4px;
-
   width: 0%;
   height: 2px;
-
   background: white;
   transition: 0.3s;
 }
 
-.nav a:not(.logo):hover::after {
+.nav a:not(.logo):not(.auth-btn):hover::after {
   width: 100%;
 }
 
@@ -119,10 +114,8 @@
 .logout-btn {
   background: none;
   border: none;
-
   color: white;
   font-size: 14px;
-
   cursor: pointer;
 
   display: flex;
@@ -147,7 +140,6 @@
   display: flex;
   align-items: center;
   gap: 6px;
-
   color: white;
   font-weight: 500;
 }
@@ -160,7 +152,8 @@
   position: absolute;
   right: 0;
   top: 45px;
-margin-right: -25px;
+  margin-right: -25px;
+
   background: white;
   min-width: 180px;
 
@@ -168,7 +161,6 @@ margin-right: -25px;
   padding: 8px 0;
 
   box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-
   z-index: 10000;
 }
 
@@ -177,7 +169,6 @@ margin-right: -25px;
 .user-menu a,
 .user-menu button {
   width: 100%;
-
   display: flex;
   align-items: center;
   gap: 8px;
@@ -186,7 +177,6 @@ margin-right: -25px;
   font-size: 14px;
 
   color: #1e293b;
-
   background: none;
   border: none;
 
@@ -203,7 +193,6 @@ margin-right: -25px;
 
 .user-menu hr {
   margin: 6px 0;
-
   border: none;
   border-top: 1px solid #e2e8f0;
 }
@@ -222,27 +211,78 @@ margin-right: -25px;
   margin-right: 6px;
 }
 /* ==============================
+   FIX AUTH BUTTON POSITION
+============================== */
+
+.auth-box {
+  position: absolute;
+  right: 30px;
+}
+
+/* ==============================
    CENTER SEARCH BEFORE LOGIN
 ============================== */
 
-/* When menu is hidden (not logged in) */
 .nav:not(:has(.menu)) {
   justify-content: center;
 }
 
-/* Keep logo on left */
 .nav:not(:has(.menu)) .logo {
   position: absolute;
   left: 30px;
 }
 
-/* Center search bar */
 .nav:not(:has(.menu)) .search {
   width: 100%;
   max-width: 420px;
 }
 
-/* Full width input */
 .nav:not(:has(.menu)) .search input {
   width: 100%;
+}
+
+/* ==============================
+      AUTH BUTTONS (BEFORE LOGIN)
+============================== */
+
+.auth-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  transition: all 0.3s ease;
+}
+
+/* Login & Register (same base style) */
+
+.login-btn,
+.register-btn {
+  border: 1px solid white;
+  color: white;
+  background: transparent;
+}
+
+/* ==============================
+   TRANSPARENT HOVER OVERLAY
+============================== */
+
+.login-btn:hover,
+.register-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border-color: white;
+}
+
+/* Icon size inside auth buttons */
+
+.auth-btn .bi {
+  font-size: 16px;
 }

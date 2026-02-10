@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './cart-page.html',
   styleUrls: ['./cart-page.css']
 })
 export class CartPage implements OnInit {
 
   items: any[] = [];
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -22,11 +25,9 @@ export class CartPage implements OnInit {
 
     const storedCart = localStorage.getItem('cart');
 
-    if (storedCart) {
-      this.items = JSON.parse(storedCart);
-    } else {
-      this.items = [];
-    }
+    this.items = storedCart
+      ? JSON.parse(storedCart)
+      : [];
 
     console.log('Cart Items:', this.items);
   }
@@ -37,8 +38,8 @@ export class CartPage implements OnInit {
   increase(item: any) {
 
     item.qty++;
-
     this.saveCart();
+
   }
 
   // ===============================
@@ -46,11 +47,11 @@ export class CartPage implements OnInit {
   // ===============================
   decrease(item: any) {
 
-    if (item.qty <= 1) return;
+    if (item.qty > 1) {
+      item.qty--;
+      this.saveCart();
+    }
 
-    item.qty--;
-
-    this.saveCart();
   }
 
   // ===============================
@@ -58,9 +59,12 @@ export class CartPage implements OnInit {
   // ===============================
   remove(item: any) {
 
-    this.items = this.items.filter(i => i.name !== item.name);
+    this.items = this.items.filter(
+      i => i.name !== item.name
+    );
 
     this.saveCart();
+
   }
 
   // ===============================
@@ -68,9 +72,13 @@ export class CartPage implements OnInit {
   // ===============================
   saveCart() {
 
-    localStorage.setItem('cart', JSON.stringify(this.items));
+    localStorage.setItem(
+      'cart',
+      JSON.stringify(this.items)
+    );
 
     this.loadCart();
+
   }
 
   // ===============================
@@ -79,10 +87,19 @@ export class CartPage implements OnInit {
   get total(): number {
 
     return this.items.reduce(
-      (sum, item) =>
-        sum + (item.price * item.qty),
+      (sum, item) => sum + item.price * item.qty,
       0
     );
+
+  }
+
+  // ===============================
+  // GO TO CHECKOUT
+  // ===============================
+  goToCheckout() {
+
+    this.router.navigate(['/checkout']);
+
   }
 
 }

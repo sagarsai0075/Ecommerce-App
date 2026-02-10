@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { Product } from './product';
+import { environment } from '../../../environments/environment';
+
 
 export interface CartItem {
   product: Product;
@@ -13,23 +13,72 @@ export interface CartItem {
 })
 export class CartService {
 
-  private baseUrl = `${environment.apiUrl}/cart`;
+  private storageKey = 'cart';
 
-  constructor(private http: HttpClient) {}
+  constructor() {}
 
-  getCart() {
-    return this.http.get<CartItem[]>(this.baseUrl);
+  // 🔹 Get cart from localStorage
+  getCart(): CartItem[] {
+    return JSON.parse(localStorage.getItem(this.storageKey) || '[]');
   }
 
-  addToCart(productId: string, quantity = 1) {
-    return this.http.post(this.baseUrl, { productId, quantity });
+  // 🔹 Save cart
+  private saveCart(cart: CartItem[]) {
+    localStorage.setItem(this.storageKey, JSON.stringify(cart));
   }
 
-  updateQuantity(productId: string, quantity: number) {
-    return this.http.put(this.baseUrl, { productId, quantity });
+  // 🔹 Add to cart
+  addToCart(product: Product) {
+    const cart = this.getCart();
+    const item = cart.find(i => i.product._id === product._id);
+
+    if (item) {
+      item.quantity++;
+    } else {
+      cart.push({ product, quantity: 1 });
+    }
+
+    this.saveCart(cart);
   }
 
-  removeFromCart(productId: string) {
-    return this.http.delete(`${this.baseUrl}/${productId}`);
+  // 🔹 Increase quantity
+  increase(productId: string) {
+    const cart = this.getCart();
+    const item = cart.find(i => i.product._id === productId);
+    if (item) item.quantity++;
+    this.saveCart(cart);
+  }
+
+  // 🔹 Decrease quantity
+  decrease(productId: string) {
+    let cart = this.getCart();
+    cart = cart.map(i =>
+      i.product._id === productId
+        ? { ...i, quantity: i.quantity - 1 }
+        : i
+    ).filter(i => i.quantity > 0);
+
+    this.saveCart(cart);
+  }
+
+  // 🔹 Remove item
+  remove(productId: string) {
+    const cart = this.getCart().filter(
+      i => i.product._id !== productId
+    );
+    this.saveCart(cart);
+  }
+
+  // 🔹 Get total
+  getTotal(): number {
+    return this.getCart().reduce(
+      (sum, item) => sum + item.product.price * item.quantity,
+      0
+    );
+  }
+
+  // 🔹 Clear cart
+  clearCart() {
+    localStorage.removeItem(this.storageKey);
   }
 }

@@ -1,83 +1,23 @@
 <!-- CATEGORY BAR -->
-<div class="category-nav">
+<!-- CATEGORY BAR -->
+<nav class="category-nav">
 
   <ul class="menu">
 
-    <li>
-      Mobiles
-      <ul class="dropdown">
-        <li>Samsung</li>
-        <li>Apple</li>
-        <li>OnePlus</li>
-        <li>Redmi</li>
-        <li>Realme</li>
-      </ul>
-    </li>
-
-    <li>
-      Electronics
-      <ul class="dropdown">
-        <li>Laptops</li>
-        <li>Headphones</li>
-        <li>Cameras</li>
-        <li>Speakers</li>
-      </ul>
-    </li>
-
-    <li>
-      Fashion
-      <ul class="dropdown">
-        <li>Men</li>
-        <li>Women</li>
-        <li>Kids</li>
-        <li>Footwear</li>
-      </ul>
-    </li>
-
-    <li>
-      TVs & Appliances
-      <ul class="dropdown">
-        <li>Smart TV</li>
-        <li>Washing Machine</li>
-        <li>AC</li>
-        <li>Refrigerator</li>
-      </ul>
-    </li>
-
-    <li>
-      Home & Furniture
-      <ul class="dropdown">
-        <li>Sofa</li>
-        <li>Beds</li>
-        <li>Kitchen</li>
-        <li>Decor</li>
-      </ul>
-    </li>
-
-    <li>
-      Books
-      <ul class="dropdown">
-        <li>Fiction</li>
-        <li>Non-Fiction</li>
-        <li>Comics</li>
-        <li>Study Materials</li>
-      </ul>
-    </li>
-
-    <!-- New Kitchen Category -->
-    <li>
-      Kitchen
-      <ul class="dropdown">
-        <li>Cookware</li>
-        <li>Utensils</li>
-        <li>Appliances</li>
-        <li>Storage</li>
-      </ul>
-    </li>
+    <li><a routerLink="/products/mobiles">Mobiles</a></li>
+    <li><a routerLink="/products/electronics">Electronics</a></li>
+    <li><a routerLink="/products/fashion">Fashion</a></li>
+    <li><a routerLink="/products/tv">TV</a></li>
+    <li><a routerLink="/products/home">Home</a></li>
+    <li><a routerLink="/products/books">Books</a></li>
+    <li><a routerLink="/products/kitchen">Kitchen</a></li>
 
   </ul>
 
-</div>
+</nav>
+
+
+
 
 <!-- HOME PAGE -->
 
@@ -143,6 +83,8 @@
 
         </div>
 
+
+        
  <button
   (click)="addToCart(p)"
   [class.added]="addedMap[p.name]"
@@ -157,6 +99,325 @@
 
     <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRight()">❯</button>
+
+  </div>
+
+</div>
+<!-- ELECTRONICS PRODUCTS -->
+
+<div class="products">
+
+  <h2 class="sec">Best Deals on Electronics</h2>
+
+  <div class="product-slider">
+
+    <!-- LEFT ARROW -->
+    <button class="p-arrow left" (click)="scrollLeftElectronics()">❮</button>
+
+    <!-- PRODUCT LIST -->
+    <div class="product-wrapper" #electronicsContainer>
+
+      <div class="product-card" *ngFor="let e of infiniteElectronics">
+
+        <!-- OFFER BADGE -->
+        <span class="offer-badge" *ngIf="e.discount">
+          {{ e.discount }}% OFF
+        </span>
+
+        <img [src]="e.image" [alt]="e.name" />
+
+        <h2 class="section-title">{{ e.name }}</h2>
+
+        <!-- PRICE -->
+        <div class="price-box">
+
+          <span class="old-price" *ngIf="e.discount">
+            ₹{{ e.price }}
+          </span>
+
+          <span class="new-price">
+            ₹{{ getDiscountedPrice(e.price, e.discount) }}
+          </span>
+
+        </div>
+
+        <button
+          (click)="addToCart(e)"
+          [class.added]="addedMap[e.name]"
+        >
+          {{ addedMap[e.name] ? 'Added ✓' : 'Add to Cart' }}
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button class="p-arrow right" (click)="scrollRightElectronics()">❯</button>
+
+  </div>
+
+</div>
+<!-- FASHION PRODUCTS -->
+
+<div class="products">
+
+  <h2 class="sec">Best Deals on Fashion</h2>
+
+  <div class="product-slider">
+
+    <!-- LEFT ARROW -->
+    <button class="p-arrow left" (click)="scrollLeftFashion()">❮</button>
+
+    <!-- PRODUCT LIST -->
+    <div class="product-wrapper" #fashionContainer>
+
+      <div class="product-card" *ngFor="let f of infiniteFashion">
+
+        <!-- OFFER BADGE -->
+        <span class="offer-badge" *ngIf="f.discount">
+          {{ f.discount }}% OFF
+        </span>
+
+        <img [src]="f.image" [alt]="f.name" />
+
+        <h2 class="section-title">{{ f.name }}</h2>
+
+        <!-- PRICE -->
+        <div class="price-box">
+
+          <span class="old-price" *ngIf="f.discount">
+            ₹{{ f.price }}
+          </span>
+
+          <span class="new-price">
+            ₹{{ getDiscountedPrice(f.price, f.discount) }}
+          </span>
+
+        </div>
+
+        <button
+          (click)="addToCart(f)"
+          [class.added]="addedMap[f.name]"
+        >
+          {{ addedMap[f.name] ? 'Added ✓' : 'Add to Cart' }}
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button class="p-arrow right" (click)="scrollRightFashion()">❯</button>
+
+  </div>
+
+</div>
+<!-- TV & APPLIANCES PRODUCTS -->
+
+<div class="products">
+
+  <h2 class="sec">Best Deals on TVs & Appliances</h2>
+
+  <div class="product-slider">
+
+    <!-- LEFT ARROW -->
+    <button class="p-arrow left" (click)="scrollLeftTv()">❮</button>
+
+    <!-- PRODUCT LIST -->
+    <div class="product-wrapper" #tvContainer>
+
+      <div class="product-card" *ngFor="let t of infiniteTv">
+
+        <span class="offer-badge" *ngIf="t.discount">
+          {{ t.discount }}% OFF
+        </span>
+
+        <img [src]="t.image" [alt]="t.name" />
+
+        <h2 class="section-title">{{ t.name }}</h2>
+
+        <div class="price-box">
+          <span class="old-price" *ngIf="t.discount">
+            ₹{{ t.price }}
+          </span>
+          <span class="new-price">
+            ₹{{ getDiscountedPrice(t.price, t.discount) }}
+          </span>
+        </div>
+
+        <button
+          (click)="addToCart(t)"
+          [class.added]="addedMap[t.name]"
+        >
+          {{ addedMap[t.name] ? 'Added ✓' : 'Add to Cart' }}
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button class="p-arrow right" (click)="scrollRightTv()">❯</button>
+
+  </div>
+
+</div>
+<!-- HOME & FURNITURE PRODUCTS -->
+
+<div class="products">
+
+  <h2 class="sec">Best Deals on Home & Furniture</h2>
+
+  <div class="product-slider">
+
+    <!-- LEFT ARROW -->
+    <button class="p-arrow left" (click)="scrollLeftHome()">❮</button>
+
+    <!-- PRODUCT LIST -->
+    <div class="product-wrapper" #homeContainer>
+
+      <div class="product-card" *ngFor="let h of infiniteHome">
+
+        <span class="offer-badge" *ngIf="h.discount">
+          {{ h.discount }}% OFF
+        </span>
+
+        <img [src]="h.image" [alt]="h.name" />
+
+        <h2 class="section-title">{{ h.name }}</h2>
+
+        <div class="price-box">
+
+          <span class="old-price" *ngIf="h.discount">
+            ₹{{ h.price }}
+          </span>
+
+          <span class="new-price">
+            ₹{{ getDiscountedPrice(h.price, h.discount) }}
+          </span>
+
+        </div>
+
+        <button
+          (click)="addToCart(h)"
+          [class.added]="addedMap[h.name]"
+        >
+          {{ addedMap[h.name] ? 'Added ✓' : 'Add to Cart' }}
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button class="p-arrow right" (click)="scrollRightHome()">❯</button>
+
+  </div>
+
+</div>
+<!-- BOOKS PRODUCTS -->
+
+<div class="products">
+
+  <h2 class="sec">Best Deals on Books</h2>
+
+  <div class="product-slider">
+
+    <!-- LEFT ARROW -->
+    <button class="p-arrow left" (click)="scrollLeftBooks()">❮</button>
+
+    <!-- PRODUCT LIST -->
+    <div class="product-wrapper" #booksContainer>
+
+      <div class="product-card" *ngFor="let b of infiniteBooks">
+
+        <span class="offer-badge" *ngIf="b.discount">
+          {{ b.discount }}% OFF
+        </span>
+
+        <img [src]="b.image" [alt]="b.name" />
+
+        <h2 class="section-title">{{ b.name }}</h2>
+
+        <div class="price-box">
+
+          <span class="old-price" *ngIf="b.discount">
+            ₹{{ b.price }}
+          </span>
+
+          <span class="new-price">
+            ₹{{ getDiscountedPrice(b.price, b.discount) }}
+          </span>
+
+        </div>
+
+        <button
+          (click)="addToCart(b)"
+          [class.added]="addedMap[b.name]"
+        >
+          {{ addedMap[b.name] ? 'Added ✓' : 'Add to Cart' }}
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button class="p-arrow right" (click)="scrollRightBooks()">❯</button>
+
+  </div>
+
+</div>
+<!-- KITCHEN PRODUCTS -->
+
+<div class="products">
+
+  <h2 class="sec">Best Deals on Kitchen</h2>
+
+  <div class="product-slider">
+
+    <!-- LEFT ARROW -->
+    <button class="p-arrow left" (click)="scrollLeftKitchen()">❮</button>
+
+    <!-- PRODUCT LIST -->
+    <div class="product-wrapper" #kitchenContainer>
+
+      <div class="product-card" *ngFor="let k of infiniteKitchen">
+
+        <span class="offer-badge" *ngIf="k.discount">
+          {{ k.discount }}% OFF
+        </span>
+
+        <img [src]="k.image" [alt]="k.name" />
+
+        <h2 class="section-title">{{ k.name }}</h2>
+
+        <div class="price-box">
+
+          <span class="old-price" *ngIf="k.discount">
+            ₹{{ k.price }}
+          </span>
+
+          <span class="new-price">
+            ₹{{ getDiscountedPrice(k.price, k.discount) }}
+          </span>
+
+        </div>
+
+        <button
+          (click)="addToCart(k)"
+          [class.added]="addedMap[k.name]"
+        >
+          {{ addedMap[k.name] ? 'Added ✓' : 'Add to Cart' }}
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT ARROW -->
+    <button class="p-arrow right" (click)="scrollRightKitchen()">❯</button>
 
   </div>
 

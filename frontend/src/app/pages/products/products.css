@@ -1,0 +1,268 @@
+/* MAIN LAYOUT */
+.page-layout {
+  display: flex;
+  width: 98%;          /* ✅ FULL WIDTH */
+  max-width: 100%;      /* ✅ NO LIMIT */
+  margin: 0;            /* ✅ REMOVE CENTER GAP */
+  gap: 20px;
+  padding: 10px 20px;   /* SMALL SIDE PADDING */
+  box-sizing: border-box;
+}
+
+
+/* FILTER */
+.filter-panel {
+  width: 300px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #eee;
+}
+
+.filter-panel h4 {
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.filter-panel label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.filter-panel hr {
+  margin: 15px 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+/* CONTENT */
+.content {
+  flex: 1;
+}
+
+/* CARD */
+.product-card {
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 18px;
+  gap: 20px;
+}
+
+/* IMAGE */
+.img-box {
+  width: 200px;
+}
+
+.img-box img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+}
+
+/* INFO */
+.info-box {
+  flex: 1;
+}
+
+/* PRODUCT TITLE */
+.info-box h3 {
+  font-size: 19px;       /* Bigger */
+  font-weight: 600;     /* Bold */
+  color: #111;          /* Dark */
+  margin-bottom: 6px;
+}
+
+/* DESCRIPTION / BULLETS */
+.info-box ul {
+  padding-left: 18px;
+  font-size: 14px;
+  color: #333;          /* Darker */
+  line-height: 1.5;
+}
+
+/* RATINGS */
+.rating {
+  color: #2e7d32;       /* Dark green */
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+/* PRICE MAIN */
+.price {
+  font-size: 24px;      /* Bigger */
+  font-weight: 700;
+  color: #000;          /* Pure black */
+}
+
+/* OLD PRICE */
+.old {
+  color: #666;
+  font-size: 14px;
+}
+
+/* DISCOUNT */
+.off {
+  color: #008000;       /* Strong green */
+  font-weight: 600;
+}
+
+/* FILTER TITLES */
+.filter-panel h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+}
+
+/* FILTER ITEMS */
+.filter-panel label {
+  font-size: 14px;
+  color: #222;
+}
+/* ADD TO COMPARE */
+.compare {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #111;          /* Dark text */
+  cursor: pointer;
+}
+
+.compare input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+.price-box {
+  width: 200px;
+  padding-right: 20px;     /* ✅ MOVE INWARD */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;   /* KEEP RIGHT ALIGN */
+  gap: 6px;                /* NICE SPACING */
+}
+.price {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.old {
+  margin-bottom: 2px;
+}
+
+.off {
+  margin-bottom: 8px;
+}
+.price-box button {
+  margin-top: 6px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: #005eff;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+
+  /* Default shadow */
+  box-shadow: 0 2px 6px rgba(0, 94, 255, 0.35);
+
+  /* Smooth animation */
+  transition: all 0.25s ease;
+}
+/* FILTER PANEL */
+.filter-panel {
+  width: 230px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BLOCK */
+.filter-block {
+  margin-bottom: 10px;
+}
+
+/* HEADINGS */
+.filter-panel h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111;
+}
+
+/* LABELS */
+.filter-panel label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+/* INPUTS */
+.filter-panel input[type="checkbox"],
+.filter-panel input[type="radio"] {
+  cursor: pointer;
+}
+
+/* DIVIDER */
+.filter-panel hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 12px 0;
+}
+
+/* ✅ ON HOVER */
+.price-box button:hover {
+  background: #0047cc;
+
+  /* Bigger shadow */
+  box-shadow: 0 6px 14px rgba(0, 94, 255, 0.5);
+
+  /* Small lift effect */
+  transform: translateY(-2px);
+}
+
+
+
+.compare span {
+  color: #111;
+  font-weight: 500;
+}
+
+/* SPONSORED */
+.sponsored {
+  color: #777;
+  font-size: 12px;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+
+  .page-layout {
+    flex-direction: column;
+  }
+
+  .filter-panel {
+    width: 100%;
+  }
+
+  .product-card {
+    flex-direction: column;
+  }
+
+  .price-box {
+    text-align: left;
+    width: 100%;
+  }
+}
