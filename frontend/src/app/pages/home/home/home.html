@@ -1,9 +1,6 @@
-<!-- CATEGORY BAR -->
-<!-- CATEGORY BAR -->
+<!-- CATEGORY NAVIGATION -->
 <nav class="category-nav">
-
   <ul class="menu">
-
     <li><a routerLink="/products/mobiles">Mobiles</a></li>
     <li><a routerLink="/products/electronics">Electronics</a></li>
     <li><a routerLink="/products/fashion">Fashion</a></li>
@@ -11,98 +8,51 @@
     <li><a routerLink="/products/home">Home</a></li>
     <li><a routerLink="/products/books">Books</a></li>
     <li><a routerLink="/products/kitchen">Kitchen</a></li>
-
   </ul>
-
 </nav>
 
-
-
-
-<!-- HOME PAGE -->
-
-<!-- CAROUSEL -->
+<!-- CAROUSEL BANNER -->
 <div class="carousel" (mouseenter)="pauseAutoSlide()" (mouseleave)="resumeAutoSlide()">
-
   <button class="arrow left" (click)="prevSlide()">❮</button>
-
   <div class="slides" [style.transform]="'translateX(-' + currentSlide * 100 + '%)'">
     <img src="assets/Banners/main.webp" alt="">
-    
     <img src="assets/Banners/ph.png" alt="">
     <img src="assets/Banners/ss.jpg" alt="">
     <img src="assets/Banners/jj.webp" alt="">
     <img src="assets/Banners/sss.jpg" alt="">
-
   </div>
-
   <button class="arrow right" (click)="nextSlide()">❯</button>
-
 </div>
 
-
-<!-- PRODUCTS -->
-<!-- PRODUCTS -->
-
-<!-- PRODUCTS -->
-
+<!-- PRODUCTS SECTION -->
 <div class="products">
-
   <h2 class="sec">Best Deals on Smartphones</h2>
-
   <div class="product-slider">
-
-    <!-- LEFT ARROW -->
     <button class="p-arrow left" (click)="scrollLeft()">❮</button>
-
-    <!-- PRODUCT LIST -->
     <div class="product-wrapper" #productContainer>
-
-     <div class="product-card" *ngFor="let p of infinitePhones">
-
-
-        <!-- OFFER BADGE -->
+      <div class="product-card" *ngFor="let p of infinitePhones">
         <span class="offer-badge" *ngIf="p.discount">
           {{ p.discount }}% OFF
         </span>
-
         <img [src]="p.image" [alt]="p.name" />
-
-        <h2 class="section-title">{{ p.name }}</h2>
-
-        <!-- PRICE -->
+        <h3 class="section-title">{{ p.name }}</h3>
         <div class="price-box">
-
           <span class="old-price" *ngIf="p.discount">
             ₹{{ p.price }}
           </span>
-
           <span class="new-price">
             ₹{{ getDiscountedPrice(p.price, p.discount) }}
           </span>
-
         </div>
-
-
-        
- <button
-  (click)="addToCart(p)"
-  [class.added]="addedMap[p.name]"
->
-  {{ addedMap[p.name] ? 'Added ✓' : 'Add to Cart' }}
-</button>
-
-
+        <button (click)="addToCart(p)" [class.added]="addedMap[p.name]">
+          {{ addedMap[p.name] ? 'Added ✓' : 'Add to Cart' }}
+        </button>
       </div>
-
     </div>
-
-    <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRight()">❯</button>
-
   </div>
-
 </div>
+
 <!-- ELECTRONICS PRODUCTS -->
 
 <div class="products">
@@ -110,12 +60,9 @@
   <h2 class="sec">Best Deals on Electronics</h2>
 
   <div class="product-slider">
-
-    <!-- LEFT ARROW -->
-    <button class="p-arrow left" (click)="scrollLeftElectronics()">❮</button>
-
-    <!-- PRODUCT LIST -->
-    <div class="product-wrapper" #electronicsContainer>
+  <button class="p-arrow left" (click)="scrollLeftElectronics()">❮</button>
+  <!-- PRODUCT LIST -->
+  <div class="product-wrapper" #electronicsContainer>
 
       <div class="product-card" *ngFor="let e of infiniteElectronics">
 
@@ -151,10 +98,7 @@
       </div>
 
     </div>
-
-    <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRightElectronics()">❯</button>
-
   </div>
 
 </div>
@@ -165,10 +109,7 @@
   <h2 class="sec">Best Deals on Fashion</h2>
 
   <div class="product-slider">
-
-    <!-- LEFT ARROW -->
     <button class="p-arrow left" (click)="scrollLeftFashion()">❮</button>
-
     <!-- PRODUCT LIST -->
     <div class="product-wrapper" #fashionContainer>
 
@@ -206,10 +147,7 @@
       </div>
 
     </div>
-
-    <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRightFashion()">❯</button>
-
   </div>
 
 </div>
@@ -220,10 +158,7 @@
   <h2 class="sec">Best Deals on TVs & Appliances</h2>
 
   <div class="product-slider">
-
-    <!-- LEFT ARROW -->
     <button class="p-arrow left" (click)="scrollLeftTv()">❮</button>
-
     <!-- PRODUCT LIST -->
     <div class="product-wrapper" #tvContainer>
 
@@ -256,10 +191,7 @@
       </div>
 
     </div>
-
-    <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRightTv()">❯</button>
-
   </div>
 
 </div>
@@ -270,10 +202,7 @@
   <h2 class="sec">Best Deals on Home & Furniture</h2>
 
   <div class="product-slider">
-
-    <!-- LEFT ARROW -->
     <button class="p-arrow left" (click)="scrollLeftHome()">❮</button>
-
     <!-- PRODUCT LIST -->
     <div class="product-wrapper" #homeContainer>
 
@@ -309,10 +238,7 @@
       </div>
 
     </div>
-
-    <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRightHome()">❯</button>
-
   </div>
 
 </div>
@@ -323,10 +249,7 @@
   <h2 class="sec">Best Deals on Books</h2>
 
   <div class="product-slider">
-
-    <!-- LEFT ARROW -->
     <button class="p-arrow left" (click)="scrollLeftBooks()">❮</button>
-
     <!-- PRODUCT LIST -->
     <div class="product-wrapper" #booksContainer>
 
@@ -362,10 +285,7 @@
       </div>
 
     </div>
-
-    <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRightBooks()">❯</button>
-
   </div>
 
 </div>
@@ -376,10 +296,7 @@
   <h2 class="sec">Best Deals on Kitchen</h2>
 
   <div class="product-slider">
-
-    <!-- LEFT ARROW -->
     <button class="p-arrow left" (click)="scrollLeftKitchen()">❮</button>
-
     <!-- PRODUCT LIST -->
     <div class="product-wrapper" #kitchenContainer>
 
@@ -415,10 +332,7 @@
       </div>
 
     </div>
-
-    <!-- RIGHT ARROW -->
     <button class="p-arrow right" (click)="scrollRightKitchen()">❯</button>
-
   </div>
 
 </div>

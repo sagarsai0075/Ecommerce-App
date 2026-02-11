@@ -15,15 +15,23 @@
 /* ==============================
    RESET
 ============================== */
-* {
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+}
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
+  box-sizing: inherit;
 }
 
 body {
   min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
 
   background: linear-gradient(
       rgba(0,0,0,0.5),
@@ -36,7 +44,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  color: #f8fafc;
+  color: var(--text);
 }
 
 
@@ -128,7 +136,7 @@ input:focus {
 ============================== */
 .form-container {
   max-width: 420px;
-  background: white;
+  background: var(--card);
   margin: 70px auto;
   padding: 30px;
   border-radius: 12px;

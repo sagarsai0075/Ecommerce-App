@@ -1,92 +1,66 @@
 <div class="checkout-page">
 
-  <div class="checkout-container">
+  <h2 class="page-title">
+    <i class="fa-solid fa-credit-card"></i> Checkout
+  </h2>
 
-    <form #checkoutForm="ngForm" (ngSubmit)="placeOrder()">
+  <form #checkoutForm="ngForm" (ngSubmit)="placeOrder()">
 
-      <div class="main-layout">
+    <div class="checkout-container">
 
-        <!-- LEFT : SHIPPING -->
+      <!-- LEFT: SHIPPING & PAYMENT FORM -->
+      <div>
+
+        <!-- SHIPPING ADDRESS SECTION -->
         <div class="section shipping">
 
-          <h3>Shipping Address</h3>
+          <h3><i class="fa-solid fa-map-pin"></i> Shipping Address</h3>
 
-          <input type="text" name="fullName" placeholder="Full Name"
-            [(ngModel)]="order.fullName" required>
+          <input type="text" name="fullName" placeholder="Full Name" 
+            [(ngModel)]="order.fullName" required />
 
-          <input type="tel" name="mobile" placeholder="Mobile"
-            [(ngModel)]="order.mobile" required>
+          <input type="tel" name="mobile" placeholder="Mobile Number" 
+            [(ngModel)]="order.mobile" required />
 
-          <input type="text" name="houseNo" placeholder="House / Street"
-            [(ngModel)]="order.houseNo" required>
+          <input type="text" name="houseNo" placeholder="House Number / Street" 
+            [(ngModel)]="order.houseNo" required />
 
-          <input type="text" name="landmark" placeholder="Landmark"
-            [(ngModel)]="order.landmark">
+          <input type="text" name="landmark" placeholder="Landmark (Optional)" 
+            [(ngModel)]="order.landmark" />
 
-          <div class="two">
-            <input type="text" name="state" placeholder="State"
-              [(ngModel)]="order.state" required>
-
-            <input type="text" name="pincode" placeholder="Pincode"
-              [(ngModel)]="order.pincode" required>
+          <div class="row two">
+            <input type="text" name="state" placeholder="State" 
+              [(ngModel)]="order.state" required />
+            <input type="text" name="pincode" placeholder="Pincode" 
+              [(ngModel)]="order.pincode" required />
           </div>
 
         </div>
 
+        <!-- PAYMENT METHOD SECTION -->
+        <div class="section payment">
 
-        <!-- RIGHT -->
-        <div class="right-side">
+          <h3><i class="fa-solid fa-wallet"></i> Payment Method</h3>
 
-          <!-- PAYMENT -->
-          <div class="section payment">
+          <div class="payment-methods">
 
-            <h3>Payment Method</h3>
-
-            <label>
-              <input type="radio" name="payment" value="COD"
-                [(ngModel)]="order.paymentMode"> COD
+            <label class="payment-option">
+              <input type="radio" name="paymentMode" value="COD" 
+                [(ngModel)]="order.paymentMode" required />
+              <span>💵 Cash on Delivery</span>
             </label>
 
-            <label>
-              <input type="radio" name="payment" value="UPI"
-                [(ngModel)]="order.paymentMode"> UPI
+            <label class="payment-option">
+              <input type="radio" name="paymentMode" value="UPI" 
+                [(ngModel)]="order.paymentMode" required />
+              <span>📱 UPI Payment</span>
             </label>
 
-            <label>
-              <input type="radio" name="payment" value="CARD"
-                [(ngModel)]="order.paymentMode"> Card
+            <label class="payment-option">
+              <input type="radio" name="paymentMode" value="CARD" 
+                [(ngModel)]="order.paymentMode" required />
+              <span>💳 Credit/Debit Card</span>
             </label>
-
-          </div>
-
-
-          <!-- PRICE -->
-          <div class="section price">
-
-            <h3>Price Details</h3>
-
-           <div class="price-row">
-  <span>Subtotal</span>
-  <span>₹{{ price.subtotal }}</span>
-</div>
-
-<div class="price-row">
-  <span>Delivery</span>
-  <span>
-    {{ price.delivery === 0 ? 'FREE' : '₹' + price.delivery }}
-  </span>
-</div>
-
-<div class="price-row total">
-  <span>Total</span>
-  <span>₹{{ price.total }}</span>
-</div>
-
-
-            <button type="submit"
-              [disabled]="!checkoutForm.valid">
-              Place Order
-            </button>
 
           </div>
 
@@ -94,8 +68,44 @@
 
       </div>
 
-    </form>
+      <!-- RIGHT: PRICE SUMMARY -->
+      <div class="price-summary">
 
-  </div>
+        <h3><i class="fa-solid fa-receipt"></i> Order Summary</h3>
+
+        <div class="price-row">
+          <span>Subtotal</span>
+          <span>₹{{ price.subtotal }}</span>
+        </div>
+
+        <div class="price-row">
+          <span>Shipping</span>
+          <span>{{ price.delivery === 0 ? 'FREE' : '₹' + price.delivery }}</span>
+        </div>
+
+        <div class="price-row">
+          <span>Tax</span>
+          <span>Included</span>
+        </div>
+
+        <div class="price-row total">
+          <span>Total Amount</span>
+          <span>₹{{ price.total }}</span>
+        </div>
+
+        <div class="button-group">
+          <button type="submit" class="btn-submit" [disabled]="!checkoutForm.valid">
+            <i class="fa-solid fa-check-circle"></i> Place Order
+          </button>
+          <button type="button" class="btn-continue" routerLink="/cart">
+            <i class="fa-solid fa-arrow-left"></i> Back to Cart
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </form>
 
 </div>

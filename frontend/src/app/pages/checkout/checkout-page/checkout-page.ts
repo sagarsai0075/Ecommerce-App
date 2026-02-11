@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-checkout-page',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './checkout-page.html',
   styleUrls: ['./checkout-page.css']
 })
@@ -87,7 +87,7 @@ export class CheckoutPage implements OnInit {
     // CLEAR CART AFTER ORDER
     localStorage.removeItem('cart');
 
-    alert('Order placed successfully!');
+   
 
     // GO TO HOME / SUCCESS PAGE
     this.router.navigate(['/']);

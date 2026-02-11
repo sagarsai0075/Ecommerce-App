@@ -62,6 +62,7 @@ infiniteKitchen: any[] = [];
   isPaused = false;
   quantities: { [key: string]: number } = {};
 addedMap: { [key: string]: boolean } = {};
+  currentYear: number = new Date().getFullYear();
 
 
   // ================= LIFE CYCLE =================

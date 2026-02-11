@@ -9,8 +9,8 @@
 
   <!-- SEARCH -->
   <form class="search" (ngSubmit)="search()">
-    <i class="bi bi-search search-icon"></i>
     <input type="text" placeholder="Search products..." [(ngModel)]="searchText" name="search" />
+    <i class="bi bi-search search-icon"></i>
   </form>
 <!-- BEFORE LOGIN -->
 <div *ngIf="!authService.isLoggedIn()" class="auth-box">
@@ -30,15 +30,18 @@
   <!-- AFTER LOGIN -->
   <div *ngIf="authService.isLoggedIn()" class="menu">
 
+ <a routerLink="/seller">
+      <i class="bi bi-shop"></i>
+      Become a Seller
+    </a>
     <!-- CART -->
     <a routerLink="/cart">
       <i class="bi bi-cart3"></i>
       Cart
     </a>
-    <a routerLink="/orders">
-      <i class="bi bi-bag"></i>
-      Orders
-    </a>
+
+    <!-- BECOME A SELLER -->
+   
     <!-- USER DROPDOWN -->
     <div class="user-dropdown">
 
@@ -49,23 +52,20 @@
 
       <!-- CUSTOM DROPDOWN (NO BOOTSTRAP CLASS) -->
       <div class="user-menu" *ngIf="showDropdown" (click)="$event.stopPropagation()">
-        <a routerLink="/profile">
+        <a routerLink="/profile" [fragment]="'personal-info'" (click)="closeDropdown()">
           <i class="bi bi-person"></i>
-          My Profile
+          Personal Info
         </a>
 
-       
-
-        <a routerLink="/coupons">
-          <i class="bi bi-ticket"></i>
-          Coupons
+        <a routerLink="/profile" [fragment]="'orders'" (click)="closeDropdown()">
+          <i class="bi bi-bag"></i>
+          Orders
         </a>
 
-       <a routerLink="/seller">
-  <i class="bi bi-shop"></i>
-  Become a Seller
-</a>
-
+        <a routerLink="/profile" [fragment]="'change-password'" (click)="closeDropdown()">
+          <i class="bi bi-lock"></i>
+          Change Password
+        </a>
 
         <hr />
 

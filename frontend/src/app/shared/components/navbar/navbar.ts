@@ -36,6 +36,10 @@ export class Navbar {
     this.showDropdown = !this.showDropdown;
   }
 
+  closeDropdown() {
+    this.showDropdown = false;
+  }
+
   @HostListener('document:click', ['$event'])
   closeOnOutsideClick(event: MouseEvent) {
     const target = event.target as HTMLElement;

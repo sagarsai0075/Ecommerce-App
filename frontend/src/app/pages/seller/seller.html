@@ -1,1 +1,405 @@
-<p>seller works!</p>
+<div class="seller-container">
+  <!-- Not Registered State -->
+  <div *ngIf="!isSellerRegistered" class="registration-section">
+    <div class="registration-card">
+      <h1><i class="bi bi-shop"></i> Become a Seller</h1>
+      <p>Start your business journey with us and reach millions of customers!</p>
+
+      <form class="seller-form" (ngSubmit)="registerAsSeller()">
+        <h3>Business Information</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="businessName">Business Name *</label>
+            <input
+              type="text"
+              id="businessName"
+              [(ngModel)]="sellerProfile.businessName"
+              name="businessName"
+              class="form-input"
+              placeholder="Ex. XYZ Electronics"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category *</label>
+            <select
+              id="category"
+              [(ngModel)]="sellerProfile.category"
+              name="category"
+              class="form-input"
+              required
+            >
+              <option value="">Select Category</option>
+              <option *ngFor="let cat of categories" [value]="cat">
+                {{ cat }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Business Description</label>
+          <textarea
+            id="description"
+            [(ngModel)]="sellerProfile.description"
+            name="description"
+            class="form-textarea"
+            placeholder="Tell us about your business..."
+            rows="4"
+          ></textarea>
+        </div>
+
+        <h3>Tax & Legal Information</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gstNumber">GST Number *</label>
+            <input
+              type="text"
+              id="gstNumber"
+              [(ngModel)]="sellerProfile.gstNumber"
+              name="gstNumber"
+              class="form-input"
+              placeholder="Ex. 27ABCDE1234F2Z5"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              [(ngModel)]="sellerProfile.phone"
+              name="phone"
+              class="form-input"
+              placeholder="Your business phone"
+            />
+          </div>
+        </div>
+
+        <h3>Bank Account Details</h3>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bankAccount">Bank Account Number *</label>
+            <input
+              type="text"
+              id="bankAccount"
+              [(ngModel)]="sellerProfile.bankAccount"
+              name="bankAccount"
+              class="form-input"
+              placeholder="Ex. 123456789012"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="ifscCode">IFSC Code *</label>
+            <input
+              type="text"
+              id="ifscCode"
+              [(ngModel)]="sellerProfile.ifscCode"
+              name="ifscCode"
+              class="form-input"
+              placeholder="Ex. SBIN0001234"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Business Address</label>
+          <textarea
+            id="address"
+            [(ngModel)]="sellerProfile.address"
+            name="address"
+            class="form-textarea"
+            placeholder="Complete business address..."
+            rows="3"
+          ></textarea>
+        </div>
+
+        <button type="submit" class="btn-register">
+          <i class="bi bi-check-circle"></i>
+          Register as Seller
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Registered Seller Dashboard -->
+  <div *ngIf="isSellerRegistered" class="seller-dashboard">
+    <!-- Navigation Tabs -->
+    <div class="seller-nav">
+      <button
+        (click)="setActiveTab('dashboard')"
+        [class.active]="activeTab === 'dashboard'"
+        class="nav-btn"
+      >
+        <i class="bi bi-speedometer2"></i>
+        Dashboard
+      </button>
+      <button
+        (click)="setActiveTab('profile')"
+        [class.active]="activeTab === 'profile'"
+        class="nav-btn"
+      >
+        <i class="bi bi-building"></i>
+        Profile
+      </button>
+      <button
+        (click)="setActiveTab('products')"
+        [class.active]="activeTab === 'products'"
+        class="nav-btn"
+      >
+        <i class="bi bi-box2"></i>
+        Products
+      </button>
+      <button
+        (click)="setActiveTab('orders')"
+        [class.active]="activeTab === 'orders'"
+        class="nav-btn"
+      >
+        <i class="bi bi-bag-check"></i>
+        Orders
+      </button>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div class="seller-content" *ngIf="activeTab === 'dashboard'">
+      <h2>Dashboard</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon products">
+            <i class="bi bi-box2"></i>
+          </div>
+          <div class="stat-info">
+            <p>Total Products</p>
+            <h3>{{ stats.totalProducts }}</h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon sales">
+            <i class="bi bi-graph-up"></i>
+          </div>
+          <div class="stat-info">
+            <p>Total Sales</p>
+            <h3>{{ stats.totalSales }}</h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon revenue">
+            <i class="bi bi-cash-coin"></i>
+          </div>
+          <div class="stat-info">
+            <p>Total Revenue</p>
+            <h3>₹{{ stats.revenue | number }}</h3>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon orders">
+            <i class="bi bi-bag"></i>
+          </div>
+          <div class="stat-info">
+            <p>Orders</p>
+            <h3>{{ stats.orders }}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Seller Information</h3>
+        <div class="seller-info">
+          <div class="info-item">
+            <label>Business Name</label>
+            <p>{{ sellerProfile.businessName }}</p>
+          </div>
+          <div class="info-item">
+            <label>Category</label>
+            <p>{{ sellerProfile.category }}</p>
+          </div>
+          <div class="info-item">
+            <label>Rating</label>
+            <p>
+              <span class="rating">
+                {{ stats.rating | number: "1.1-1" }}
+                <i class="bi bi-star-fill"></i>
+              </span>
+            </p>
+          </div>
+          <div class="info-item">
+            <label>GST Number</label>
+            <p>{{ sellerProfile.gstNumber }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile Section -->
+    <div class="seller-content" *ngIf="activeTab === 'profile'">
+      <h2>Seller Profile</h2>
+
+      <div *ngIf="!editMode" class="profile-display">
+        <div class="info-grid">
+          <div class="info-item">
+            <label>Business Name</label>
+            <p>{{ sellerProfile.businessName }}</p>
+          </div>
+          <div class="info-item">
+            <label>Category</label>
+            <p>{{ sellerProfile.category }}</p>
+          </div>
+          <div class="info-item">
+            <label>GST Number</label>
+            <p>{{ sellerProfile.gstNumber }}</p>
+          </div>
+          <div class="info-item">
+            <label>Phone</label>
+            <p>{{ sellerProfile.phone || "Not provided" }}</p>
+          </div>
+          <div class="info-item">
+            <label>Bank Account</label>
+            <p>{{ sellerProfile.bankAccount }}</p>
+          </div>
+          <div class="info-item">
+            <label>IFSC Code</label>
+            <p>{{ sellerProfile.ifscCode }}</p>
+          </div>
+        </div>
+        <div class="info-item-full">
+          <label>Description</label>
+          <p>{{ sellerProfile.description || "No description" }}</p>
+        </div>
+        <div class="info-item-full">
+          <label>Address</label>
+          <p>{{ sellerProfile.address || "No address" }}</p>
+        </div>
+        <button (click)="toggleEditMode()" class="btn-edit">
+          <i class="bi bi-pencil"></i>
+          Edit Profile
+        </button>
+      </div>
+
+      <div *ngIf="editMode" class="profile-edit">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="businessName">Business Name</label>
+            <input
+              type="text"
+              id="businessName"
+              [(ngModel)]="editedProfile.businessName"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" [(ngModel)]="editedProfile.category" class="form-input">
+              <option *ngFor="let cat of categories" [value]="cat">
+                {{ cat }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            id="description"
+            [(ngModel)]="editedProfile.description"
+            class="form-textarea"
+            rows="4"
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gstNumber">GST Number</label>
+            <input
+              type="text"
+              id="gstNumber"
+              [(ngModel)]="editedProfile.gstNumber"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" [(ngModel)]="editedProfile.phone" class="form-input" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bankAccount">Bank Account</label>
+            <input
+              type="text"
+              id="bankAccount"
+              [(ngModel)]="editedProfile.bankAccount"
+              class="form-input"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="ifscCode">IFSC Code</label>
+            <input
+              type="text"
+              id="ifscCode"
+              [(ngModel)]="editedProfile.ifscCode"
+              class="form-input"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea
+            id="address"
+            [(ngModel)]="editedProfile.address"
+            class="form-textarea"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button (click)="saveProfile()" class="btn-save">
+            <i class="bi bi-check-circle"></i>
+            Save Changes
+          </button>
+          <button (click)="cancelEdit()" class="btn-cancel">
+            <i class="bi bi-x-circle"></i>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="seller-content" *ngIf="activeTab === 'products'">
+      <h2>My Products</h2>
+      <div class="empty-state">
+        <i class="bi bi-box-seam"></i>
+        <p>No products added yet</p>
+        <button class="btn-primary">
+          <i class="bi bi-plus-circle"></i>
+          Add Product
+        </button>
+      </div>
+    </div>
+
+    <!-- Orders Section -->
+    <div class="seller-content" *ngIf="activeTab === 'orders'">
+      <h2>Customer Orders</h2>
+      <div class="empty-state">
+        <i class="bi bi-inbox"></i>
+        <p>No orders to display</p>
+      </div>
+    </div>
+  </div>
+</div>
