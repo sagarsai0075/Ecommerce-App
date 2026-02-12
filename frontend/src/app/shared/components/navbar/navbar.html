@@ -8,9 +8,15 @@
   </a>
 
   <!-- SEARCH -->
-  <form class="search" (ngSubmit)="search()">
-    <input type="text" placeholder="Search products..." [(ngModel)]="searchText" name="search" />
+  <form class="search" (ngSubmit)="search()" (click)="$event.stopPropagation()">
+    <input type="text" placeholder="Search products..." [(ngModel)]="searchText" (ngModelChange)="updateSuggestions()" name="search" />
     <i class="bi bi-search search-icon"></i>
+
+    <div class="search-suggestions" *ngIf="suggestions.length">
+      <ul>
+        <li *ngFor="let s of suggestions" (click)="selectSuggestion(s)">{{ s }}</li>
+      </ul>
+    </div>
   </form>
 <!-- BEFORE LOGIN -->
 <div *ngIf="!authService.isLoggedIn()" class="auth-box">

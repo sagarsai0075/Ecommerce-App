@@ -95,6 +95,37 @@
   pointer-events: none;
 }
 
+/* Search suggestions dropdown */
+.search-suggestions {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 46px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  z-index: 10001;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.search-suggestions ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.search-suggestions li {
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #2c3e50;
+}
+
+.search-suggestions li:hover {
+  background: #f5f8fb;
+}
+
 /* ==============================
         MENU
 ============================== */
@@ -307,6 +338,40 @@
   width: 100%;
 }
 
+/* Position auth buttons to the right when user is not logged in */
+.nav:not(:has(.menu)) .auth-box {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.nav:not(:has(.menu)) .auth-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  backdrop-filter: blur(4px);
+}
+
+.nav:not(:has(.menu)) .login-btn {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+}
+
+.nav:not(:has(.menu)) .register-btn {
+  background: linear-gradient(135deg, #ff8a65 0%, #ff5e62 100%);
+  color: #fff;
+  border: none;
+}
+
+.nav:not(:has(.menu)) .auth-btn .bi {
+  color: #fff;
+}
+
 /* ==============================
       AUTH BUTTONS (BEFORE LOGIN)
 ============================== */
@@ -383,6 +448,23 @@
   .menu a {
     padding: 8px 10px;
     font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav:not(:has(.menu)) .auth-box {
+    position: static;
+    transform: none;
+    order: 3;
+    margin-left: 0;
+  }
+
+  .nav:not(:has(.menu)) .logo {
+    left: 15px;
+  }
+
+  .nav:not(:has(.menu)) .search {
+    max-width: 200px;
   }
 }
 
