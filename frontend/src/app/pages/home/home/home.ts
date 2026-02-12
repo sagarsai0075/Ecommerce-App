@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth';
+import { CartService } from '../../../core/services/cart';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 
@@ -18,7 +19,8 @@ export class Home implements OnInit, OnDestroy {
 
 constructor(
   public authService: AuthService,
-  private router: Router
+  private router: Router,
+  private cartService: CartService
 ) {}
 
 
@@ -500,27 +502,7 @@ addToCart(product: any) {
 
   const qty = this.quantities[product.name] || 1;
 
-  let cart: any[] = [];
-  const storedCart = localStorage.getItem('cart');
-
-  if (storedCart) {
-    cart = JSON.parse(storedCart);
-  }
-
-  const existing = cart.find(
-    item => item.name === product.name
-  );
-
-  if (existing) {
-    existing.qty += qty;
-  } else {
-    cart.push({
-      ...product,
-      qty: qty
-    });
-  }
-
-  localStorage.setItem('cart', JSON.stringify(cart));
+  this.cartService.addToCart(product, qty);
 
   // Mark as added
   this.addedMap[product.name] = true;

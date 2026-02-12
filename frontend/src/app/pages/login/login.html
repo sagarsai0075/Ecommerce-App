@@ -1,53 +1,84 @@
-<div class="form-container">
-
-  <h2 class="form-title">
-    <i ></i>
-    Login
-  </h2>
-
-  <form [formGroup]="form" (ngSubmit)="login()">
-
-    <!-- EMAIL -->
-    <div class="input-box">
-      <label>
-        <i class="bi bi-envelope"></i> Email
-      </label>
-
-      <input
-        type="email"
-        placeholder="Enter your email"
-        formControlName="email"
-      />
+<div class="login-wrapper">
+  <div class="login-card">
+    <!-- HEADER -->
+    <div class="login-header">
+      <div class="logo-circle">
+        <i class="bi bi-bag-check"></i>
+      </div>
+      <h1 class="form-title">Welcome Back</h1>
+      <p class="form-subtitle">Sign in to your account</p>
     </div>
 
-    <!-- PASSWORD -->
-    <div class="input-box">
-      <label>
-        <i class="bi bi-lock"></i> Password
-      </label>
+    <!-- FORM -->
+    <form [formGroup]="form" (ngSubmit)="login()" class="login-form">
 
-      <input
-        type="password"
-        placeholder="Enter your password"
-        formControlName="password"
-      />
+      <!-- EMAIL -->
+      <div class="input-box">
+        <label for="email">
+          <i class="bi bi-envelope"></i>
+          <span>Email Address</span>
+        </label>
+        <input
+          id="email"
+          type="email"
+          placeholder="you@example.com"
+          formControlName="email"
+          class="form-input"
+        />
+       
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="input-box">
+        <label for="password">
+          <i class="bi bi-lock"></i>
+          <span>Password</span>
+        </label>
+        <input
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          formControlName="password"
+          class="form-input"
+        />
+       
+      </div>
+
+      <!-- REMEMBER ME -->
+      <div class="remember-forgot">
+        <label class="remember-me">
+          <input type="checkbox" />
+          <span>Remember me</span>
+        </label>
+        <a routerLink="/forgot-password" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <!-- SUBMIT BUTTON -->
+      <button type="submit" class="btn-login" [disabled]="form.invalid">
+        <span>Sign In</span>
+        <i class="bi bi-arrow-right"></i>
+      </button>
+
+    </form>
+
+    <!-- DIVIDER -->
+    <div class="divider">
+      <span>or</span>
     </div>
 
-    <!-- BUTTON -->
-    <button type="submit" class="btn-primary w-100">
-      <i class="bi bi-box-arrow-in-right"></i>
-      Login
-    </button>
+    <!-- REGISTER SECTION -->
+    <div class="auth-footer">
+      <p class="register-text">
+        Don't have an account?
+        <a routerLink="/register" class="register-link">
+          <span>Create one now</span>
+          <i class="bi bi-arrow-right"></i>
+        </a>
+      </p>
+    </div>
+  </div>
 
-  </form>
-
-  <!-- REGISTER LINK -->
-  <p class="register-text">
-    Don’t have an account?
-    <a routerLink="/register">
-      <i class="bi bi-person-plus"></i>
-      Register
-    </a>
-  </p>
-
+  <!-- DECORATIVE ELEMENTS -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
 </div>

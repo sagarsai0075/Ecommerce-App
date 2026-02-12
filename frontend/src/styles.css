@@ -33,11 +33,7 @@ body {
   font-family: "Segoe UI", Arial, sans-serif;
   line-height: 1.5;
 
-  background: linear-gradient(
-      rgba(0,0,0,0.5),
-      rgba(0,0,0,0.5)
-    ),
-    url("https://images.unsplash.com/photo-1607082349566-187342175e2f");
+  background: url('/assets/Banners/ccc.jpg') ;
 
   background-size: cover;
   background-position: center 30%; /* 👈 Move image down */

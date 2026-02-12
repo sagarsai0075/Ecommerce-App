@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
+import { ForgotPassword } from './pages/forgot-password/forgot-password';
 import { Home } from './pages/home/home/home';
 
 import { authGuard } from './core/guards/auth-guard';
@@ -27,6 +28,8 @@ export const routes: Routes = [
   { path: 'register', component: Register },
 
   { path: 'login', component: Login },
+
+  { path: 'forgot-password', component: ForgotPassword },
 
   // ✅ PRODUCTS (NEW)
   { path: 'products/:category', component: Products },

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Product } from './product';
-import { environment } from '../../../environments/environment';
-
 
 export interface CartItem {
-  product: Product;
-  quantity: number;
+  productId?: string;
+  name: string;
+  price: number;
+  image?: string;
+  qty: number;
 }
+
+type CartLike = CartItem | Record<string, unknown>;
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,12 @@ export class CartService {
 
   // 🔹 Get cart from localStorage
   getCart(): CartItem[] {
-    return JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+    const raw = JSON.parse(localStorage.getItem(this.storageKey) || '[]');
+    if (!Array.isArray(raw)) {
+      return [];
+    }
+
+    return raw.map(item => this.normalizeCartItem(item));
   }
 
   // 🔹 Save cart
@@ -28,43 +35,53 @@ export class CartService {
   }
 
   // 🔹 Add to cart
-  addToCart(product: Product) {
+  addToCart(product: CartLike, qty: number = 1) {
     const cart = this.getCart();
-    const item = cart.find(i => i.product._id === product._id);
+    const key = this.getItemKey(product);
+    const existing = cart.find(i => this.getItemKey(i) === key);
+    const qtyToAdd = Number.isFinite(qty) && qty > 0 ? qty : 1;
 
-    if (item) {
-      item.quantity++;
+    if (existing) {
+      existing.qty += qtyToAdd;
     } else {
-      cart.push({ product, quantity: 1 });
+      cart.push(this.normalizeCartItem({ ...product, qty: qtyToAdd }));
     }
 
     this.saveCart(cart);
   }
 
   // 🔹 Increase quantity
-  increase(productId: string) {
+  increase(itemOrId: CartLike | string) {
     const cart = this.getCart();
-    const item = cart.find(i => i.product._id === productId);
-    if (item) item.quantity++;
-    this.saveCart(cart);
+    const key = this.getItemKey(itemOrId);
+    const item = cart.find(i => this.getItemKey(i) === key);
+    if (item) {
+      item.qty++;
+      this.saveCart(cart);
+    }
   }
 
   // 🔹 Decrease quantity
-  decrease(productId: string) {
+  decrease(itemOrId: CartLike | string) {
+    const key = this.getItemKey(itemOrId);
     let cart = this.getCart();
-    cart = cart.map(i =>
-      i.product._id === productId
-        ? { ...i, quantity: i.quantity - 1 }
-        : i
-    ).filter(i => i.quantity > 0);
+
+    cart = cart
+      .map(i =>
+        this.getItemKey(i) === key
+          ? { ...i, qty: i.qty - 1 }
+          : i
+      )
+      .filter(i => i.qty > 0);
 
     this.saveCart(cart);
   }
 
   // 🔹 Remove item
-  remove(productId: string) {
+  remove(itemOrId: CartLike | string) {
+    const key = this.getItemKey(itemOrId);
     const cart = this.getCart().filter(
-      i => i.product._id !== productId
+      i => this.getItemKey(i) !== key
     );
     this.saveCart(cart);
   }
@@ -72,7 +89,7 @@ export class CartService {
   // 🔹 Get total
   getTotal(): number {
     return this.getCart().reduce(
-      (sum, item) => sum + item.product.price * item.quantity,
+      (sum, item) => sum + item.price * item.qty,
       0
     );
   }
@@ -80,5 +97,36 @@ export class CartService {
   // 🔹 Clear cart
   clearCart() {
     localStorage.removeItem(this.storageKey);
+  }
+
+  private getItemKey(item: CartLike | string): string {
+    if (typeof item === 'string') {
+      return item;
+    }
+
+    const asAny = item as any;
+    return (
+      asAny.productId ||
+      asAny._id ||
+      asAny.id ||
+      asAny.product?._id ||
+      asAny.product?.id ||
+      asAny.name ||
+      ''
+    );
+  }
+
+  private normalizeCartItem(item: CartLike): CartItem {
+    const asAny = item as any;
+    const product = asAny.product || asAny;
+    const qty = Number(asAny.qty ?? asAny.quantity ?? 1);
+
+    return {
+      productId: asAny.productId ?? product._id ?? product.id,
+      name: asAny.name ?? product.name ?? 'Item',
+      price: Number(asAny.price ?? product.price ?? 0),
+      image: asAny.image ?? product.image,
+      qty: qty > 0 ? qty : 1
+    };
   }
 }

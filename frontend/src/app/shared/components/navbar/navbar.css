@@ -105,8 +105,8 @@
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
   z-index: 10001;
-  max-height: 220px;
-  overflow: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 .search-suggestions ul {
@@ -163,7 +163,6 @@
 
 .nav a:not(.logo):not(.auth-btn):hover {
   background: rgba(255, 255, 255, 0.15);
-  padding: 8px 14px;
   border-radius: 8px;
 }
 
@@ -211,9 +210,6 @@
   font-size: 15px;
 }
 
-.user-name:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
 
 /* ==============================
       DROPDOWN MENU
@@ -271,10 +267,10 @@
 
 .user-menu a:hover,
 .user-menu button:hover {
-  background: #f0f4f8;
-  padding-left: 20px;
+  background: #f2f6fb;
   color: #1a3a52;
 }
+
 
 .user-menu a i,
 .user-menu button i {
@@ -286,6 +282,7 @@
 .user-menu button:hover i {
   color: #1a3a52;
 }
+
 
 /* Divider */
 

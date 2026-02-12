@@ -1,11 +1,17 @@
 <div class="page-layout">
 
+  <input id="filters-toggle" class="filters-toggle" type="checkbox" aria-controls="filters-panel" />
+  <label class="filters-toggle-btn" for="filters-toggle">
+    Filters
+    <span class="filters-toggle-icon" aria-hidden="true">▾</span>
+  </label>
+
   <!-- LEFT FILTER -->
-  <aside class="filter-panel" aria-label="Product filters">
+  <aside id="filters-panel" class="filter-panel" aria-label="Product filters">
 
     <div class="filter-header">
       <h3>Filters</h3>
-      <button type="button" class="clear-filters" title="Clear all filters" aria-label="Clear all filters">Clear</button>
+      <button type="button" class="clear-filters" title="Clear all filters" aria-label="Clear all filters" (click)="clearFilters()">Clear</button>
     </div>
 
     <form class="filters" (submit)="$event.preventDefault()">
@@ -15,17 +21,17 @@
         <h4>Sort By</h4>
 
         <label for="sort-newest">
-          <input id="sort-newest" type="radio" name="sort" value="newest" />
+          <input id="sort-newest" type="radio" name="sort" value="newest" (change)="onSortChange($event)" [checked]="filters.sort === 'newest'" />
           Newest First
         </label>
 
         <label for="sort-low">
-          <input id="sort-low" type="radio" name="sort" value="low" />
+          <input id="sort-low" type="radio" name="sort" value="low" (change)="onSortChange($event)" [checked]="filters.sort === 'low'" />
           Price: Low to High
         </label>
 
         <label for="sort-high">
-          <input id="sort-high" type="radio" name="sort" value="high" />
+          <input id="sort-high" type="radio" name="sort" value="high" (change)="onSortChange($event)" [checked]="filters.sort === 'high'" />
           Price: High to Low
         </label>
       </div>
@@ -35,30 +41,16 @@
       <!-- PRICE RANGE -->
       <div class="filter-block">
         <h4>Price Range</h4>
-
-        <label for="p1">
-          <input id="p1" type="checkbox" name="price" value="0-500" />
-          ₹0 – ₹500
-        </label>
-
-        <label for="p2">
-          <input id="p2" type="checkbox" name="price" value="500-1000" />
-          ₹500 – ₹1,000
-        </label>
-
-        <label for="p3">
-          <input id="p3" type="checkbox" name="price" value="1000-2000" />
-          ₹1,000 – ₹2,000
-        </label>
-
-        <label for="p4">
-          <input id="p4" type="checkbox" name="price" value="2000-5000" />
-          ₹2,000 – ₹5,000
-        </label>
-
-        <label for="p5">
-          <input id="p5" type="checkbox" name="price" value="5000+" />
-          ₹5,000 &amp; Above
+        <label *ngFor="let range of availablePriceRanges" [attr.for]="'price-' + range.id">
+          <input
+            [id]="'price-' + range.id"
+            type="checkbox"
+            name="price"
+            [value]="range.id"
+            [checked]="filters.priceRanges.includes(range.id)"
+            (change)="onPriceRangeChange($event, range.id)"
+          />
+          {{ range.label }}
         </label>
       </div>
 
@@ -67,12 +59,17 @@
       <!-- BRAND -->
       <div class="filter-block">
         <h4>Brand</h4>
-
-        <label for="b-samsung"><input id="b-samsung" type="checkbox" name="brand" value="Samsung" /> Samsung</label>
-        <label for="b-apple"><input id="b-apple" type="checkbox" name="brand" value="Apple" /> Apple</label>
-        <label for="b-oneplus"><input id="b-oneplus" type="checkbox" name="brand" value="OnePlus" /> OnePlus</label>
-        <label for="b-redmi"><input id="b-redmi" type="checkbox" name="brand" value="Redmi" /> Redmi</label>
-        <label for="b-vivo"><input id="b-vivo" type="checkbox" name="brand" value="Vivo" /> Vivo</label>
+        <label *ngFor="let brand of availableBrands" [attr.for]="'brand-' + brand">
+          <input
+            [id]="'brand-' + brand"
+            type="checkbox"
+            name="brand"
+            [value]="brand"
+            [checked]="filters.brands.includes(brand)"
+            (change)="onBrandChange($event, brand)"
+          />
+          {{ brand }}
+        </label>
       </div>
 
       <hr />
@@ -80,10 +77,19 @@
       <!-- CUSTOMER RATING -->
       <div class="filter-block">
         <h4>Customer Ratings</h4>
-
-        <label for="r4"><input id="r4" type="checkbox" name="rating" value="4" /> ⭐⭐⭐⭐ &amp; above</label>
-        <label for="r3"><input id="r3" type="checkbox" name="rating" value="3" /> ⭐⭐⭐ &amp; above</label>
-        <label for="r2"><input id="r2" type="checkbox" name="rating" value="2" /> ⭐⭐ &amp; above</label>
+        <label *ngFor="let rating of availableRatings" class="rating-filter" [attr.for]="'rating-' + rating">
+          <input
+            [id]="'rating-' + rating"
+            type="checkbox"
+            name="rating"
+            [value]="rating"
+            [checked]="filters.ratings.includes(rating)"
+            (change)="onRatingChange($event, rating)"
+          />
+          <span class="rating-badge">{{ rating }}</span>
+          <span class="stars" [style.--rating]="rating" aria-hidden="true"></span>
+          <span class="rating-text">&amp; above</span>
+        </label>
       </div>
 
     </form>
@@ -95,8 +101,76 @@
 
     <!-- header removed to align products with filters -->
 
+    <div class="compare-bar" *ngIf="compareList.length">
+      <div class="compare-count">Compare ({{ compareList.length }}/2)</div>
+
+      <div class="compare-items">
+        <div class="compare-chip" *ngFor="let c of compareList">
+          <span>{{ c.name }}</span>
+          <button type="button" (click)="removeCompare(c)" aria-label="Remove {{ c.name }}">
+            ×
+          </button>
+        </div>
+      </div>
+
+      <div class="compare-actions">
+        <span class="compare-hint" *ngIf="compareList.length < 2">Select 1 more to compare</span>
+        <button type="button" class="compare-clear" (click)="clearCompare()">Clear</button>
+      </div>
+
+      <div class="compare-error" *ngIf="compareError">{{ compareError }}</div>
+    </div>
+
+    <section id="compare-panel" class="compare-panel" *ngIf="compareList.length === 2">
+      <div class="compare-title">Product Comparison</div>
+
+      <div class="compare-hero">
+        <div class="compare-label">Product</div>
+        <div class="compare-hero-card">
+          <img [src]="compareList[0].image" [alt]="compareList[0].name" />
+          <div class="compare-hero-name">{{ compareList[0].name }}</div>
+        </div>
+        <div class="compare-hero-card">
+          <img [src]="compareList[1].image" [alt]="compareList[1].name" />
+          <div class="compare-hero-name">{{ compareList[1].name }}</div>
+        </div>
+      </div>
+
+      <div class="compare-table">
+        <div class="compare-row">
+          <div class="compare-label">Price</div>
+          <div class="compare-value">₹{{ getFinalPrice(compareList[0]) }}</div>
+          <div class="compare-value">₹{{ getFinalPrice(compareList[1]) }}</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">Brand</div>
+          <div class="compare-value">{{ compareList[0].brand || '—' }}</div>
+          <div class="compare-value">{{ compareList[1].brand || '—' }}</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">Rating</div>
+          <div class="compare-value">{{ compareList[0].rating || '—' }}</div>
+          <div class="compare-value">{{ compareList[1].rating || '—' }}</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">Discount</div>
+          <div class="compare-value">{{ compareList[0].discount ? (compareList[0].discount + '%') : '—' }}</div>
+          <div class="compare-value">{{ compareList[1].discount ? (compareList[1].discount + '%') : '—' }}</div>
+        </div>
+
+        <div class="compare-row">
+          <div class="compare-label">Specifications</div>
+          <div class="compare-value">{{ formatSpecs(compareList[0]) }}</div>
+          <div class="compare-value">{{ formatSpecs(compareList[1]) }}</div>
+        </div>
+      </div>
+    </section>
+
     <div class="products-list">
-      <div class="product-card" *ngFor="let p of products; let i = index" role="article" [attr.aria-labelledby]="'product-title-' + i">
+      <div class="product-card" *ngFor="let p of displayedProducts; let i = index; trackBy: trackByProduct" role="article" [attr.aria-labelledby]="'product-title-' + i">
 
         <!-- IMAGE -->
         <div class="img-box">
@@ -112,16 +186,28 @@
 
           <h3 id="product-title-{{ i }}">{{ p.name }}</h3>
 
-          <div class="rating" aria-hidden="true">
-            ⭐ {{ p.rating || '4.3' }} <span>{{ p.reviewsCount || '89' }} Ratings</span>
+          <div class="rating" aria-label="Rated {{ p.rating || '4.3' }} out of 5">
+            <span class="rating-badge">{{ p.rating || '4.3' }}</span>
+            <span class="stars" [style.--rating]="p.rating || 4.3" aria-hidden="true"></span>
+            <span class="reviews">{{ p.reviewsCount || '89' }} Ratings</span>
           </div>
 
+          <ul class="specifications-list" *ngIf="p.specifications">
+            <li *ngFor="let spec of p.specifications">{{ spec }}</li>
+          </ul>
+
           <ul>
-            <li *ngFor="let feat of (p.features || ['Feature rich', 'Warranty included'])">{{ feat }}</li>
+            <li *ngFor="let feat of (p.features || ['Warranty included'])">{{ feat }}</li>
           </ul>
 
           <label class="compare" [attr.for]="'compare-' + i">
-            <input id="compare-{{ i }}" type="checkbox" />
+            <input
+              id="compare-{{ i }}"
+              type="checkbox"
+              [checked]="isCompared(p)"
+              [disabled]="compareList.length >= 2 && !isCompared(p)"
+              (change)="toggleCompare(p, $event)"
+            />
             <span>Add to Compare</span>
           </label>
 

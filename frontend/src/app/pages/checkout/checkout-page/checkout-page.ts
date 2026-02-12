@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { CartService } from '../../../core/services/cart';
 
 @Component({
   selector: 'app-checkout-page',
@@ -33,7 +34,10 @@ export class CheckoutPage implements OnInit {
     total: 0
   };
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -42,12 +46,7 @@ export class CheckoutPage implements OnInit {
 
   // LOAD CART
   loadCart() {
-
-    const storedCart = localStorage.getItem('cart');
-
-    this.cartItems = storedCart
-      ? JSON.parse(storedCart)
-      : [];
+    this.cartItems = this.cartService.getCart();
 
     // If cart empty → go back
     if (this.cartItems.length === 0) {
@@ -85,7 +84,7 @@ export class CheckoutPage implements OnInit {
     console.log('Order Placed:', finalOrder);
 
     // CLEAR CART AFTER ORDER
-    localStorage.removeItem('cart');
+    this.cartService.clearCart();
 
    
 

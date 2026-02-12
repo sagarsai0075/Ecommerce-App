@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { CartService } from '../../../core/services/cart';
 
 @Component({
   standalone: true,
@@ -12,7 +13,10 @@ export class CartPage implements OnInit {
 
   items: any[] = [];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.loadCart();
@@ -22,75 +26,41 @@ export class CartPage implements OnInit {
   // LOAD CART
   // ===============================
   loadCart() {
-
-    const storedCart = localStorage.getItem('cart');
-
-    this.items = storedCart
-      ? JSON.parse(storedCart)
-      : [];
-
-    console.log('Cart Items:', this.items);
+    this.items = this.cartService.getCart();
   }
 
   // ===============================
   // INCREASE
   // ===============================
   increase(item: any) {
-
-    item.qty++;
-    this.saveCart();
-
+    this.cartService.increase(item);
+    this.loadCart();
   }
 
   // ===============================
   // DECREASE
   // ===============================
   decrease(item: any) {
-
-    if (item.qty > 1) {
-      item.qty--;
-      this.saveCart();
-    }
-
+    this.cartService.decrease(item);
+    this.loadCart();
   }
 
   // ===============================
   // REMOVE
   // ===============================
   remove(item: any) {
-
-    this.items = this.items.filter(
-      i => i.name !== item.name
-    );
-
-    this.saveCart();
-
-  }
-
-  // ===============================
-  // SAVE CART
-  // ===============================
-  saveCart() {
-
-    localStorage.setItem(
-      'cart',
-      JSON.stringify(this.items)
-    );
-
+    this.cartService.remove(item);
     this.loadCart();
-
   }
 
   // ===============================
   // TOTAL
   // ===============================
   get total(): number {
-
     return this.items.reduce(
       (sum, item) => sum + item.price * item.qty,
       0
     );
-
   }
 
   // ===============================
