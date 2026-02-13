@@ -26,7 +26,10 @@
 
 <!-- PRODUCTS SECTION -->
 <div class="products">
-  <h2 class="sec">Best Deals on Smartphones</h2>
+  <div class="section-head">
+    <h2 class="sec">Best Deals on Smartphones</h2>
+    <a class="view-all" routerLink="/products/mobiles">View all</a>
+  </div>
   <div class="product-slider">
     <button class="p-arrow left" (click)="scrollLeft()">❮</button>
     <div class="product-wrapper" #productContainer>
@@ -36,6 +39,10 @@
         </span>
         <img [src]="p.image" [alt]="p.name" />
         <h3 class="section-title">{{ p.name }}</h3>
+        <div class="meta-row">
+          <span class="rating">{{ getRating(p) }} <span class="star">&#9733;</span></span>
+          <span class="rating-count">({{ getRatingCount(p) }})</span>
+        </div>
         <div class="price-box">
           <span class="old-price" *ngIf="p.discount">
             ₹{{ p.price }}
@@ -56,8 +63,10 @@
 <!-- ELECTRONICS PRODUCTS -->
 
 <div class="products">
-
-  <h2 class="sec">Best Deals on Electronics</h2>
+  <div class="section-head">
+    <h2 class="sec">Best Deals on Electronics</h2>
+    <a class="view-all" routerLink="/products/electronics">View all</a>
+  </div>
 
   <div class="product-slider">
   <button class="p-arrow left" (click)="scrollLeftElectronics()">❮</button>
@@ -74,6 +83,10 @@
         <img [src]="e.image" [alt]="e.name" />
 
         <h2 class="section-title">{{ e.name }}</h2>
+        <div class="meta-row">
+          <span class="rating">{{ getRating(e) }} <span class="star">&#9733;</span></span>
+          <span class="rating-count">({{ getRatingCount(e) }})</span>
+        </div>
 
         <!-- PRICE -->
         <div class="price-box">
@@ -105,8 +118,10 @@
 <!-- FASHION PRODUCTS -->
 
 <div class="products">
-
-  <h2 class="sec">Best Deals on Fashion</h2>
+  <div class="section-head">
+    <h2 class="sec">Best Deals on Fashion</h2>
+    <a class="view-all" routerLink="/products/fashion">View all</a>
+  </div>
 
   <div class="product-slider">
     <button class="p-arrow left" (click)="scrollLeftFashion()">❮</button>
@@ -123,6 +138,10 @@
         <img [src]="f.image" [alt]="f.name" />
 
         <h2 class="section-title">{{ f.name }}</h2>
+        <div class="meta-row">
+          <span class="rating">{{ getRating(f) }} <span class="star">&#9733;</span></span>
+          <span class="rating-count">({{ getRatingCount(f) }})</span>
+        </div>
 
         <!-- PRICE -->
         <div class="price-box">
@@ -154,8 +173,10 @@
 <!-- TV & APPLIANCES PRODUCTS -->
 
 <div class="products">
-
-  <h2 class="sec">Best Deals on TVs & Appliances</h2>
+  <div class="section-head">
+    <h2 class="sec">Best Deals on TVs & Appliances</h2>
+    <a class="view-all" routerLink="/products/tv">View all</a>
+  </div>
 
   <div class="product-slider">
     <button class="p-arrow left" (click)="scrollLeftTv()">❮</button>
@@ -171,6 +192,10 @@
         <img [src]="t.image" [alt]="t.name" />
 
         <h2 class="section-title">{{ t.name }}</h2>
+        <div class="meta-row">
+          <span class="rating">{{ getRating(t) }} <span class="star">&#9733;</span></span>
+          <span class="rating-count">({{ getRatingCount(t) }})</span>
+        </div>
 
         <div class="price-box">
           <span class="old-price" *ngIf="t.discount">
@@ -198,8 +223,10 @@
 <!-- HOME & FURNITURE PRODUCTS -->
 
 <div class="products">
-
-  <h2 class="sec">Best Deals on Home & Furniture</h2>
+  <div class="section-head">
+    <h2 class="sec">Best Deals on Home & Furniture</h2>
+    <a class="view-all" routerLink="/products/home">View all</a>
+  </div>
 
   <div class="product-slider">
     <button class="p-arrow left" (click)="scrollLeftHome()">❮</button>
@@ -215,6 +242,10 @@
         <img [src]="h.image" [alt]="h.name" />
 
         <h2 class="section-title">{{ h.name }}</h2>
+        <div class="meta-row">
+          <span class="rating">{{ getRating(h) }} <span class="star">&#9733;</span></span>
+          <span class="rating-count">({{ getRatingCount(h) }})</span>
+        </div>
 
         <div class="price-box">
 
@@ -245,8 +276,10 @@
 <!-- BOOKS PRODUCTS -->
 
 <div class="products">
-
-  <h2 class="sec">Best Deals on Books</h2>
+  <div class="section-head">
+    <h2 class="sec">Best Deals on Books</h2>
+    <a class="view-all" routerLink="/products/books">View all</a>
+  </div>
 
   <div class="product-slider">
     <button class="p-arrow left" (click)="scrollLeftBooks()">❮</button>
@@ -262,6 +295,10 @@
         <img [src]="b.image" [alt]="b.name" />
 
         <h2 class="section-title">{{ b.name }}</h2>
+        <div class="meta-row">
+          <span class="rating">{{ getRating(b) }} <span class="star">&#9733;</span></span>
+          <span class="rating-count">({{ getRatingCount(b) }})</span>
+        </div>
 
         <div class="price-box">
 
@@ -292,8 +329,10 @@
 <!-- KITCHEN PRODUCTS -->
 
 <div class="products">
-
-  <h2 class="sec">Best Deals on Kitchen</h2>
+  <div class="section-head">
+    <h2 class="sec">Best Deals on Kitchen</h2>
+    <a class="view-all" routerLink="/products/kitchen">View all</a>
+  </div>
 
   <div class="product-slider">
     <button class="p-arrow left" (click)="scrollLeftKitchen()">❮</button>
@@ -309,6 +348,10 @@
         <img [src]="k.image" [alt]="k.name" />
 
         <h2 class="section-title">{{ k.name }}</h2>
+        <div class="meta-row">
+          <span class="rating">{{ getRating(k) }} <span class="star">&#9733;</span></span>
+          <span class="rating-count">({{ getRatingCount(k) }})</span>
+        </div>
 
         <div class="price-box">
 

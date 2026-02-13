@@ -1,67 +1,104 @@
 import { Routes } from '@angular/router';
 
-import { Login } from './pages/login/login';
-import { Register } from './pages/register/register';
-import { ForgotPassword } from './pages/forgot-password/forgot-password';
-import { Home } from './pages/home/home/home';
-
 import { authGuard } from './core/guards/auth-guard';
 import { adminGuard } from './core/guards/admin-guard';
-
-import { CartPage } from './pages/cart/cart-page/cart-page';
-import { CheckoutPage } from './pages/checkout/checkout-page/checkout-page';
-import { OrderHistory } from './pages/orders/order-history/order-history';
-import { Dashboard } from './pages/admin/dashboard/dashboard';
-import { AddProduct } from './pages/admin/add-product/add-product';
-import { EditProduct } from './pages/admin/edit-product/edit-product';
-import { Products } from './pages/products/products';
-import { Profile } from './pages/profile/profile';
-import { Coupons } from './pages/coupons/coupons';
-import { Seller } from './pages/seller/seller';
 export const routes: Routes = [
 
   // 🔥 DEFAULT
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
-  { path: 'home', component: Home },
+  {
+    path: 'home',
+    loadComponent: () =>
+      import('./pages/home/home/home').then(m => m.Home)
+  },
 
-  { path: 'register', component: Register },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./pages/register/register').then(m => m.Register)
+  },
 
-  { path: 'login', component: Login },
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/login').then(m => m.Login)
+  },
 
-  { path: 'forgot-password', component: ForgotPassword },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./pages/forgot-password/forgot-password').then(m => m.ForgotPassword)
+  },
 
   // ✅ PRODUCTS (NEW)
-  { path: 'products/:category', component: Products },
+  {
+    path: 'products/:category',
+    loadComponent: () =>
+      import('./pages/products/products').then(m => m.Products)
+  },
 
-  { path: 'cart', component: CartPage, canActivate: [authGuard] },
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('./pages/cart/cart-page/cart-page').then(m => m.CartPage),
+    canActivate: [authGuard]
+  },
 
-  { path: 'checkout', component: CheckoutPage, canActivate: [authGuard] },
+  {
+    path: 'checkout',
+    loadComponent: () =>
+      import('./pages/checkout/checkout-page/checkout-page').then(m => m.CheckoutPage),
+    canActivate: [authGuard]
+  },
 
-  { path: 'orders', component: OrderHistory, canActivate: [authGuard] },
+  {
+    path: 'orders',
+    loadComponent: () =>
+      import('./pages/orders/order-history/order-history').then(m => m.OrderHistory),
+    canActivate: [authGuard]
+  },
   // USER PAGES
-  { path: 'profile', component: Profile, canActivate: [authGuard] },
+  {
+    path: 'profile',
+    loadComponent: () =>
+      import('./pages/profile/profile').then(m => m.Profile),
+    canActivate: [authGuard]
+  },
 
-  { path: 'coupons', component: Coupons, canActivate: [authGuard] },
+  {
+    path: 'coupons',
+    loadComponent: () =>
+      import('./pages/coupons/coupons').then(m => m.Coupons),
+    canActivate: [authGuard]
+  },
 
-  { path: 'seller', component: Seller, canActivate: [authGuard] },
+  {
+    path: 'seller',
+    loadComponent: () =>
+      import('./pages/seller/seller').then(m => m.Seller),
+    canActivate: [authGuard]
+  },
 
   // ADMIN
   {
     path: 'admin',
-    component: Dashboard,
+    loadComponent: () =>
+      import('./pages/admin/dashboard/dashboard').then(m => m.Dashboard),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/add-product',
-    component: AddProduct,
+    loadComponent: () =>
+      import('./pages/admin/add-product/add-product').then(m => m.AddProduct),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/edit-product',
-    component: EditProduct,
+    loadComponent: () =>
+      import('./pages/admin/edit-product/edit-product').then(m => m.EditProduct),
     canActivate: [adminGuard]
   },
 

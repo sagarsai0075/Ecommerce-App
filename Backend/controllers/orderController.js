@@ -59,6 +59,24 @@ const getMyOrders = async (req, res) => {
   }
 };
 
+// @desc   Get orders (admin gets all, user gets own)
+// @route  GET /api/orders
+// @access Private
+const getOrders = async (req, res) => {
+  try {
+    if (req.userRole === 'admin') {
+      const orders = await Order.find({})
+        .populate('user', 'id name email');
+      return res.json(orders);
+    }
+
+    const orders = await Order.find({ user: req.user });
+    return res.json(orders);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
 // @desc   Get order by ID
 // @route  GET /api/orders/:id
 // @access Private
@@ -145,6 +163,7 @@ const markOrderPaid = async (req, res) => {
 module.exports = {
   createOrder,
   getMyOrders,
+  getOrders,
   getOrderById,
   getAllOrders,
   markOrderDelivered,

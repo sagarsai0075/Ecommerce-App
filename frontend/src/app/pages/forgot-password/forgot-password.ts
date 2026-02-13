@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth';
 
 @Component({
   standalone: true,
@@ -16,7 +17,8 @@ export class ForgotPassword implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -34,18 +36,14 @@ export class ForgotPassword implements OnInit {
       return;
     }
 
-    // TODO: Call your backend API to send reset email
-    // this.authService.sendPasswordResetEmail(this.form.value.email).subscribe({
-    //   next: () => {
-    //     this.emailSent = true;
-    //   },
-    //   error: () => {
-    //     alert('Error sending reset email');
-    //   }
-    // });
-
-    // For now, show success message
-    this.emailSent = true;
+    this.authService.forgotPassword(this.form.value.email).subscribe({
+      next: () => {
+        this.emailSent = true;
+      },
+      error: () => {
+        alert('Error sending reset request');
+      }
+    });
   }
 
   backToLogin() {

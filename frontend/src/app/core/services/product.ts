@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { Observable, of } from 'rxjs';
 
 export interface Product {
   _id: string;
@@ -13,26 +12,79 @@ export interface Product {
 @Injectable({
   providedIn: 'root'
 })
-export class Product {
+export class ProductService {
+  private readonly localProductsKey = 'localProducts';
 
-  private baseUrl = `${environment.apiUrl}/products`;
+  constructor() {}
 
-  constructor(private http: HttpClient) {}
+  getAllProducts(search?: string): Observable<Product[]> {
+    const products = this.getLocalProducts();
+    if (!search) {
+      return of(products);
+    }
 
- getAllProducts(search?: string) {
-  if (search) {
-    return this.http.get<Product[]>(`${this.baseUrl}?search=${search}`);
+    const normalized = search.toLowerCase();
+    return of(
+      products.filter(product =>
+        `${product.name} ${product.description || ''}`
+          .toLowerCase()
+          .includes(normalized)
+      )
+    );
   }
-  return this.http.get<Product[]>(this.baseUrl);
-}
 
-
-  getProductById(id: string) {
-    return this.http.get<Product>(`${this.baseUrl}/${id}`);
+  getProductById(id: string): Observable<Product | undefined> {
+    const products = this.getLocalProducts();
+    return of(products.find(product => product._id === id));
   }
-  createProduct(data: any) {
-  return this.http.post(this.baseUrl, data);
-}
+
+  createProduct(data: any): Observable<Product> {
+    const products = this.getLocalProducts();
+    const product: Product = {
+      _id: this.createLocalId(),
+      name: String(data?.name ?? '').trim() || 'New Product',
+      description: String(data?.description ?? '').trim(),
+      price: Number(data?.price ?? 0),
+      image: data?.image
+    };
+
+    products.unshift(product);
+    this.saveLocalProducts(products);
+    return of(product);
+  }
+
+  private getLocalProducts(): Product[] {
+    if (typeof localStorage === 'undefined') {
+      return [];
+    }
+
+    try {
+      const raw = localStorage.getItem(this.localProductsKey);
+      if (!raw) {
+        return [];
+      }
+
+      const parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) {
+        return [];
+      }
+
+      return parsed as Product[];
+    } catch {
+      return [];
+    }
+  }
+
+  private saveLocalProducts(products: Product[]) {
+    if (typeof localStorage === 'undefined') {
+      return;
+    }
+    localStorage.setItem(this.localProductsKey, JSON.stringify(products));
+  }
+
+  private createLocalId(): string {
+    return `local-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  }
 
 
 }

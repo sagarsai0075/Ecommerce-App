@@ -21,7 +21,7 @@
         <input
           id="name"
           type="text"
-          placeholder="John Doe"
+          placeholder="Enter your full name"
           formControlName="name"
           class="form-input"
         />
@@ -44,7 +44,7 @@
         <input
           id="email"
           type="email"
-          placeholder="you@example.com"
+          placeholder="Enter your email"
           formControlName="email"
           class="form-input"
         />
@@ -54,6 +54,28 @@
           </span>
           <span *ngIf="form.get('email')?.errors?.['email']">
             Enter valid email
+          </span>
+        </small>
+      </div>
+
+       <div class="input-box">
+        <label for="number">
+          <i class="bi bi-phone"></i>
+          <span>Mobile Number</span>
+        </label>
+        <input
+          id="number"
+          type="tel"
+          placeholder="Enter mobile number"
+          formControlName="number"
+          class="form-input"
+        />
+        <small class="error" *ngIf="form.get('number')?.touched && form.get('number')?.invalid">
+          <span *ngIf="form.get('number')?.errors?.['required']">
+            Mobile is required
+          </span>
+          <span *ngIf="form.get('number')?.errors?.['pattern']">
+            Enter valid 10-digit number
           </span>
         </small>
       </div>
@@ -82,27 +104,7 @@
       </div>
 
       <!-- MOBILE -->
-      <div class="input-box">
-        <label for="number">
-          <i class="bi bi-phone"></i>
-          <span>Mobile Number</span>
-        </label>
-        <input
-          id="number"
-          type="tel"
-          placeholder="Enter mobile number"
-          formControlName="number"
-          class="form-input"
-        />
-        <small class="error" *ngIf="form.get('number')?.touched && form.get('number')?.invalid">
-          <span *ngIf="form.get('number')?.errors?.['required']">
-            Mobile is required
-          </span>
-          <span *ngIf="form.get('number')?.errors?.['pattern']">
-            Enter valid 10-digit number
-          </span>
-        </small>
-      </div>
+     
 
       <!-- SUBMIT BUTTON -->
       <button type="submit" class="btn-register" [disabled]="form.invalid">

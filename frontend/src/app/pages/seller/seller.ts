@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AuthService } from '../../core/services/auth';
+import { SellerService } from '../../core/services/seller';
 
 interface SellerProfile {
   businessName: string;
@@ -70,27 +70,33 @@ export class Seller implements OnInit {
     'Other'
   ];
 
-  constructor(private authService: AuthService) {}
+  constructor(private sellerService: SellerService) {}
 
   ngOnInit() {
     this.loadSellerData();
   }
 
   loadSellerData() {
-    const sellerData = localStorage.getItem('sellerProfile');
-    if (sellerData) {
-      this.sellerProfile = JSON.parse(sellerData);
-      this.isSellerRegistered = true;
-      this.loadSellerStats();
-    }
+    this.sellerService.getProfile().subscribe({
+      next: (profile: any) => {
+        if (profile) {
+          this.sellerProfile = { ...this.sellerProfile, ...profile };
+          this.editedProfile = { ...this.sellerProfile };
+          this.isSellerRegistered = !!profile.isSellerRegistered;
+          this.loadSellerStats();
+        }
+      }
+    });
   }
 
   loadSellerStats() {
-    // Load stats from localStorage or backend
-    const statsData = localStorage.getItem('sellerStats');
-    if (statsData) {
-      this.stats = JSON.parse(statsData);
-    }
+    this.sellerService.getStats().subscribe({
+      next: (stats: any) => {
+        if (stats) {
+          this.stats = { ...this.stats, ...stats };
+        }
+      }
+    });
   }
 
   setActiveTab(tab: string) {
@@ -100,10 +106,14 @@ export class Seller implements OnInit {
   // Seller Registration Methods
   registerAsSeller() {
     if (this.validateSellerProfile()) {
-      localStorage.setItem('sellerProfile', JSON.stringify(this.sellerProfile));
-      localStorage.setItem('sellerStats', JSON.stringify(this.stats));
-      this.isSellerRegistered = true;
-      this.activeTab = 'dashboard';
+      this.sellerService.updateProfile(this.sellerProfile).subscribe({
+        next: (profile: any) => {
+          this.sellerProfile = { ...this.sellerProfile, ...profile };
+          this.isSellerRegistered = true;
+          this.activeTab = 'dashboard';
+          this.sellerService.updateStats(this.stats).subscribe();
+        }
+      });
     }
   }
 
@@ -130,9 +140,12 @@ export class Seller implements OnInit {
 
   saveProfile() {
     if (this.validateSellerProfile()) {
-      this.sellerProfile = { ...this.editedProfile };
-      localStorage.setItem('sellerProfile', JSON.stringify(this.sellerProfile));
-      this.editMode = false;
+      this.sellerService.updateProfile(this.editedProfile).subscribe({
+        next: (profile: any) => {
+          this.sellerProfile = { ...this.sellerProfile, ...profile };
+          this.editMode = false;
+        }
+      });
     }
   }
 

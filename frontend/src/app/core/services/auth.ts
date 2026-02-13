@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { finalize, shareReplay, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,11 @@ export class AuthService {
 
   // Login State
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
+  private currentUser = new BehaviorSubject<any | null>(null);
+  private meRequest$: Observable<any> | null = null;
 
   loggedIn$ = this.loggedIn.asObservable();
+  currentUser$ = this.currentUser.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -34,6 +38,12 @@ export class AuthService {
     return this.http.post<{ token: string; user: any }>(
       `${this.baseUrl}/login`,
       data
+    ).pipe(
+      tap(response => {
+        if (response?.user) {
+          this.setCurrentUser(response.user);
+        }
+      })
     );
   }
 
@@ -62,24 +72,91 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    this.setCurrentUser(null);
 
     this.loggedIn.next(false); // 🔥 Update UI
   }
 
   /* ================= USER ================= */
 
-  saveUser(user: any) {
-    localStorage.setItem('user', JSON.stringify(user));
+  setCurrentUser(user: any | null) {
+    this.currentUser.next(user);
   }
 
   getUser() {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null;
+    return this.currentUser.value;
+  }
+
+  getMe() {
+    return this.http.get(`${this.baseUrl}/me`).pipe(
+      tap(user => this.setCurrentUser(user))
+    );
+  }
+
+  ensureUserLoaded() {
+    const cached = this.getUser();
+    if (cached) {
+      return of(cached);
+    }
+
+    if (this.meRequest$) {
+      return this.meRequest$;
+    }
+
+    this.meRequest$ = this.http.get(`${this.baseUrl}/me`).pipe(
+      tap(user => this.setCurrentUser(user)),
+      shareReplay(1),
+      finalize(() => {
+        this.meRequest$ = null;
+      })
+    );
+
+    return this.meRequest$;
+  }
+
+  updateProfile(data: any) {
+    return this.http.put(`${this.baseUrl}/profile`, data).pipe(
+      tap(user => this.setCurrentUser(user))
+    );
+  }
+
+  changePassword(oldPassword: string, newPassword: string) {
+    return this.http.put(`${this.baseUrl}/change-password`, {
+      oldPassword,
+      newPassword
+    });
+  }
+
+  forgotPassword(email: string) {
+    return this.http.post(`${this.baseUrl}/forgot-password`, { email });
+  }
+
+  resetPassword(token: string, newPassword: string) {
+    return this.http.post(`${this.baseUrl}/reset-password`, { token, newPassword });
   }
 
   isAdmin(): boolean {
     const user = this.getUser();
-    return user?.role === 'admin';
+    if (user?.role) {
+      return user.role === 'admin';
+    }
+
+    const token = this.getToken();
+    if (!token) {
+      return false;
+    }
+
+    const payload = this.decodeToken(token);
+    return payload?.role === 'admin';
+  }
+
+  private decodeToken(token: string): any | null {
+    try {
+      const payload = token.split('.')[1];
+      const decoded = atob(payload.replace(/-/g, '+').replace(/_/g, '/'));
+      return JSON.parse(decoded);
+    } catch {
+      return null;
+    }
   }
 }

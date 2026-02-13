@@ -202,6 +202,10 @@
       <!-- Change Password Section -->
       <div class="section" *ngIf="activeSection === 'change-password'">
         <h2>Change Password</h2>
+
+        <div *ngIf="passwordMessage" class="message" [ngClass]="passwordMessageType">
+          {{ passwordMessage }}
+        </div>
         
         <div *ngIf="!showPasswordForm" class="empty-state">
           <i class="bi bi-lock"></i>
@@ -239,10 +243,6 @@
               class="form-input">
           </div>
 
-          <div *ngIf="passwordMessage" [class.error]="true" class="message">
-            {{ passwordMessage }}
-          </div>
-
           <div class="form-actions">
             <button (click)="changePassword()" class="btn-save">
               <i class="bi bi-check-circle"></i>
@@ -260,8 +260,16 @@
   </div>
 </div>
 
-<div class="profile-container" *ngIf="!user">
+<div class="profile-container" *ngIf="!user && isLoading">
   <div class="loading">
     <p>Loading profile...</p>
+  </div>
+</div>
+
+<div class="profile-container" *ngIf="!user && !isLoading">
+  <div class="empty-state">
+    <i class="bi bi-exclamation-circle"></i>
+    <p>{{ loadError || 'Unable to load profile.' }}</p>
+    <button (click)="retryLoadUser()" class="btn-primary">Retry</button>
   </div>
 </div>

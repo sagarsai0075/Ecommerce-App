@@ -3,8 +3,9 @@ const {
   createOrder,
   getMyOrders,
   getOrderById,
-  getAllOrders,
-  markOrderDelivered
+  getOrders,
+  markOrderDelivered,
+  markOrderPaid
 } = require('../controllers/orderController');
 
 const { protect, adminOnly } = require('../middleware/authMiddleware');
@@ -13,8 +14,9 @@ const router = express.Router();
 
 router.post('/', protect, createOrder);
 router.get('/myorders', protect, getMyOrders);
-router.get('/', protect, adminOnly, getAllOrders);
+router.get('/', protect, getOrders);
 router.get('/:id', protect, getOrderById);
 router.put('/:id/deliver', protect, adminOnly, markOrderDelivered);
+router.put('/:id/pay', protect, markOrderPaid);
 
 module.exports = router;

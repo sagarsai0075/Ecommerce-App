@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from '../../../core/services/product';
+import { Product, ProductService } from '../../../core/services/product';
 
 @Component({
   standalone: true,
@@ -12,7 +12,7 @@ export class EditProduct implements OnInit {
 
   products: Product[] = [];
 
-  constructor(private productService: Product) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService.getAllProducts().subscribe((data: Product[]) => {

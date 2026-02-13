@@ -17,6 +17,8 @@ import { RouterModule } from '@angular/router';
 
 export class Home implements OnInit, OnDestroy {
 
+  private readonly repeatCount = 50;
+
 constructor(
   public authService: AuthService,
   private router: Router,
@@ -149,15 +151,11 @@ loadKitchen() {
 
   ];
 
-  this.infiniteKitchen = [
-    ...this.kitchen,
-    ...this.kitchen,
-    ...this.kitchen
-  ];
+  this.infiniteKitchen = this.buildInfinite(this.kitchen);
 
   setTimeout(() => {
     this.kitchenContainer.nativeElement.scrollLeft =
-      this.kitchenContainer.nativeElement.scrollWidth / 3;
+      this.kitchenContainer.nativeElement.scrollWidth / 2;
   }, 0);
 }
 
@@ -203,15 +201,11 @@ loadBooks() {
 
   ];
 
-  this.infiniteBooks = [
-    ...this.books,
-    ...this.books,
-    ...this.books
-  ];
+  this.infiniteBooks = this.buildInfinite(this.books);
 
   setTimeout(() => {
     this.booksContainer.nativeElement.scrollLeft =
-      this.booksContainer.nativeElement.scrollWidth / 3;
+      this.booksContainer.nativeElement.scrollWidth / 2;
   }, 0);
 }
 
@@ -271,15 +265,11 @@ loadHome() {
 
   ];
 
-  this.infiniteHome = [
-    ...this.home,
-    ...this.home,
-    ...this.home
-  ];
+  this.infiniteHome = this.buildInfinite(this.home);
 
   setTimeout(() => {
     this.homeContainer.nativeElement.scrollLeft =
-      this.homeContainer.nativeElement.scrollWidth / 3;
+      this.homeContainer.nativeElement.scrollWidth / 2;
   }, 0);
 }
 
@@ -337,15 +327,11 @@ loadTv() {
 
   ];
 
-  this.infiniteTv = [
-    ...this.tv,
-    ...this.tv,
-    ...this.tv
-  ];
+  this.infiniteTv = this.buildInfinite(this.tv);
 
   setTimeout(() => {
     this.tvContainer.nativeElement.scrollLeft =
-      this.tvContainer.nativeElement.scrollWidth / 3;
+      this.tvContainer.nativeElement.scrollWidth / 2;
   }, 0);
 }
 
@@ -466,16 +452,12 @@ loadElectronics() {
 
   ];
 
-  this.infiniteElectronics = [
-    ...this.electronics,
-    ...this.electronics,
-    ...this.electronics
-  ];
+  this.infiniteElectronics = this.buildInfinite(this.electronics);
 
   setTimeout(() => {
     if (this.electronicsContainer) {
       const container = this.electronicsContainer.nativeElement;
-      container.scrollLeft = container.scrollWidth / 3;
+      container.scrollLeft = container.scrollWidth / 2;
     }
   }, 0);
 }
@@ -489,7 +471,7 @@ loadElectronics() {
 
     // RIGHT edge → jump back silently
     if (current >= maxScroll - 5) {
-      container.scrollLeft = container.scrollWidth / 3;
+      container.scrollLeft = container.scrollWidth / 2;
     }
 
     // LEFT edge → jump forward silently
@@ -502,11 +484,20 @@ addToCart(product: any) {
 
   const qty = this.quantities[product.name] || 1;
 
-  this.cartService.addToCart(product, qty);
-
-  // Mark as added
-  this.addedMap[product.name] = true;
-  this.router.navigate(['/cart']);
+  this.cartService.addToCart(product, qty).subscribe({
+    next: () => {
+      this.addedMap[product.name] = true;
+      this.router.navigate(['/cart']);
+    },
+    error: () => {
+      this.cartService.addToLocalCart(product, qty).subscribe({
+        next: () => {
+          this.addedMap[product.name] = true;
+          this.router.navigate(['/cart']);
+        }
+      });
+    }
+  });
 }
 
 
@@ -624,6 +615,27 @@ loadFashion() {
     return Math.round(price - (price * discount / 100));
   }
 
+  getRating(product: any): string {
+    const name = String(product.name || '');
+    let hash = 0;
+    for (let i = 0; i < name.length; i += 1) {
+      hash = (hash * 31 + name.charCodeAt(i)) >>> 0;
+    }
+    const rating = 4.0 + (hash % 91) / 100;
+    return rating.toFixed(1);
+  }
+
+  getRatingCount(product: any): string {
+    const name = String(product.name || '');
+    let hash = 0;
+    for (let i = 0; i < name.length; i += 1) {
+      hash = (hash * 37 + name.charCodeAt(i)) >>> 0;
+    }
+    const count = 10000 + (hash % 40001);
+    return count.toLocaleString('en-IN');
+  }
+
+
   // ================= LOAD PRODUCTS =================
 
   loadPhones() {
@@ -675,16 +687,19 @@ loadFashion() {
 
     ];
 
-    // triple list = smoother infinite illusion
-    this.infinitePhones = [...this.phones, ...this.phones, ...this.phones];
+    this.infinitePhones = this.buildInfinite(this.phones);
 
     // start from center
     setTimeout(() => {
       if (this.productContainer) {
         const container = this.productContainer.nativeElement;
-        container.scrollLeft = container.scrollWidth / 3;
+        container.scrollLeft = container.scrollWidth / 2;
       }
     }, 0);
+  }
+
+  private buildInfinite(list: any[]): any[] {
+    return Array.from({ length: this.repeatCount }, () => list).flat();
   }
 
 }

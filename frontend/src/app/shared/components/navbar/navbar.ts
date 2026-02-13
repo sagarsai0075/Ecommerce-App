@@ -55,6 +55,10 @@ export class Navbar {
     public authService: AuthService,
     private router: Router
   ) {
+    this.authService.currentUser$.subscribe(user => {
+      this.userName = user?.name || user?.email || '';
+    });
+
     this.loadUser();
   }
 
@@ -98,7 +102,6 @@ export class Navbar {
     }).subscribe({
       next: (res: any) => {
         this.authService.saveToken(res.token);
-        localStorage.setItem('user', JSON.stringify(res.user));
         this.loadUser();
         this.router.navigateByUrl('/home');
       },
@@ -156,7 +159,6 @@ export class Navbar {
   ========================== */
 
   logout() {
-    localStorage.removeItem('user');
     this.authService.logout();
     this.showDropdown = false;
     this.router.navigateByUrl('/login');
@@ -167,10 +169,8 @@ export class Navbar {
   ========================== */
 
   loadUser() {
-    const user = localStorage.getItem('user');
-    if (user) {
-      const parsed = JSON.parse(user);
-      this.userName = parsed.name || parsed.email;
+    if (this.authService.isLoggedIn()) {
+      this.authService.ensureUserLoaded().subscribe();
     }
   }
 }

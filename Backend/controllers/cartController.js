@@ -94,4 +94,57 @@ const removeFromCart = async (req, res) => {
   }
 };
 
-module.exports = { addToCart, getCart, removeFromCart};
+// @desc   Update item quantity in cart
+// @route  PUT /api/cart/:productId
+// @access Private
+const updateCartItem = async (req, res) => {
+  try {
+    const { qty } = req.body;
+
+    if (qty === undefined || qty === null) {
+      return res.status(400).json({ message: 'Quantity is required' });
+    }
+
+    const cart = await Cart.findOne({ user: req.user });
+
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+
+    const item = cart.cartItems.find(
+      cartItem => cartItem.product.toString() === req.params.productId
+    );
+
+    if (!item) {
+      return res.status(404).json({ message: 'Cart item not found' });
+    }
+
+    item.qty = Number(qty);
+
+    const updatedCart = await cart.save();
+    res.json(updatedCart);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// @desc   Clear cart
+// @route  DELETE /api/cart
+// @access Private
+const clearCart = async (req, res) => {
+  try {
+    const cart = await Cart.findOne({ user: req.user });
+
+    if (!cart) {
+      return res.status(404).json({ message: 'Cart not found' });
+    }
+
+    cart.cartItems = [];
+    const updatedCart = await cart.save();
+    res.json(updatedCart);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+module.exports = { addToCart, getCart, removeFromCart, updateCartItem, clearCart };

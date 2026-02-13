@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Product } from '../../../core/services/product';
+import { ProductService } from '../../../core/services/product';
 
 @Component({
   standalone: true,
@@ -15,7 +15,7 @@ export class AddProduct {
 
   constructor(
     private fb: FormBuilder,
-    private productService: Product,
+    private productService: ProductService,
     private router: Router
   ) {
     this.form = this.fb.group({

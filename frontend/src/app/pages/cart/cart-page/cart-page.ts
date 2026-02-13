@@ -12,6 +12,8 @@ import { CartService } from '../../../core/services/cart';
 export class CartPage implements OnInit {
 
   items: any[] = [];
+  isLoading = false;
+  private hasRetried = false;
 
   constructor(
     private router: Router,
@@ -26,31 +28,57 @@ export class CartPage implements OnInit {
   // LOAD CART
   // ===============================
   loadCart() {
-    this.items = this.cartService.getCart();
+    this.isLoading = true;
+    this.cartService.getCart().subscribe({
+      next: (items) => {
+        this.items = items as any[];
+        this.isLoading = false;
+        if (this.items.length === 0 && !this.hasRetried) {
+          this.hasRetried = true;
+          setTimeout(() => this.loadCart(), 300);
+        }
+      },
+      error: () => {
+        this.items = [];
+        this.isLoading = false;
+      }
+    });
   }
 
   // ===============================
   // INCREASE
   // ===============================
   increase(item: any) {
-    this.cartService.increase(item);
-    this.loadCart();
+    const nextQty = (item.qty || 0) + 1;
+    this.cartService.updateQuantity(item, nextQty).subscribe({
+      next: () => this.loadCart()
+    });
   }
 
   // ===============================
   // DECREASE
   // ===============================
   decrease(item: any) {
-    this.cartService.decrease(item);
-    this.loadCart();
+    const nextQty = (item.qty || 0) - 1;
+    if (nextQty <= 0) {
+      this.cartService.remove(item).subscribe({
+        next: () => this.loadCart()
+      });
+      return;
+    }
+
+    this.cartService.updateQuantity(item, nextQty).subscribe({
+      next: () => this.loadCart()
+    });
   }
 
   // ===============================
   // REMOVE
   // ===============================
   remove(item: any) {
-    this.cartService.remove(item);
-    this.loadCart();
+    this.cartService.remove(item).subscribe({
+      next: () => this.loadCart()
+    });
   }
 
   // ===============================

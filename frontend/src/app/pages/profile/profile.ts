@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,6 +28,8 @@ interface User {
 export class Profile implements OnInit {
   activeSection = 'personal-info';
   user: User | null = null;
+  isLoading = true;
+  loadError = '';
   
   // Edit mode
   editMode = false;
@@ -49,6 +51,7 @@ export class Profile implements OnInit {
   newPassword = '';
   confirmPassword = '';
   passwordMessage = '';
+  passwordMessageType: 'success' | 'error' | '' = '';
   showPasswordForm = false;
 
   constructor(
@@ -69,11 +72,35 @@ export class Profile implements OnInit {
   }
 
   loadUser() {
-    const userData = this.authService.getUser();
-    if (userData) {
-      this.user = userData;
-      this.editedUser = { ...userData };
+    this.loadError = '';
+    const cached = this.authService.getUser();
+    if (cached) {
+      this.user = cached as User;
+      this.editedUser = { ...cached };
     }
+
+    this.isLoading = !cached;
+
+    this.authService.ensureUserLoaded().subscribe({
+      next: (userData: any) => {
+        this.user = userData as User;
+        this.editedUser = { ...userData };
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.isLoading = false;
+        this.loadError = error?.error?.message || 'Unable to load profile.';
+
+        if (error?.status === 401 || error?.status === 403) {
+          this.authService.logout();
+          this.router.navigate(['/login']);
+        }
+      }
+    });
+  }
+
+  retryLoadUser() {
+    this.loadUser();
   }
 
   setActiveSection(section: string) {
@@ -90,10 +117,13 @@ export class Profile implements OnInit {
 
   savePersonalInfo() {
     if (this.validatePersonalInfo()) {
-      // Update localStorage
-      this.user = { ...this.editedUser };
-      this.authService.saveUser(this.user);
-      this.editMode = false;
+      this.authService.updateProfile(this.editedUser).subscribe({
+        next: (updated: any) => {
+          this.user = updated as User;
+          this.editedUser = { ...updated };
+          this.editMode = false;
+        }
+      });
     }
   }
 
@@ -112,32 +142,44 @@ export class Profile implements OnInit {
 
   changePassword() {
     this.passwordMessage = '';
+    this.passwordMessageType = '';
 
     if (!this.oldPassword || !this.newPassword || !this.confirmPassword) {
       this.passwordMessage = 'Please fill all fields';
+      this.passwordMessageType = 'error';
       return;
     }
 
     if (this.newPassword !== this.confirmPassword) {
       this.passwordMessage = 'New passwords do not match';
+      this.passwordMessageType = 'error';
       return;
     }
 
     if (this.newPassword.length < 6) {
       this.passwordMessage = 'Password must be at least 6 characters';
+      this.passwordMessageType = 'error';
       return;
     }
 
-    // You can add backend API call here to change password
-    this.resetPasswordForm();
-    this.showPasswordForm = false;
+    this.authService.changePassword(this.oldPassword, this.newPassword).subscribe({
+      next: () => {
+        this.passwordMessage = 'Password updated successfully';
+        this.passwordMessageType = 'success';
+        this.resetPasswordForm();
+        this.showPasswordForm = false;
+      },
+      error: (error) => {
+        this.passwordMessage = error?.error?.message || 'Password update failed';
+        this.passwordMessageType = 'error';
+      }
+    });
   }
 
   resetPasswordForm() {
     this.oldPassword = '';
     this.newPassword = '';
     this.confirmPassword = '';
-    this.passwordMessage = '';
   }
 
   cancelEdit() {
@@ -147,4 +189,10 @@ export class Profile implements OnInit {
     }
   }
 }
+
+
+
+
+
+
 

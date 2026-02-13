@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 /* ==============================
-        NAVBAR
+  NAVBAR
 ============================== */
 
 .nav {
+  font-family: 'Segoe UI', Arial, sans-serif;
   background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
   padding: 16px 40px;
 
@@ -135,9 +138,11 @@
   display: flex;
   align-items: center;
   gap: 24px;
+
 }
 
 .menu a {
+  
   display: flex;
   align-items: center;
   gap: 8px;
@@ -185,9 +190,7 @@
   transition: all 0.3s ease;
 }
 
-.logout-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
+
 
 /* ==============================
       USER DROPDOWN
@@ -342,31 +345,53 @@
   top: 50%;
   transform: translateY(-50%);
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
+  padding: 0;
+  border-radius: 999px;
+  background: transparent;
+  border: none;
 }
 
 .nav:not(:has(.menu)) .auth-btn {
-  padding: 8px 16px;
-  border-radius: 20px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-  backdrop-filter: blur(4px);
+  padding: 9px 18px;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(6px);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
 }
 
 .nav:not(:has(.menu)) .login-btn {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+.nav:not(:has(.menu)) .login-btn:hover {
+  background: rgba(255, 255, 255, 0.26);
+  border-color: rgba(255, 255, 255, 0.75);
+  transform: translateY(-1px);
 }
 
 .nav:not(:has(.menu)) .register-btn {
-  background: linear-gradient(135deg, #ff8a65 0%, #ff5e62 100%);
-  color: #fff;
+  background: #ffffff;
+  color: #0b3d91;
   border: none;
+}
+
+.nav:not(:has(.menu)) .register-btn:hover {
+  background: #f1f5ff;
+  transform: translateY(-1px);
 }
 
 .nav:not(:has(.menu)) .auth-btn .bi {
   color: #fff;
+}
+
+.nav:not(:has(.menu)) .register-btn .bi {
+  color: #0b3d91;
 }
 
 /* ==============================

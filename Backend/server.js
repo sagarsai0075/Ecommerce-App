@@ -13,6 +13,7 @@ app.use('/api/orders', require('./routes/orderRoutes'));
 app.use('/api/cart', require('./routes/cartRoutes'));
 app.use('/api/payment', require('./routes/paymentRoutes'));
 app.use('/api/products', require('./routes/productRoutes'));
+app.use('/api/seller', require('./routes/sellerRoutes'));
 
 
 // MongoDB connection

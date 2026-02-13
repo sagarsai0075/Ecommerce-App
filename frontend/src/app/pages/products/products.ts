@@ -510,9 +510,20 @@ addToCart(product: any) {
       price: unitPrice
     },
     1
-  );
-
-  this.router.navigate(['/cart']);
+  ).subscribe({
+    next: () => this.router.navigate(['/cart']),
+    error: () => {
+      this.cartService.addToLocalCart(
+        {
+          ...product,
+          price: unitPrice
+        },
+        1
+      ).subscribe({
+        next: () => this.router.navigate(['/cart'])
+      });
+    }
+  });
 }
 
 getCompareKey(product: any): string {
