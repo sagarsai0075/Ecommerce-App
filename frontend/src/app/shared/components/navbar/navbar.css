@@ -175,21 +175,6 @@
         LOGOUT BUTTON
 ============================== */
 
-.logout-btn {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
 
 
 /* ==============================
@@ -354,44 +339,43 @@
 }
 
 .nav:not(:has(.menu)) .auth-btn {
-  padding: 9px 18px;
+  padding: 8px 16px;
   border-radius: 999px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
-  backdrop-filter: blur(6px);
+  box-shadow: none;
   font-weight: 600;
-  letter-spacing: 0.3px;
-  transition: all 0.2s ease;
+  letter-spacing: 0.1px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .nav:not(:has(.menu)) .login-btn {
-  background: rgba(255, 255, 255, 0.14);
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  color: #ffffff;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  color: #2874f0;
 }
 
 .nav:not(:has(.menu)) .login-btn:hover {
-  background: rgba(255, 255, 255, 0.26);
-  border-color: rgba(255, 255, 255, 0.75);
-  transform: translateY(-1px);
+  background: #f0f5ff;
+  border-color: #f0f5ff;
+  color: #1f6ae0;
 }
 
 .nav:not(:has(.menu)) .register-btn {
-  background: #ffffff;
-  color: #0b3d91;
-  border: none;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
 .nav:not(:has(.menu)) .register-btn:hover {
-  background: #f1f5ff;
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
 }
 
 .nav:not(:has(.menu)) .auth-btn .bi {
-  color: #fff;
+  color: currentColor;
 }
 
 .nav:not(:has(.menu)) .register-btn .bi {
-  color: #0b3d91;
+  color: #ffffff;
 }
 
 /* ==============================
@@ -399,53 +383,56 @@
 ============================== */
 
 .auth-btn {
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 8px 16px;
+  border-radius: 999px;
 
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 600;
+  letter-spacing: 0.1px;
 
   text-decoration: none;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
 
-  transition: all 0.3s ease;
-  border: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
 /* Login Button */
 .login-btn {
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  color: white;
-  background: transparent;
+  border: 1px solid #ffffff;
+  color: #2874f0;
+  background: #ffffff;
+  box-shadow: none;
 }
 
 .login-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #f0f5ff;
+  border-color: #f0f5ff;
+  color: #1f6ae0;
 }
 
 /* Register Button */
 .register-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border: none;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: none;
 }
 
 .register-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
 }
 
 /* Icon size inside auth buttons */
 
 .auth-btn .bi {
-  font-size: 18px;
+  font-size: 16px;
+  color: currentColor;
 }
 
 /* ==============================

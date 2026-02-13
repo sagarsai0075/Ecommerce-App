@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../core/services/auth';
 import { CartService } from '../../../core/services/cart';
@@ -15,14 +15,16 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./home.css']
 })
 
-export class Home implements OnInit, OnDestroy {
+export class Home implements OnInit, OnDestroy, AfterViewInit {
 
   private readonly repeatCount = 50;
 
 constructor(
   public authService: AuthService,
   private router: Router,
-  private cartService: CartService
+  private cartService: CartService,
+  private cdr: ChangeDetectorRef,
+  private zone: NgZone
 ) {}
 
 
@@ -73,14 +75,16 @@ addedMap: { [key: string]: boolean } = {};
 
 ngOnInit() {
   this.loadKitchen();
-
-  this.startAutoSlide();
   this.loadPhones();
   this.loadElectronics();
   this.loadFashion();
   this.loadTv();
   this.loadHome();
   this.loadBooks();
+}
+
+ngAfterViewInit() {
+  this.startAutoSlide();
 }
 scrollLeftBooks() {
   this.booksContainer.nativeElement.scrollBy({
@@ -512,14 +516,18 @@ addToCart(product: any) {
 
     this.intervalId = setInterval(() => {
       if (!this.isPaused) {
-        this.nextSlideAuto();
+        this.zone.run(() => {
+          this.nextSlideAuto();
+          this.cdr.markForCheck();
+        });
       }
-    }, 2000);
+    }, 2500);
   }
 
   stopAutoSlide() {
     if (this.intervalId) {
       clearInterval(this.intervalId);
+      this.intervalId = null;
     }
   }
 

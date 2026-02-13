@@ -1,23 +1,23 @@
-<div class="profile-container" *ngIf="user">
+<div class="profile-container">
   <div class="profile-wrapper">
     <!-- Navigation Tabs -->
-    <div class="profile-nav">
-      <button 
-        (click)="setActiveSection('personal-info')" 
+    <div class="profile-nav" *ngIf="user">
+      <button
+        (click)="setActiveSection('personal-info')"
         [class.active]="activeSection === 'personal-info'"
         class="nav-btn">
         <i class="bi bi-person"></i>
         Personal Info
       </button>
-      <button 
-        (click)="setActiveSection('orders')" 
+      <button
+        (click)="setActiveSection('orders')"
         [class.active]="activeSection === 'orders'"
         class="nav-btn">
         <i class="bi bi-bag"></i>
         Orders
       </button>
-      <button 
-        (click)="setActiveSection('change-password')" 
+      <button
+        (click)="setActiveSection('change-password')"
         [class.active]="activeSection === 'change-password'"
         class="nav-btn">
         <i class="bi bi-lock"></i>
@@ -27,249 +27,250 @@
 
     <!-- Content Sections -->
     <div class="profile-content">
-
-      <!-- Personal Info Section -->
-      <div class="section" *ngIf="activeSection === 'personal-info'">
-        <h2>Personal Information</h2>
-        
-        <div *ngIf="!editMode" class="info-display">
-          <div class="info-item">
-            <label>Name</label>
-            <p>{{ user.name }}</p>
-          </div>
-          <div class="info-item">
-            <label>Email</label>
-            <p>{{ user.email }}</p>
-          </div>
-          <div class="info-item">
-            <label>Phone Number</label>
-            <p>{{ user.number }}</p>
-          </div>
-          <div class="info-item">
-            <label>Date of Birth</label>
-            <p>{{ user.dateOfBirth ? (user.dateOfBirth | date:'MMM dd, yyyy') : 'Not provided' }}</p>
-          </div>
-          <div class="info-item">
-            <label>House Number</label>
-            <p>{{ user.houseNo || 'Not provided' }}</p>
-          </div>
-          <div class="info-item">
-            <label>Address</label>
-            <p>{{ user.address || 'Not provided' }}</p>
-          </div>
-          <div class="info-item">
-            <label>Landmark</label>
-            <p>{{ user.landmark || 'Not provided' }}</p>
-          </div>
-          <div class="info-item">
-            <label>District</label>
-            <p>{{ user.district || 'Not provided' }}</p>
-          </div>
-          <div class="info-item">
-            <label>State</label>
-            <p>{{ user.state || 'Not provided' }}</p>
-          </div>
-          <div class="info-item">
-            <label>Pincode</label>
-            <p>{{ user.pincode || 'Not provided' }}</p>
-          </div>
-          <button (click)="toggleEditMode()" class="btn-edit">
-            <i class="bi bi-pencil"></i>
-            Edit Information
-          </button>
-        </div>
-
-        <div *ngIf="editMode" class="edit-form">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input 
-              type="text" 
-              id="name" 
-              [(ngModel)]="editedUser.name" 
-              class="form-input">
-          </div>
-
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input 
-              type="email" 
-              id="email" 
-              [(ngModel)]="editedUser.email" 
-              class="form-input">
-          </div>
-
-          <div class="form-group">
-            <label for="number">Phone Number</label>
-            <input 
-              type="tel" 
-              id="number" 
-              [(ngModel)]="editedUser.number" 
-              class="form-input">
-          </div>
-
-          <div class="form-group">
-            <label for="dob">Date of Birth</label>
-            <input 
-              type="date" 
-              id="dob" 
-              [(ngModel)]="editedUser.dateOfBirth" 
-              class="form-input">
-          </div>
-
-          <div class="form-group">
-            <label for="houseNo">House Number</label>
-            <input 
-              type="text" 
-              id="houseNo" 
-              [(ngModel)]="editedUser.houseNo" 
-              class="form-input"
-              placeholder="Ex. 123">
-          </div>
-
-          <div class="form-group">
-            <label for="address">Address</label>
-            <input 
-              type="text" 
-              id="address" 
-              [(ngModel)]="editedUser.address" 
-              class="form-input"
-              placeholder="Ex. Street Address">
-          </div>
-
-          <div class="form-group">
-            <label for="landmark">Landmark</label>
-            <input 
-              type="text" 
-              id="landmark" 
-              [(ngModel)]="editedUser.landmark" 
-              class="form-input"
-              placeholder="Ex. Near City Mall">
-          </div>
-
-          <div class="form-group">
-            <label for="district">District</label>
-            <input 
-              type="text" 
-              id="district" 
-              [(ngModel)]="editedUser.district" 
-              class="form-input"
-              placeholder="Ex. Bangalore">
-          </div>
-
-          <div class="form-group">
-            <label for="state">State</label>
-            <input 
-              type="text" 
-              id="state" 
-              [(ngModel)]="editedUser.state" 
-              class="form-input"
-              placeholder="Ex. Karnataka">
-          </div>
-
-          <div class="form-group">
-            <label for="pincode">Pincode</label>
-            <input 
-              type="text" 
-              id="pincode" 
-              [(ngModel)]="editedUser.pincode" 
-              class="form-input"
-              placeholder="Ex. 580041">
-          </div>
-
-          <div class="form-actions">
-            <button (click)="savePersonalInfo()" class="btn-save">
-              <i class="bi bi-check-circle"></i>
-              Save Changes
-            </button>
-            <button (click)="cancelEdit()" class="btn-cancel">
-              <i class="bi bi-x-circle"></i>
-              Cancel
+      <ng-container *ngIf="user; else profileState">
+        <!-- Personal Info Section -->
+        <div class="section" *ngIf="activeSection === 'personal-info'">
+          <div class="section-header">
+            <h2>Personal Information</h2>
+            <button
+              type="button"
+              class="edit-link"
+              (click)="toggleEditMode()">
+              Edit Information
             </button>
           </div>
-        </div>
-      </div>
 
-      <!-- Orders Section -->
-      <div class="section" *ngIf="activeSection === 'orders'">
-        <h2>Your Orders</h2>
-        <div class="empty-state">
-          <i class="bi bi-inbox"></i>
-          <p>No orders yet. Start shopping!</p>
-          <a href="/products" class="btn-primary">Continue Shopping</a>
-        </div>
-      </div>
-
-      <!-- Change Password Section -->
-      <div class="section" *ngIf="activeSection === 'change-password'">
-        <h2>Change Password</h2>
-
-        <div *ngIf="passwordMessage" class="message" [ngClass]="passwordMessageType">
-          {{ passwordMessage }}
-        </div>
-        
-        <div *ngIf="!showPasswordForm" class="empty-state">
-          <i class="bi bi-lock"></i>
-          <p>Update your password to keep your account secure</p>
-          <button (click)="togglePasswordForm()" class="btn-primary">
-            Change Password
-          </button>
-        </div>
-
-        <div *ngIf="showPasswordForm" class="edit-form">
-          <div class="form-group">
-            <label for="oldPassword">Current Password</label>
-            <input 
-              type="password" 
-              id="oldPassword" 
-              [(ngModel)]="oldPassword" 
-              class="form-input">
+          <div *ngIf="!editMode" class="info-display">
+            <div class="info-item">
+              <label>Name</label>
+              <p class="info-value">{{ user.name }}</p>
+            </div>
+            <div class="info-item">
+              <label>Email</label>
+              <p class="info-value">{{ user.email }}</p>
+            </div>
+            <div class="info-item">
+              <label>Phone Number</label>
+              <p class="info-value">{{ user.number }}</p>
+            </div>
+            <div class="info-item">
+              <label>Date of Birth</label>
+              <p class="info-value">{{ user.dateOfBirth ? (user.dateOfBirth | date:'MMM dd, yyyy') : 'Not provided' }}</p>
+            </div>
+            <div class="info-item">
+              <label>House Number</label>
+              <p class="info-value">{{ user.houseNo || 'Not provided' }}</p>
+            </div>
+            <div class="info-item">
+              <label>Address</label>
+              <p class="info-value">{{ user.address || 'Not provided' }}</p>
+            </div>
+            <div class="info-item">
+              <label>Landmark</label>
+              <p class="info-value">{{ user.landmark || 'Not provided' }}</p>
+            </div>
+            <div class="info-item">
+              <label>District</label>
+              <p class="info-value">{{ user.district || 'Not provided' }}</p>
+            </div>
+            <div class="info-item">
+              <label>State</label>
+              <p class="info-value">{{ user.state || 'Not provided' }}</p>
+            </div>
+            <div class="info-item">
+              <label>Pincode</label>
+              <p class="info-value">{{ user.pincode || 'Not provided' }}</p>
+            </div>
           </div>
 
-          <div class="form-group">
-            <label for="newPassword">New Password</label>
-            <input 
-              type="password" 
-              id="newPassword" 
-              [(ngModel)]="newPassword" 
-              class="form-input">
+          <div *ngIf="editMode" class="edit-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                [(ngModel)]="editedUser.name"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="editedUser.email"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="number">Phone Number</label>
+              <input
+                type="tel"
+                id="number"
+                [(ngModel)]="editedUser.number"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input
+                type="date"
+                id="dob"
+                [(ngModel)]="editedUser.dateOfBirth"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="houseNo">House Number</label>
+              <input
+                type="text"
+                id="houseNo"
+                [(ngModel)]="editedUser.houseNo"
+                class="form-input"
+                placeholder="Ex. 123">
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input
+                type="text"
+                id="address"
+                [(ngModel)]="editedUser.address"
+                class="form-input"
+                placeholder="Ex. Street Address">
+            </div>
+
+            <div class="form-group">
+              <label for="landmark">Landmark</label>
+              <input
+                type="text"
+                id="landmark"
+                [(ngModel)]="editedUser.landmark"
+                class="form-input"
+                placeholder="Ex. Near City Mall">
+            </div>
+
+            <div class="form-group">
+              <label for="district">District</label>
+              <input
+                type="text"
+                id="district"
+                [(ngModel)]="editedUser.district"
+                class="form-input"
+                placeholder="Ex. Bangalore">
+            </div>
+
+            <div class="form-group">
+              <label for="state">State</label>
+              <input
+                type="text"
+                id="state"
+                [(ngModel)]="editedUser.state"
+                class="form-input"
+                placeholder="Ex. Karnataka">
+            </div>
+
+            <div class="form-group">
+              <label for="pincode">Pincode</label>
+              <input
+                type="text"
+                id="pincode"
+                [(ngModel)]="editedUser.pincode"
+                class="form-input"
+                placeholder="Ex. 580041">
+            </div>
+
+            <div class="form-actions">
+              <button (click)="savePersonalInfo()" class="btn-save">
+                <i class="bi bi-check-circle"></i>
+                Save Changes
+              </button>
+              <button (click)="cancelEdit()" class="btn-cancel">
+                <i class="bi bi-x-circle"></i>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders Section -->
+        <div class="section" *ngIf="activeSection === 'orders'">
+          <h2>Your Orders</h2>
+          <div class="empty-state">
+            <i class="bi bi-inbox"></i>
+            <p>No orders yet. Start shopping!</p>
+            <a href="/products" class="btn-primary">Continue Shopping</a>
+          </div>
+        </div>
+
+        <!-- Change Password Section -->
+        <div class="section" *ngIf="activeSection === 'change-password'">
+          <h2>Change Password</h2>
+
+          <div *ngIf="passwordMessage" class="message" [ngClass]="passwordMessageType">
+            {{ passwordMessage }}
           </div>
 
-          <div class="form-group">
-            <label for="confirmPassword">Confirm New Password</label>
-            <input 
-              type="password" 
-              id="confirmPassword" 
-              [(ngModel)]="confirmPassword" 
-              class="form-input">
-          </div>
-
-          <div class="form-actions">
-            <button (click)="changePassword()" class="btn-save">
-              <i class="bi bi-check-circle"></i>
+          <div *ngIf="!showPasswordForm" class="empty-state">
+            <i class="bi bi-lock"></i>
+            <p>Update your password to keep your account secure</p>
+            <button (click)="togglePasswordForm()" class="btn-primary">
               Change Password
             </button>
-            <button (click)="togglePasswordForm()" class="btn-cancel">
-              <i class="bi bi-x-circle"></i>
-              Cancel
-            </button>
+          </div>
+
+          <div *ngIf="showPasswordForm" class="edit-form">
+            <div class="form-group">
+              <label for="oldPassword">Current Password</label>
+              <input
+                type="password"
+                id="oldPassword"
+                [(ngModel)]="oldPassword"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <input
+                type="password"
+                id="newPassword"
+                [(ngModel)]="newPassword"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="confirmPassword">Confirm New Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                [(ngModel)]="confirmPassword"
+                class="form-input">
+            </div>
+
+            <div class="form-actions">
+              <button (click)="changePassword()" class="btn-save">
+                <i class="bi bi-check-circle"></i>
+                Change Password
+              </button>
+              <button (click)="togglePasswordForm()" class="btn-cancel">
+                <i class="bi bi-x-circle"></i>
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </ng-container>
 
+      <ng-template #profileState>
+        <div *ngIf="isLoading" class="profile-state loading">
+          <p>Loading profile...</p>
+        </div>
+        <div *ngIf="!isLoading" class="profile-state empty-state">
+          <i class="bi bi-exclamation-circle"></i>
+          <p>{{ loadError || 'Unable to load profile.' }}</p>
+          <button (click)="retryLoadUser()" class="btn-primary">Retry</button>
+        </div>
+      </ng-template>
     </div>
-  </div>
-</div>
-
-<div class="profile-container" *ngIf="!user && isLoading">
-  <div class="loading">
-    <p>Loading profile...</p>
-  </div>
-</div>
-
-<div class="profile-container" *ngIf="!user && !isLoading">
-  <div class="empty-state">
-    <i class="bi bi-exclamation-circle"></i>
-    <p>{{ loadError || 'Unable to load profile.' }}</p>
-    <button (click)="retryLoadUser()" class="btn-primary">Retry</button>
   </div>
 </div>

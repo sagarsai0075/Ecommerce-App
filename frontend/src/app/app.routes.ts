@@ -66,12 +66,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  {
-    path: 'coupons',
-    loadComponent: () =>
-      import('./pages/coupons/coupons').then(m => m.Coupons),
-    canActivate: [authGuard]
-  },
+ 
 
   {
     path: 'seller',
