@@ -65,6 +65,22 @@ const userSchema = new mongoose.Schema(
       default: null
     },
 
+    addresses: {
+      type: [
+        {
+          addressType: { type: String, default: 'Home' },
+          customAddressType: { type: String, default: null },
+          houseNo: { type: String, default: null },
+          address: { type: String, default: null },
+          landmark: { type: String, default: null },
+          district: { type: String, default: null },
+          state: { type: String, default: null },
+          pincode: { type: String, default: null }
+        }
+      ],
+      default: []
+    },
+
     resetPasswordToken: {
       type: String
     },

@@ -3,7 +3,40 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
+const mapAddress = (address = {}) => ({
+  addressType: address.addressType || 'Home',
+  customAddressType: address.customAddressType || null,
+  houseNo: address.houseNo || null,
+  address: address.address || null,
+  landmark: address.landmark || null,
+  district: address.district || null,
+  state: address.state || null,
+  pincode: address.pincode || null
+});
+
+const hasAnyAddressValue = (address = {}) =>
+  !!(
+    address.houseNo ||
+    address.address ||
+    address.landmark ||
+    address.district ||
+    address.state ||
+    address.pincode
+  );
+
 const buildUserResponse = (user) => ({
+  ...(function () {
+    const savedAddresses = Array.isArray(user.addresses)
+      ? user.addresses.map(mapAddress).filter(hasAnyAddressValue)
+      : [];
+
+    if (savedAddresses.length > 0) {
+      return { addresses: savedAddresses };
+    }
+
+    const legacyAddress = mapAddress(user);
+    return hasAnyAddressValue(legacyAddress) ? { addresses: [legacyAddress] } : { addresses: [] };
+  })(),
   id: user._id,
   name: user.name,
   email: user.email,
@@ -130,7 +163,8 @@ const updateProfile = async (req, res) => {
       landmark,
       district,
       state,
-      pincode
+      pincode,
+      addresses
     } = req.body;
 
     if (email && email !== user.email) {
@@ -151,12 +185,32 @@ const updateProfile = async (req, res) => {
 
     if (name !== undefined) user.name = name;
     if (dateOfBirth !== undefined) user.dateOfBirth = dateOfBirth || null;
-    if (houseNo !== undefined) user.houseNo = houseNo || null;
-    if (address !== undefined) user.address = address || null;
-    if (landmark !== undefined) user.landmark = landmark || null;
-    if (district !== undefined) user.district = district || null;
-    if (state !== undefined) user.state = state || null;
-    if (pincode !== undefined) user.pincode = pincode || null;
+
+    if (addresses !== undefined && Array.isArray(addresses)) {
+      const normalizedAddresses = addresses
+        .map(mapAddress)
+        .filter(hasAnyAddressValue);
+
+      user.addresses = normalizedAddresses;
+
+      const primaryAddress = normalizedAddresses[0] || {};
+      user.houseNo = primaryAddress.houseNo || null;
+      user.address = primaryAddress.address || null;
+      user.landmark = primaryAddress.landmark || null;
+      user.district = primaryAddress.district || null;
+      user.state = primaryAddress.state || null;
+      user.pincode = primaryAddress.pincode || null;
+    } else {
+      if (houseNo !== undefined) user.houseNo = houseNo || null;
+      if (address !== undefined) user.address = address || null;
+      if (landmark !== undefined) user.landmark = landmark || null;
+      if (district !== undefined) user.district = district || null;
+      if (state !== undefined) user.state = state || null;
+      if (pincode !== undefined) user.pincode = pincode || null;
+
+      const legacyAddress = mapAddress(user);
+      user.addresses = hasAnyAddressValue(legacyAddress) ? [legacyAddress] : [];
+    }
 
     const updatedUser = await user.save();
     res.json(buildUserResponse(updatedUser));

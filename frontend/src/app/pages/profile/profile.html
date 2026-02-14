@@ -7,7 +7,7 @@
         [class.active]="activeSection === 'personal-info'"
         class="nav-btn">
         <i class="bi bi-person"></i>
-        Personal Info
+        My Profile
       </button>
       <button
         (click)="setActiveSection('orders')"
@@ -20,8 +20,8 @@
         (click)="setActiveSection('change-password')"
         [class.active]="activeSection === 'change-password'"
         class="nav-btn">
-        <i class="bi bi-lock"></i>
-        Change Password
+        <i class="bi bi-geo-alt"></i>
+        Saved Address
       </button>
     </div>
 
@@ -30,17 +30,9 @@
       <ng-container *ngIf="user; else profileState">
         <!-- Personal Info Section -->
         <div class="section" *ngIf="activeSection === 'personal-info'">
-          <div class="section-header">
-            <h2>Personal Information</h2>
-            <button
-              type="button"
-              class="edit-link"
-              (click)="toggleEditMode()">
-              Edit Information
-            </button>
-          </div>
+          <h2>Personal Info</h2>
 
-          <div *ngIf="!editMode" class="info-display">
+          <div class="info-display personal-info-display">
             <div class="info-item">
               <label>Name</label>
               <p class="info-value">{{ user.name }}</p>
@@ -52,143 +44,6 @@
             <div class="info-item">
               <label>Phone Number</label>
               <p class="info-value">{{ user.number }}</p>
-            </div>
-            <div class="info-item">
-              <label>Date of Birth</label>
-              <p class="info-value">{{ user.dateOfBirth ? (user.dateOfBirth | date:'MMM dd, yyyy') : 'Not provided' }}</p>
-            </div>
-            <div class="info-item">
-              <label>House Number</label>
-              <p class="info-value">{{ user.houseNo || 'Not provided' }}</p>
-            </div>
-            <div class="info-item">
-              <label>Address</label>
-              <p class="info-value">{{ user.address || 'Not provided' }}</p>
-            </div>
-            <div class="info-item">
-              <label>Landmark</label>
-              <p class="info-value">{{ user.landmark || 'Not provided' }}</p>
-            </div>
-            <div class="info-item">
-              <label>District</label>
-              <p class="info-value">{{ user.district || 'Not provided' }}</p>
-            </div>
-            <div class="info-item">
-              <label>State</label>
-              <p class="info-value">{{ user.state || 'Not provided' }}</p>
-            </div>
-            <div class="info-item">
-              <label>Pincode</label>
-              <p class="info-value">{{ user.pincode || 'Not provided' }}</p>
-            </div>
-          </div>
-
-          <div *ngIf="editMode" class="edit-form">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                [(ngModel)]="editedUser.name"
-                class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                [(ngModel)]="editedUser.email"
-                class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label for="number">Phone Number</label>
-              <input
-                type="tel"
-                id="number"
-                [(ngModel)]="editedUser.number"
-                class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label for="dob">Date of Birth</label>
-              <input
-                type="date"
-                id="dob"
-                [(ngModel)]="editedUser.dateOfBirth"
-                class="form-input">
-            </div>
-
-            <div class="form-group">
-              <label for="houseNo">House Number</label>
-              <input
-                type="text"
-                id="houseNo"
-                [(ngModel)]="editedUser.houseNo"
-                class="form-input"
-                placeholder="Ex. 123">
-            </div>
-
-            <div class="form-group">
-              <label for="address">Address</label>
-              <input
-                type="text"
-                id="address"
-                [(ngModel)]="editedUser.address"
-                class="form-input"
-                placeholder="Ex. Street Address">
-            </div>
-
-            <div class="form-group">
-              <label for="landmark">Landmark</label>
-              <input
-                type="text"
-                id="landmark"
-                [(ngModel)]="editedUser.landmark"
-                class="form-input"
-                placeholder="Ex. Near City Mall">
-            </div>
-
-            <div class="form-group">
-              <label for="district">District</label>
-              <input
-                type="text"
-                id="district"
-                [(ngModel)]="editedUser.district"
-                class="form-input"
-                placeholder="Ex. Bangalore">
-            </div>
-
-            <div class="form-group">
-              <label for="state">State</label>
-              <input
-                type="text"
-                id="state"
-                [(ngModel)]="editedUser.state"
-                class="form-input"
-                placeholder="Ex. Karnataka">
-            </div>
-
-            <div class="form-group">
-              <label for="pincode">Pincode</label>
-              <input
-                type="text"
-                id="pincode"
-                [(ngModel)]="editedUser.pincode"
-                class="form-input"
-                placeholder="Ex. 580041">
-            </div>
-
-            <div class="form-actions">
-              <button (click)="savePersonalInfo()" class="btn-save">
-                <i class="bi bi-check-circle"></i>
-                Save Changes
-              </button>
-              <button (click)="cancelEdit()" class="btn-cancel">
-                <i class="bi bi-x-circle"></i>
-                Cancel
-              </button>
             </div>
           </div>
         </div>
@@ -203,56 +58,132 @@
           </div>
         </div>
 
-        <!-- Change Password Section -->
+        <!-- Saved Address Section -->
         <div class="section" *ngIf="activeSection === 'change-password'">
-          <h2>Change Password</h2>
-
-          <div *ngIf="passwordMessage" class="message" [ngClass]="passwordMessageType">
-            {{ passwordMessage }}
-          </div>
-
-          <div *ngIf="!showPasswordForm" class="empty-state">
-            <i class="bi bi-lock"></i>
-            <p>Update your password to keep your account secure</p>
-            <button (click)="togglePasswordForm()" class="btn-primary">
-              Change Password
+          <div class="section-header">
+            <h2>Saved Address</h2>
+            <button
+              type="button"
+              class="edit-text-link"
+              (click)="toggleAddressEditMode()">
+              <i *ngIf="!addressEditMode" class="bi bi-plus-circle"></i>
+              {{ addressEditMode ? 'Cancel' : 'Add Address' }}
             </button>
           </div>
 
-          <div *ngIf="showPasswordForm" class="edit-form">
+          <div *ngIf="!addressEditMode && hasSavedAddress()" class="saved-address-list">
+            <div class="saved-details-preview" *ngFor="let savedAddress of getSavedAddresses(); let i = index">
+              <label>{{ getAddressTitle(savedAddress) }}</label>
+              <p>{{ user.name || '' }}</p>
+              <p>{{ user.number || '' }}</p>
+              <p>
+                {{ savedAddress.houseNo || '' }}
+                {{ savedAddress.address || '' }}
+              </p>
+              <p>
+                {{ savedAddress.landmark || '' }}
+                {{ savedAddress.district || '' }}
+                {{ savedAddress.state || '' }}
+                {{ savedAddress.pincode || '' }}
+              </p>
+              <div class="saved-details-actions">
+                <button type="button" class="edit-text-link" (click)="editAddress(i)">
+                  Edit
+                </button>
+                <button type="button" class="edit-text-link danger-link" (click)="deleteAddress(i)">
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!addressEditMode && !hasSavedAddress()" class="saved-details-preview empty-address">
+            <label>Saved Address</label>
+            <p>No saved addresses yet.</p>
+          </div>
+
+          <div *ngIf="addressEditMode" class="edit-form">
             <div class="form-group">
-              <label for="oldPassword">Current Password</label>
+              <label for="houseNo">House Number</label>
               <input
-                type="password"
-                id="oldPassword"
-                [(ngModel)]="oldPassword"
+                type="text"
+                id="houseNo"
+                [(ngModel)]="editedAddress.houseNo"
                 class="form-input">
             </div>
 
             <div class="form-group">
-              <label for="newPassword">New Password</label>
+              <label for="address">Address</label>
               <input
-                type="password"
-                id="newPassword"
-                [(ngModel)]="newPassword"
+                type="text"
+                id="address"
+                [(ngModel)]="editedAddress.address"
                 class="form-input">
             </div>
 
             <div class="form-group">
-              <label for="confirmPassword">Confirm New Password</label>
+              <label for="landmark">Landmark</label>
               <input
-                type="password"
-                id="confirmPassword"
-                [(ngModel)]="confirmPassword"
+                type="text"
+                id="landmark"
+                [(ngModel)]="editedAddress.landmark"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="district">District</label>
+              <input
+                type="text"
+                id="district"
+                [(ngModel)]="editedAddress.district"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="state">State</label>
+              <input
+                type="text"
+                id="state"
+                [(ngModel)]="editedAddress.state"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="pincode">Pincode</label>
+              <input
+                type="text"
+                id="pincode"
+                [(ngModel)]="editedAddress.pincode"
+                class="form-input">
+            </div>
+
+            <div class="form-group">
+              <label for="addressType">Address Type</label>
+              <select
+                id="addressType"
+                [(ngModel)]="editedAddress.addressType"
+                class="form-input">
+                <option value="Home">Home</option>
+                <option value="Work">Work</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+
+            <div class="form-group" *ngIf="editedAddress.addressType === 'Others'">
+              <label for="customAddressType">Other Label</label>
+              <input
+                type="text"
+                id="customAddressType"
+                [(ngModel)]="editedAddress.customAddressType"
                 class="form-input">
             </div>
 
             <div class="form-actions">
-              <button (click)="changePassword()" class="btn-save">
+              <button (click)="saveAddress()" class="btn-save" [disabled]="isSavingAddress">
                 <i class="bi bi-check-circle"></i>
-                Change Password
+                Save Address
               </button>
-              <button (click)="togglePasswordForm()" class="btn-cancel">
+              <button (click)="cancelAddressEdit()" class="btn-cancel">
                 <i class="bi bi-x-circle"></i>
                 Cancel
               </button>

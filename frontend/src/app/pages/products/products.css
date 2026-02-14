@@ -141,6 +141,15 @@
   background: #fafafa;
 }
 
+.img-box.img-box-large {
+  width: 220px;
+  min-width: 220px;
+}
+
+.img-box.img-box-large img {
+  height: 210px;
+}
+
 /* INFO */
 .info-box {
   flex: 1;

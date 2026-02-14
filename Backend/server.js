@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const app = express();
 
+mongoose.set('bufferCommands', false);
+
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
@@ -17,7 +19,10 @@ app.use('/api/seller', require('./routes/sellerRoutes'));
 
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, {
+  serverSelectionTimeoutMS: 5000,
+  socketTimeoutMS: 45000
+})
   .then(() => {
     console.log('MongoDB connected');
   })

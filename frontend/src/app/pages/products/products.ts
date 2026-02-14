@@ -49,6 +49,79 @@ export class Products implements OnInit {
     ratings: [] as number[]
   };
 
+  homePageCatalog: Record<string, Array<{ name: string; price: number; discount: number; image: string }>> = {
+    mobiles: [
+      { name: 'Samsung Galaxy S25 Ultra', price: 74999, discount: 10, image: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s25-ultra-sm-s938.jpg' },
+      { name: 'iPhone 17 Pro Max', price: 159999, discount: 12, image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-17-pro-max.jpg' },
+      { name: 'OnePlus Nord 5', price: 49999, discount: 15, image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord5.jpg' },
+      { name: 'iPhone 15', price: 69999, discount: 5, image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14.jpg' },
+      { name: 'OnePlus 11', price: 56999, discount: 12, image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg' },
+      { name: 'Google Pixel 10', price: 109999, discount: 18, image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro-xl-.jpg' },
+      { name: 'Vivo V27', price: 32999, discount: 8, image: 'https://fdn2.gsmarena.com/vv/bigpic/vivo-v27.jpg' },
+      { name: 'Redmi Note 12', price: 15999, discount: 20, image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-10-pro-fold--.jpg' }
+    ],
+    electronics: [
+      { name: 'Dell Inspiron 15', price: 65999, discount: 15, image: 'https://www.91-img.com/pictures/laptops/dell/dell-vostro-3530-vn3530kckc9002org1o-laptop-gb-gb-gb-ssd-mb-172820-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Dell Vostro 5620', price: 55999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/dell/dell-3530-oin353010031rins1m-163036-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'HP Pavilion x360', price: 19999, discount: 20, image: 'https://www.91-img.com/pictures/laptops/hp/hp-14-ek1152tu-b6pa4pa-167665-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Asus ROG Strix G635', price: 55999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/asus/asus-g635lw-rw157ws-168981-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Apple MacBook Air M2', price: 119999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/apple/apple-m4-mw1h3hn-a-167911-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Dell Alienware 16X', price: 55999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/dell/dell-oan1625101301mino-170746-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'HP Victus 15', price: 45999, discount: 15, image: 'https://www.91-img.com/pictures/laptops/hp/hp-15-fa1411tx-aq5h7pa-164261-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Acer Aspire 7', price: 49999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/acer/acer-a715-76g-nh-qmfsi-004-158007-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' }
+    ],
+    fashion: [
+      { name: 'Snitch Slim Fit Shirt', price: 1999, discount: 30, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20241002/GpyB/66fccb7b260f9c41e84d35e8/-473Wx593H-700521941-navy-MODEL.jpg' },
+      { name: 'H&M Floral Print Dress', price: 2499, discount: 35, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250225/BNky/67bd86ea2960820c49a64806/-473Wx593H-701263883-offwhite-MODEL4.jpg' },
+      { name: 'Adidas T-Shirt', price: 2999, discount: 25, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240823/VmJp/66c8aaff6f60443f3124beb2/-473Wx593H-469662805-white-MODEL5.jpg' },
+      { name: 'Puma Hoodie', price: 3499, discount: 40, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240807/yBtF/66b382261d763220fa668616/-473Wx593H-469672134-purple-MODEL4.jpg' },
+      { name: 'Adidas Sneakers', price: 3999, discount: 20, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240827/7FDF/66cdde466f60443f312fb605/-473Wx593H-469651897-blue-MODEL2.jpg' },
+      { name: 'Swiss Military Hanowa', price: 2899, discount: 22, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251124/04xw/692448f188d6d62ff8ffe02b/-473Wx593H-702534037-silver-MODEL3.jpg' },
+      { name: 'Armani Exchange Shirt', price: 2199, discount: 26, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250825/GInF/68ac42578bfb9009aca7d9c0/-473Wx593H-410533250-ub101-MODEL.jpg' },
+      { name: 'Puma Backpack', price: 3299, discount: 24, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251205/5Jjd/6932bae88945db77cf100e39/-473Wx593H-702588367-black-MODEL.jpg' }
+    ],
+    tv: [
+      { name: 'LG Smart TV', price: 58999, discount: 22, image: 'https://www.91-img.com/pictures/television/lg/lg-50ua82006la-170103-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Sony Bravia 8 II OLED TV', price: 32999, discount: 18, image: 'https://www.91-img.com/pictures/television/sony/sony-bravia-8-ii-k-65xr80m2-65-inch-165-cm-oled-4k-tv-170070-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Samsung Crystal 4K TV', price: 39999, discount: 25, image: 'https://www.91-img.com/pictures/television/samsung/samsung-ua65ue81afu-168823-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Xiaomi 4K Smart TV', price: 28999, discount: 20, image: 'https://www.91-img.com/pictures/television/xiaomi/xiaomi-fx-l55mb-fin-169234-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Motorola UHD Smart TV', price: 26999, discount: 15, image: 'https://www.91-img.com/pictures/television/motorola/motorola-65uhdgqmvsaq-169205-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Toshiba C350 4K TV', price: 18999, discount: 20, image: 'https://www.91-img.com/pictures/television/toshiba/toshiba-55c350np-162978-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Xiaomi X Series TV', price: 13999, discount: 17, image: 'https://www.91-img.com/pictures/television/xiaomi/xiaomi-x-series-l55mb-ain-169208-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
+      { name: 'Acer M Series Smart TV', price: 64999, discount: 19, image: 'https://www.91-img.com/pictures/television/acer/acer-m-series-ar75udmgr2885at-75-inch-190-cm-tv-166136-v4-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' }
+    ],
+    home: [
+      { name: 'Brimnes Day Bed Frame', price: 45999, discount: 25, image: 'https://www.ikea.com/in/en/images/products/brimnes-day-bed-frame-with-2-drawers-white__1092117_pe863030_s5.jpg?f=m' },
+      { name: 'Mossjoen Wall Cabinet', price: 38999, discount: 20, image: 'https://www.ikea.com/in/en/images/products/mossjoen-wall-cabinet-w-shelves-glass-door-anthracite__1257766_ph194652_s5.jpg?f=m' },
+      { name: 'Variera Shelf Insert', price: 8999, discount: 30, image: 'https://www.ikea.com/in/en/images/products/variera-shelf-insert-white__0867261_pe600476_s5.jpg?f=m' },
+      { name: 'Brimnes Wardrobe', price: 12999, discount: 35, image: 'https://www.ikea.com/in/en/images/products/brimnes-wardrobe-with-3-doors-white__0746973_pe744299_s5.jpg?f=m' },
+      { name: 'Loshult Trolley', price: 6999, discount: 15, image: 'https://www.ikea.com/in/en/images/products/loshult-trolley-pine__1394320_pe966492_s5.jpg?f=m' },
+      { name: 'Billy TV Storage Combination', price: 7999, discount: 18, image: 'https://www.ikea.com/in/en/images/products/billy-tv-storage-combination-white__0955664_pe803953_s5.jpg?f=m' },
+      { name: 'Akterspring Table Lamp', price: 24999, discount: 22, image: 'https://www.ikea.com/in/en/images/products/akterspring-table-lamp-opal-white-glass-brass-plated__1416331_pe975512_s5.jpg?f=m' },
+      { name: 'Ytberg LED Cabinet Lighting', price: 4999, discount: 16, image: 'https://www.ikea.com/in/en/images/products/ytberg-led-cabinet-lighting-white-dimmable__1081909_pe858443_s5.jpg?f=m' }
+    ],
+    books: [
+      { name: 'Atomic Habits', price: 599, discount: 40, image: 'https://m.media-amazon.com/images/I/91bYsX41DVL.jpg' },
+      { name: 'Rich Dad Poor Dad', price: 499, discount: 35, image: 'https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg' },
+      { name: 'The Psychology of Money', price: 699, discount: 30, image: 'https://m.media-amazon.com/images/I/71g2ednj0JL.jpg' },
+      { name: 'Ikigai', price: 399, discount: 25, image: 'https://m.media-amazon.com/images/I/81l3rZK4lnL.jpg' },
+      { name: 'Think Like a Monk', price: 499, discount: 20, image: 'https://m.media-amazon.com/images/I/81GlTN6QQrL._SY466_.jpg' },
+      { name: 'Deep Work', price: 549, discount: 18, image: 'https://m.media-amazon.com/images/I/61zt25yYrCL._AC_UY327_FMwebp_QL65_.jpg' },
+      { name: 'The Monk Who Sold His Ferrari', price: 549, discount: 18, image: 'https://m.media-amazon.com/images/I/61OByUf1TfL._SY466_.jpg' },
+      { name: 'The Alchemist', price: 399, discount: 25, image: 'https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg' }
+    ],
+    kitchen: [
+      { name: 'Kent Aqua RO Purifier', price: 3499, discount: 40, image: 'https://m.media-amazon.com/images/I/41YAylLzFUL.AC_SX250.jpg' },
+      { name: 'Crompton Arno Neo 15-L Geyser', price: 4999, discount: 30, image: 'https://m.media-amazon.com/images/I/515nNlnjmSL._AC_UL480_QL65_.jpg' },
+      { name: 'Bajaj DX-6 1000 Watts Dry Iron', price: 8999, discount: 35, image: 'https://m.media-amazon.com/images/I/51T1nHVTqYL._AC_UL480_QL65_.jpg' },
+      { name: 'Prestige 1.5L Stainless Steel Electric Kettle', price: 2999, discount: 25, image: 'https://m.media-amazon.com/images/I/51hAUIxb6qL._AC_UL480_QL65_.jpg' },
+      { name: 'Bajaj ATX 4 Pop-up Toaster', price: 1999, discount: 20, image: 'https://m.media-amazon.com/images/I/61fgJs4zIqL._AC_UL480_QL65_.jpg' },
+      { name: 'Havells High Speed Ceiling Fan', price: 1499, discount: 28, image: 'https://m.media-amazon.com/images/I/513I-old+qL._AC_UL480_QL65_.jpg' },
+      { name: 'Philips HL7756 Mixer Grinder', price: 2799, discount: 22, image: 'https://m.media-amazon.com/images/I/71mL2bdyRdL._AC_UL480_QL65_.jpg' },
+      { name: 'KENT Storm Vacuum Cleaner', price: 1699, discount: 18, image: 'https://m.media-amazon.com/images/I/41jxlxiTnGL._AC_UL480_QL65_.jpg' }
+    ]
+  };
+
   // ✅ ALL PRODUCTS MOVED FROM HOME
   allProducts: any = {
 
@@ -451,7 +524,7 @@ export class Products implements OnInit {
 
       this.category = params['category'];
 
-      const originalProducts = this.allProducts[this.category] || [];
+      const originalProducts = this.getHomeSyncedProducts(this.category);
       this.products = this.multiplyProducts(originalProducts, 10);
       this.itemsPerPage = this.products.length;
 
@@ -467,6 +540,151 @@ export class Products implements OnInit {
 
   }
 
+  private getHomeSyncedProducts(category: string): any[] {
+    const homeProducts = this.homePageCatalog[category] || [];
+    const existingProducts = this.allProducts[category] || [];
+
+    return homeProducts.map((homeProduct, index) => {
+      const matched = existingProducts.find((item: any) =>
+        this.normalizeName(item?.name) === this.normalizeName(homeProduct.name)
+      );
+
+      const fallback = matched || existingProducts[index] || {};
+      const specs = this.resolveSpecificationsFromName(homeProduct.name);
+
+      return {
+        ...fallback,
+        name: homeProduct.name,
+        price: homeProduct.price,
+        discount: homeProduct.discount,
+        image: homeProduct.image,
+        brand: fallback.brand || this.resolveBrandFromName(homeProduct.name),
+        rating: fallback.rating ?? 4.3,
+        reviewsCount: fallback.reviewsCount ?? 1000,
+        specifications: specs.length > 0
+          ? specs
+          : (fallback.specifications || ['Best quality product'])
+      };
+    });
+  }
+
+  private resolveSpecificationsFromName(productName: string): string[] {
+    const value = this.normalizeName(productName);
+
+    const specificationMap: Record<string, string[]> = {
+      'samsung galaxy s25 ultra': ['6.8" QHD+ Dynamic AMOLED 2X Display', 'Snapdragon 8 Elite Processor', '200MP Quad Camera with 5x Zoom', '5000mAh Battery with 45W Fast Charging'],
+      'iphone 17 pro max': ['6.9" ProMotion OLED Display', 'A19 Pro Chip', '48MP Pro Triple Camera System', 'Titanium Body with Advanced Ceramic Shield'],
+      'oneplus nord 5': ['6.74" 120Hz AMOLED Display', 'Snapdragon 7+ Series Chipset', '50MP OIS Main Camera', '5000mAh Battery with 80W Charging'],
+      'iphone 15': ['6.1" Super Retina XDR OLED', 'A16 Bionic Chip', '48MP Main + 12MP Ultra-Wide Camera', 'USB-C with MagSafe Support'],
+      'oneplus 11': ['6.7" 120Hz QHD+ AMOLED Display', 'Snapdragon 8 Gen 2 Processor', '50MP Hasselblad Triple Camera', '5000mAh Battery with 100W SUPERVOOC'],
+      'google pixel 10': ['6.7" LTPO OLED Display', 'Google Tensor G5 Processor', '50MP AI Camera with Pro Controls', 'All-day Battery with Fast Wireless Charging'],
+      'vivo v27': ['6.78" FHD+ AMOLED 120Hz Display', 'MediaTek Dimensity 7200', '50MP OIS Rear Camera + 50MP Selfie', '4600mAh Battery with 66W FlashCharge'],
+      'redmi note 12': ['6.67" FHD+ AMOLED 120Hz Display', 'Snapdragon 685 Processor', '50MP Triple Rear Camera', '5000mAh Battery with 33W Fast Charging'],
+
+      'dell inspiron 15': ['15.6" Full HD Anti-Glare Display', 'Intel Core i5 Processor', '16GB RAM with 512GB SSD', 'Backlit Keyboard with Windows 11'],
+      'dell vostro 5620': ['16" FHD+ Display', 'Intel Core i5 12th Gen Processor', '8GB RAM with 512GB SSD', 'Business-grade Security Features'],
+      'hp pavilion x360': ['14" Touchscreen Convertible Display', 'Intel Core i3/i5 Processor', '360° Hinge for Tablet Mode', 'Fast Charge with Bang & Olufsen Audio'],
+      'asus rog strix g635': ['16" High Refresh Rate Gaming Display', 'Intel Core i7 Processor', 'NVIDIA GeForce RTX Graphics', 'Advanced Cooling with RGB Keyboard'],
+      'apple macbook air m2': ['13.6" Liquid Retina Display', 'Apple M2 Chip', '8GB Unified Memory with SSD Storage', 'Fanless Design with All-day Battery'],
+      'dell alienware 16x': ['16" QHD+ 240Hz Gaming Display', 'Intel Core i9 Processor', 'NVIDIA GeForce RTX Laptop GPU', 'Alienware Cryo-tech Cooling System'],
+      'hp victus 15': ['15.6" FHD 144Hz Display', 'AMD Ryzen/Intel Core Gaming CPU', 'NVIDIA GeForce Graphics', 'Dual-fan Cooling with OMEN Gaming Hub'],
+      'acer aspire 7': ['15.6" Full HD IPS Display', 'AMD Ryzen 5 / Intel Core i5 Processor', 'NVIDIA GTX/RTX Dedicated Graphics', '512GB SSD with Backlit Keyboard'],
+
+      'snitch slim fit shirt': ['Slim Fit Casual Shirt', 'Premium Cotton Blend Fabric', 'Spread Collar with Full Sleeves', 'Machine Wash Friendly'],
+      'h&m floral print dress': ['Floral Printed Midi Dress', 'Soft Viscose Blend Material', 'Regular Fit with Flowy Silhouette', 'Ideal for Casual & Party Wear'],
+      'adidas t-shirt': ['Regular Fit Sports T-Shirt', 'Breathable Cotton-Poly Blend', 'Classic Crew Neck Design', 'Moisture-managing Fabric'],
+      'puma hoodie': ['Relaxed Fit Hoodie', 'Soft Fleece Inner Lining', 'Adjustable Drawstring Hood', 'Ribbed Cuffs and Hem'],
+      'adidas sneakers': ['Lifestyle Sneakers with Cushioned Sole', 'Breathable Mesh Upper', 'Durable Rubber Outsole', 'Comfort Fit for Daily Use'],
+      'swiss military hanowa': ['Premium Analog Watch', 'Stainless Steel Strap', 'Quartz Movement', 'Water-resistant Build'],
+      'armani exchange shirt': ['Slim Fit Designer Shirt', 'Premium Cotton Fabric', 'Button-down Front with Spread Collar', 'Ideal for Smart Casual Styling'],
+      'puma backpack': ['Spacious Multi-compartment Backpack', 'Padded Shoulder Straps', 'Durable Polyester Construction', 'Laptop-friendly Utility Design'],
+
+      'lg smart tv': ['50" 4K UHD Smart LED Panel', 'webOS Smart Platform', 'HDR10 with AI Picture Enhancement', '20W Speakers with Multiple HDMI/USB Ports'],
+      'sony bravia 8 ii oled tv': ['65" 4K OLED Display', 'XR Processor with Deep Contrast', 'Google TV with Voice Assistant', 'Dolby Vision and Dolby Atmos Support'],
+      'samsung crystal 4k tv': ['65" Crystal UHD 4K Panel', 'Crystal Processor 4K', 'Tizen Smart TV Experience', 'HDR Support with Slim Design'],
+      'xiaomi 4k smart tv': ['55" 4K UHD Display', 'PatchWall with Android TV Features', 'Dolby Audio and DTS Support', 'Built-in Chromecast and Voice Remote'],
+      'motorola uhd smart tv': ['65" UHD Smart Display', 'Android TV with Play Store', 'Dolby Vision + Dolby Atmos', 'MEMC Technology for Smooth Motion'],
+      'toshiba c350 4k tv': ['55" 4K UHD Smart Display', 'VIDAA Smart OS', 'Regza Engine 4K Processing', 'Bezel-less Design with Voice Remote'],
+      'xiaomi x series tv': ['55" 4K UHD Smart Panel', 'Android TV with Google Assistant', 'Vivid Picture Engine', '30W Speakers with Dolby Audio'],
+      'acer m series smart tv': ['75" 4K Ultra HD Smart TV', 'Frameless Design with Wide Viewing Angle', 'Android TV with Chromecast Built-in', 'High-fidelity Speakers with Dolby Audio'],
+
+      'brimnes day bed frame': ['Day Bed Frame with 2 Drawers', 'Convertible to Double Bed', 'Engineered Wood Construction', 'Space-saving Design for Guest Rooms'],
+      'mossjoen wall cabinet': ['Wall Cabinet with Glass Door', 'Integrated Shelves for Display', 'Anthracite Finish', 'Ideal for Kitchen/Living Storage'],
+      'variera shelf insert': ['Stackable Shelf Insert', 'Powder-coated Steel Frame', 'Optimizes Cabinet Vertical Space', 'Easy-clean Surface'],
+      'brimnes wardrobe': ['3-door Wardrobe Unit', 'Adjustable Shelves and Hanging Rail', 'White Laminated Finish', 'Compact Bedroom Storage Solution'],
+      'loshult trolley': ['Portable Storage Trolley', 'Solid Pine Construction', 'Multi-use Utility Shelves', 'Smooth-rolling Caster Wheels'],
+      'billy tv storage combination': ['TV Storage Combination Unit', 'Open and Closed Shelving', 'Modular BILLY Series Compatibility', 'Ideal for Living Room Organization'],
+      'akterspring table lamp': ['Decorative Table Lamp', 'Opal Glass Shade', 'Brass-plated Base', 'Soft Ambient Light for Bedside/Desk'],
+      'ytberg led cabinet lighting': ['LED Cabinet Lighting Strip', 'Dimmable Brightness Control', 'Energy Efficient Illumination', 'Designed for Shelves and Cabinets'],
+
+      'atomic habits': ['Author: James Clear', 'Format: Paperback', 'Genre: Self-help / Productivity', 'Focus: Habit Building & Behavioral Change'],
+      'rich dad poor dad': ['Author: Robert T. Kiyosaki', 'Format: Paperback', 'Genre: Personal Finance', 'Focus: Wealth Mindset & Financial Literacy'],
+      'the psychology of money': ['Author: Morgan Housel', 'Format: Paperback', 'Genre: Finance / Behavioral Economics', 'Focus: Money Habits & Decision Making'],
+      'ikigai': ['Authors: Héctor García & Francesc Miralles', 'Format: Paperback', 'Genre: Lifestyle / Philosophy', 'Focus: Japanese Concept of Purposeful Living'],
+      'think like a monk': ['Author: Jay Shetty', 'Format: Paperback', 'Genre: Self-growth', 'Focus: Mindfulness, Purpose, and Peace'],
+      'deep work': ['Author: Cal Newport', 'Format: Paperback', 'Genre: Productivity', 'Focus: High-value Focused Work Strategies'],
+      'the monk who sold his ferrari': ['Author: Robin Sharma', 'Format: Paperback', 'Genre: Inspirational Fiction', 'Focus: Life Balance & Spiritual Growth'],
+      'the alchemist': ['Author: Paulo Coelho', 'Format: Paperback', 'Genre: Fiction / Adventure', 'Focus: Dreams, Destiny, and Personal Legend'],
+
+      'kent aqua ro purifier': ['Multi-stage RO + UV + UF Purification', 'TDS Control with Mineral Retention', 'Storage Tank with Auto Shut-off', 'Suitable for Brackish/Tap Water'],
+      'crompton arno neo 15-l geyser': ['15L Storage Water Heater', 'Powerful Heating Element', 'Anti-rust Tank Coating', 'Safety Valve with Thermal Cut-out'],
+      'bajaj dx-6 1000 watts dry iron': ['1000W Dry Iron', 'Non-stick Soleplate', 'Adjustable Thermostat Control', 'Lightweight and Ergonomic Handle'],
+      'prestige 1.5l stainless steel electric kettle': ['1.5L Capacity Electric Kettle', 'Stainless Steel Body', 'Auto Shut-off and Boil Dry Protection', '360° Swivel Cordless Base'],
+      'bajaj atx 4 pop-up toaster': ['2-slice Pop-up Toaster', 'Variable Browning Control', 'Auto Pop-up with Reheat Option', 'Compact Cool-touch Body'],
+      'havells high speed ceiling fan': ['High-speed Air Delivery Fan', 'Durable Copper Motor', 'Aerodynamically Balanced Blades', 'Energy Efficient Performance'],
+      'philips hl7756 mixer grinder': ['750W Powerful Motor', '3 Stainless Steel Jars', 'Advanced Air Ventilation Design', 'Overload Protection for Safety'],
+      'kent storm vacuum cleaner': ['High Suction Vacuum Cleaner', 'Multi-surface Cleaning Attachments', 'Compact Body with Easy Mobility', 'Reusable Dust Collection System']
+    };
+
+    return specificationMap[value] || [];
+  }
+
+  private normalizeName(name: string): string {
+    return String(name || '').trim().toLowerCase();
+  }
+
+  private resolveBrandFromName(productName: string): string {
+    const value = this.normalizeName(productName);
+
+    if (value.includes('iphone') || value.includes('apple')) return 'Apple';
+    if (value.includes('samsung')) return 'Samsung';
+    if (value.includes('oneplus')) return 'OnePlus';
+    if (value.includes('google') || value.includes('pixel')) return 'Google';
+    if (value.includes('vivo')) return 'Vivo';
+    if (value.includes('redmi')) return 'Redmi';
+    if (value.includes('dell')) return 'Dell';
+    if (value.includes('hp')) return 'HP';
+    if (value.includes('asus')) return 'Asus';
+    if (value.includes('acer')) return 'Acer';
+    if (value.includes('snitch')) return 'Snitch';
+    if (value.includes('h&m')) return 'H&M';
+    if (value.includes('adidas')) return 'Adidas';
+    if (value.includes('puma')) return 'Puma';
+    if (value.includes('swiss military')) return 'Swiss Military';
+    if (value.includes('armani')) return 'Armani Exchange';
+    if (value.includes('lg')) return 'LG';
+    if (value.includes('sony')) return 'Sony';
+    if (value.includes('xiaomi')) return 'Xiaomi';
+    if (value.includes('motorola')) return 'Motorola';
+    if (value.includes('toshiba')) return 'Toshiba';
+    if (value.includes('brimnes') || value.includes('mossjoen') || value.includes('variera') || value.includes('loshult') || value.includes('billy') || value.includes('akterspring') || value.includes('ytberg')) return 'IKEA';
+    if (value.includes('kent')) return 'Kent';
+    if (value.includes('crompton')) return 'Crompton';
+    if (value.includes('bajaj')) return 'Bajaj';
+    if (value.includes('prestige')) return 'Prestige';
+    if (value.includes('havells')) return 'Havells';
+    if (value.includes('philips')) return 'Philips';
+    if (value.includes('atomic habits')) return 'Avery';
+    if (value.includes('rich dad poor dad')) return 'Plata';
+    if (value.includes('psychology of money') || value.includes('monk who sold his ferrari')) return 'Jaico';
+    if (value.includes('ikigai')) return 'Westland';
+    if (value.includes('think like a monk')) return 'HarperCollins';
+    if (value.includes('deep work')) return 'Grand Central';
+    if (value.includes('alchemist')) return 'HarperOne';
+
+    return 'Generic';
+  }
+
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -475,6 +693,10 @@ export class Products implements OnInit {
 
   getPrice(p: any) {
     return Math.round(p.price - (p.price * p.discount / 100));
+  }
+
+  isLargeImageCategory(): boolean {
+    return this.category === 'electronics';
   }
 
   

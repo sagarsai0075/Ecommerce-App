@@ -79,7 +79,6 @@ textarea {
   font-family: inherit;
   background: #f9f9f9;
   transition: all 0.3s ease;
-
 }
 
 input[type="text"]:focus,
@@ -106,14 +105,14 @@ input:disabled {
    TWO COLUMN INPUTS
    =========================== */
 
-.row.two {
+.address-two-col {
   display: flex;
   gap: 12px;
 }
 
-.row.two input {
-  flex: 1;
-  max-width: 70% ;
+.address-two-col input {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 /* ===========================
@@ -163,8 +162,7 @@ input:disabled {
    =========================== */
 
 .price-summary {
-  position: sticky;
-  top: 100px;
+  position: static;
   background: white;
   border-radius: 12px;
   padding: 24px;
@@ -351,12 +349,12 @@ input.ng-invalid.ng-touched {
     font-size: 16px;
   }
 
-  .row.two {
+  .address-two-col {
     flex-direction: column;
     gap: 0;
   }
 
-  .row.two input {
+  .address-two-col input {
     margin-bottom: 10px;
   }
 

@@ -164,9 +164,9 @@
   font-size: 15px;
 }
 
-/* Hover underline (EXCEPT auth buttons) */
+/* Hover background for top-level menu links */
 
-.nav a:not(.logo):not(.auth-btn):hover {
+.menu > a:hover {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 8px;
 }

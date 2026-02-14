@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { finalize, shareReplay, tap } from 'rxjs/operators';
+import { catchError, timeout } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,11 @@ import { finalize, shareReplay, tap } from 'rxjs/operators';
 export class AuthService {
 
   private baseUrl = `${environment.apiUrl}/auth`;
+  private readonly userStorageKey = 'currentUser';
 
   // Login State
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
-  private currentUser = new BehaviorSubject<any | null>(null);
+  private currentUser = new BehaviorSubject<any | null>(this.getInitialUser());
   private meRequest$: Observable<any> | null = null;
 
   loggedIn$ = this.loggedIn.asObservable();
@@ -49,6 +51,12 @@ export class AuthService {
 
   saveToken(token: string) {
     localStorage.setItem('token', token);
+    if (!this.getUser()) {
+      const payload = this.decodeToken(token);
+      if (payload) {
+        this.setCurrentUser(payload);
+      }
+    }
     this.loggedIn.next(true); // 🔥 Update UI
   }
 
@@ -72,6 +80,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem(this.userStorageKey);
     this.setCurrentUser(null);
 
     this.loggedIn.next(false); // 🔥 Update UI
@@ -80,6 +89,12 @@ export class AuthService {
   /* ================= USER ================= */
 
   setCurrentUser(user: any | null) {
+    if (user) {
+      localStorage.setItem(this.userStorageKey, JSON.stringify(user));
+    } else {
+      localStorage.removeItem(this.userStorageKey);
+    }
+
     this.currentUser.next(user);
   }
 
@@ -89,13 +104,15 @@ export class AuthService {
 
   getMe() {
     return this.http.get(`${this.baseUrl}/me`).pipe(
+      timeout(10000),
+      catchError((error) => throwError(() => error)),
       tap(user => this.setCurrentUser(user))
     );
   }
 
   ensureUserLoaded() {
     const cached = this.getUser();
-    if (cached) {
+    if (cached && this.hasDisplayIdentity(cached)) {
       return of(cached);
     }
 
@@ -104,7 +121,9 @@ export class AuthService {
     }
 
     this.meRequest$ = this.http.get(`${this.baseUrl}/me`).pipe(
+      timeout(10000),
       tap(user => this.setCurrentUser(user)),
+      catchError((error) => throwError(() => error)),
       shareReplay(1),
       finalize(() => {
         this.meRequest$ = null;
@@ -158,5 +177,27 @@ export class AuthService {
     } catch {
       return null;
     }
+  }
+
+  private getInitialUser(): any | null {
+    const cachedUser = localStorage.getItem(this.userStorageKey);
+    if (cachedUser) {
+      try {
+        return JSON.parse(cachedUser);
+      } catch {
+        localStorage.removeItem(this.userStorageKey);
+      }
+    }
+
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }
+
+    return this.decodeToken(token);
+  }
+
+  private hasDisplayIdentity(user: any): boolean {
+    return !!(user?.name || user?.email);
   }
 }

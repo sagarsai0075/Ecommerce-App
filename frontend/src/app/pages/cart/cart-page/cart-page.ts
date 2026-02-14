@@ -82,13 +82,25 @@ export class CartPage implements OnInit {
   }
 
   // ===============================
-  // TOTAL
+  // PRICE SUMMARY
   // ===============================
-  get total(): number {
+  get itemSubtotal(): number {
     return this.items.reduce(
       (sum, item) => sum + item.price * item.qty,
       0
     );
+  }
+
+  get gstAmount(): number {
+    return this.roundAmount(this.itemSubtotal * 0.12);
+  }
+
+  get total(): number {
+    return this.roundAmount(this.itemSubtotal + this.gstAmount);
+  }
+
+  private roundAmount(amount: number): number {
+    return Math.round(amount * 100) / 100;
   }
 
   // ===============================

@@ -18,6 +18,74 @@ import { RouterModule } from '@angular/router';
 export class Home implements OnInit, OnDestroy, AfterViewInit {
 
   private readonly repeatCount = 50;
+  private readonly explicitProductPrices: Record<string, number> = {
+    'Samsung|Samsung Galaxy S25 Ultra': 74999,
+    'Apple|iPhone 17 Pro Max': 159999,
+    'OnePlus|OnePlus Nord 5': 49999,
+    'Apple|iPhone 15': 69999,
+    'OnePlus|OnePlus 11': 56999,
+    'Google|Google Pixel 10': 109999,
+    'Vivo|Vivo V27': 32999,
+    'Redmi|Redmi Note 12': 15999,
+    'Dell|Dell Inspiron 15': 65999,
+    'Dell|Dell Vostro 5620': 55999,
+    'HP|HP Pavilion x360': 19999,
+    'Asus|Asus ROG Strix G635': 55999,
+    'Apple|Apple MacBook Air M2': 119999,
+    'Dell|Dell Alienware 16X': 55999,
+    'HP|HP Victus 15': 45999,
+    'Acer|Acer Aspire 7': 49999,
+    'Snitch|Snitch Slim Fit Shirt': 1999,
+    'H&M|H&M Floral Print Dress': 2499,
+    'Adidas|Adidas T-Shirt': 2999,
+    'Puma|Puma Hoodie': 3499,
+    'Adidas|Adidas Sneakers': 3999,
+    'Swiss Military|Swiss Military Hanowa': 2899,
+    'Armani Exchange|Armani Exchange Shirt': 2199,
+    'Puma|Puma Backpack': 3299,
+    'LG|LG Smart TV': 58999,
+    'Sony|Sony Bravia 8 II OLED TV': 32999,
+    'Samsung|Samsung Crystal 4K TV': 39999,
+    'Xiaomi|Xiaomi 4K Smart TV': 28999,
+    'Motorola|Motorola UHD Smart TV': 26999,
+    'Toshiba|Toshiba C350 4K TV': 18999,
+    'Xiaomi|Xiaomi X Series TV': 13999,
+    'Acer|Acer M Series Smart TV': 64999,
+    'IKEA|Brimnes Day Bed Frame': 45999,
+    'IKEA|Mossjoen Wall Cabinet': 38999,
+    'IKEA|Variera Shelf Insert': 8999,
+    'IKEA|Brimnes Wardrobe': 12999,
+    'IKEA|Loshult Trolley': 6999,
+    'IKEA|Billy TV Storage Combination': 7999,
+    'IKEA|Akterspring Table Lamp': 24999,
+    'IKEA|Ytberg LED Cabinet Lighting': 4999,
+    'Kent|Kent Aqua RO Purifier': 3499,
+    'Crompton|Crompton Arno Neo 15-L Geyser': 4999,
+    'Bajaj|Bajaj DX-6 1000 Watts Dry Iron': 8999,
+    'Prestige|Prestige 1.5L Stainless Steel Electric Kettle': 2999,
+    'Bajaj|Bajaj ATX 4 Pop-up Toaster': 1999,
+    'Havells|Havells High Speed Ceiling Fan': 1499,
+    'Philips|Philips HL7756 Mixer Grinder': 2799,
+    'KENT|KENT Storm Vacuum Cleaner': 1699,
+    'Avery|Atomic Habits': 599,
+    'Plata|Rich Dad Poor Dad': 499,
+    'Jaico|The Psychology of Money': 699,
+    'Westland|Ikigai': 399,
+    'HarperCollins|Think Like a Monk': 499,
+    'Grand Central|Deep Work': 549,
+    'Jaico|The Monk Who Sold His Ferrari': 549,
+    'HarperOne|The Alchemist': 399
+  };
+
+  private readonly brandMultipliers: Record<string, number> = {
+    Apple: 1.15,
+    Samsung: 1.08,
+    OnePlus: 1.06,
+    Google: 1.1,
+    Sony: 1.09,
+    LG: 1.05,
+    IKEA: 1.04
+  };
 
 constructor(
   public authService: AuthService,
@@ -119,41 +187,64 @@ loadKitchen() {
   this.kitchen = [
 
     {
-      name: 'Non-Stick Cookware Set',
+      name: 'Kent Aqua RO Purifier',
       price: 3499,
       discount: 40,
-      image: 'https://m.media-amazon.com/images/I/81+vY7fZsFL._SX679_.jpg'
+      image: 'https://m.media-amazon.com/images/I/41YAylLzFUL.AC_SX250.jpg'
     },
 
     {
-      name: 'Mixer Grinder',
+      name: 'Crompton Arno Neo 15-L Geyser',
       price: 4999,
       discount: 30,
-      image: 'https://m.media-amazon.com/images/I/71Zf9uUp+GL._SX679_.jpg'
+      image: 'https://m.media-amazon.com/images/I/515nNlnjmSL._AC_UL480_QL65_.jpg'
     },
 
     {
-      name: 'Air Fryer',
+      name: 'Bajaj DX-6 1000 Watts Dry Iron',
       price: 8999,
       discount: 35,
-      image: 'https://m.media-amazon.com/images/I/71qKzqk6YFL._SX679_.jpg'
+      image: 'https://m.media-amazon.com/images/I/51T1nHVTqYL._AC_UL480_QL65_.jpg'
     },
 
     {
-      name: 'Steel Dinner Set',
+      name: 'Prestige 1.5L Stainless Steel Electric Kettle',
       price: 2999,
       discount: 25,
-      image: 'https://m.media-amazon.com/images/I/71kZcZk0nZL._SX679_.jpg'
+      image: 'https://m.media-amazon.com/images/I/51hAUIxb6qL._AC_UL480_QL65_.jpg'
     },
 
     {
-      name: 'Electric Kettle',
+      name: 'Bajaj ATX 4 Pop-up Toaster',
       price: 1999,
       discount: 20,
-      image: 'https://m.media-amazon.com/images/I/61s7y3JzLKL._SX679_.jpg'
+      image: 'https://m.media-amazon.com/images/I/61fgJs4zIqL._AC_UL480_QL65_.jpg'
+    },
+
+    {
+      name: 'Havells High Speed Ceiling Fan',
+      price: 1499,
+      discount: 28,
+      image: 'https://m.media-amazon.com/images/I/513I-old+qL._AC_UL480_QL65_.jpg'
+    },
+
+    {
+      name: 'Philips HL7756 Mixer Grinder',
+      price: 2799,
+      discount: 22,
+      image: 'https://m.media-amazon.com/images/I/71mL2bdyRdL._AC_UL480_QL65_.jpg'
+    },
+
+    {
+      name: 'KENT Storm Vacuum Cleaner',
+      price: 1699,
+      discount: 18,
+      image: 'https://m.media-amazon.com/images/I/41jxlxiTnGL._AC_UL480_QL65_.jpg'
     }
 
   ];
+
+  this.kitchen = this.applyBrandAndPrice(this.kitchen, 'kitchen');
 
   this.infiniteKitchen = this.buildInfinite(this.kitchen);
 
@@ -200,10 +291,32 @@ loadBooks() {
       name: 'Think Like a Monk',
       price: 499,
       discount: 20,
-      image: 'https://m.media-amazon.com/images/I/71b1cZV5jKL.jpg'
+      image: 'https://m.media-amazon.com/images/I/81GlTN6QQrL._SY466_.jpg'
+    },
+
+ 
+    {
+      name: 'Deep Work',
+      price: 549,
+      discount: 18,
+      image: 'https://m.media-amazon.com/images/I/61zt25yYrCL._AC_UY327_FMwebp_QL65_.jpg'
+    },
+    {
+      name: 'The Monk Who Sold His Ferrari',
+      price: 549,
+      discount: 18,
+      image: 'https://m.media-amazon.com/images/I/61OByUf1TfL._SY466_.jpg'
+    },
+    {
+      name: 'The Alchemist',
+      price: 399,
+      discount: 25,
+      image: 'https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg'
     }
 
   ];
+
+  this.books = this.applyBrandAndPrice(this.books, 'books');
 
   this.infiniteBooks = this.buildInfinite(this.books);
 
@@ -233,41 +346,64 @@ loadHome() {
   this.home = [
 
     {
-      name: 'Wooden Sofa Set',
+      name: 'Brimnes Day Bed Frame',
       price: 45999,
       discount: 25,
-      image: 'https://m.media-amazon.com/images/I/81Jzv5KJ7WL._SX679_.jpg'
+      image: 'https://www.ikea.com/in/en/images/products/brimnes-day-bed-frame-with-2-drawers-white__1092117_pe863030_s5.jpg?f=m'
     },
 
     {
-      name: 'King Size Bed',
+      name: 'Mossjoen Wall Cabinet',
       price: 38999,
       discount: 20,
-      image: 'https://m.media-amazon.com/images/I/81pZ7C8F6PL._SX679_.jpg'
+      image: 'https://www.ikea.com/in/en/images/products/mossjoen-wall-cabinet-w-shelves-glass-door-anthracite__1257766_ph194652_s5.jpg?f=m'
     },
 
     {
-      name: 'Study Table',
+      name: 'Variera Shelf Insert',
       price: 8999,
       discount: 30,
-      image: 'https://m.media-amazon.com/images/I/71kQ9+KJZEL._SX679_.jpg'
+      image: 'https://www.ikea.com/in/en/images/products/variera-shelf-insert-white__0867261_pe600476_s5.jpg?f=m'
     },
 
     {
-      name: 'Office Chair',
+      name: 'Brimnes Wardrobe',
       price: 12999,
       discount: 35,
-      image: 'https://m.media-amazon.com/images/I/71QqT7M2pKL._SX679_.jpg'
+      image: 'https://www.ikea.com/in/en/images/products/brimnes-wardrobe-with-3-doors-white__0746973_pe744299_s5.jpg?f=m'
     },
 
     {
-      name: 'Bookshelf Rack',
+      name: 'Loshult Trolley',
       price: 6999,
       discount: 15,
-      image: 'https://m.media-amazon.com/images/I/71aQpKJx+BL._SX679_.jpg'
+      image: 'https://www.ikea.com/in/en/images/products/loshult-trolley-pine__1394320_pe966492_s5.jpg?f=m'
+    },
+
+    {
+      name: 'Billy TV Storage Combination',
+      price: 7999,
+      discount: 18,
+      image: 'https://www.ikea.com/in/en/images/products/billy-tv-storage-combination-white__0955664_pe803953_s5.jpg?f=m'
+    },
+
+    {
+      name: 'Akterspring Table Lamp',
+      price: 24999,
+      discount: 22,
+      image: 'https://www.ikea.com/in/en/images/products/akterspring-table-lamp-opal-white-glass-brass-plated__1416331_pe975512_s5.jpg?f=m'
+    },
+
+    {
+      name: 'Ytberg LED Cabinet Lighting',
+      price: 4999,
+      discount: 16,
+      image: 'https://www.ikea.com/in/en/images/products/ytberg-led-cabinet-lighting-white-dimmable__1081909_pe858443_s5.jpg?f=m'
     }
 
   ];
+
+  this.home = this.applyBrandAndPrice(this.home, 'home');
 
   this.infiniteHome = this.buildInfinite(this.home);
 
@@ -295,41 +431,64 @@ loadTv() {
   this.tv = [
 
     {
-      name: 'Samsung 55" Smart TV',
+      name: 'LG Smart TV',
       price: 58999,
       discount: 22,
-      image: 'https://m.media-amazon.com/images/I/71S8U9VzLTL._SX679_.jpg'
+      image: 'https://www.91-img.com/pictures/television/lg/lg-50ua82006la-170103-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     },
 
     {
-      name: 'LG Washing Machine',
+      name: 'Sony Bravia 8 II OLED TV',
       price: 32999,
       discount: 18,
-      image: 'https://m.media-amazon.com/images/I/71+K9h5C5WL._SX679_.jpg'
+      image: 'https://www.91-img.com/pictures/television/sony/sony-bravia-8-ii-k-65xr80m2-65-inch-165-cm-oled-4k-tv-170070-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     },
 
     {
-      name: 'Voltas Split AC',
+      name: 'Samsung Crystal 4K TV',
       price: 39999,
       discount: 25,
-      image: 'https://m.media-amazon.com/images/I/61C3zZJtGWL._SX679_.jpg'
+      image: 'https://www.91-img.com/pictures/television/samsung/samsung-ua65ue81afu-168823-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     },
 
     {
-      name: 'Whirlpool Refrigerator',
+      name: 'Xiaomi 4K Smart TV',
       price: 28999,
       discount: 20,
-      image: 'https://m.media-amazon.com/images/I/71Zf9uUp+GL._SX679_.jpg'
+      image:'https://www.91-img.com/pictures/television/xiaomi/xiaomi-fx-l55mb-fin-169234-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     },
 
     {
-      name: 'Mi 43" Android TV',
+      name: 'Motorola UHD Smart TV',
       price: 26999,
       discount: 15,
-      image: 'https://m.media-amazon.com/images/I/71cYtZb8wDL._SX679_.jpg'
+      image: 'https://www.91-img.com/pictures/television/motorola/motorola-65uhdgqmvsaq-169205-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+
+    {
+      name: 'Toshiba C350 4K TV',
+      price: 18999,
+      discount: 20,
+      image: 'https://www.91-img.com/pictures/television/toshiba/toshiba-55c350np-162978-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+
+    {
+      name: 'Xiaomi X Series TV',
+      price: 13999,
+      discount: 17,
+      image: 'https://www.91-img.com/pictures/television/xiaomi/xiaomi-x-series-l55mb-ain-169208-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+
+    {
+      name: 'Acer M Series Smart TV',
+      price: 64999,
+      discount: 19,
+      image: 'https://www.91-img.com/pictures/television/acer/acer-m-series-ar75udmgr2885at-75-inch-190-cm-tv-166136-v4-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     }
 
   ];
+
+  this.tv = this.applyBrandAndPrice(this.tv, 'tv');
 
   this.infiniteTv = this.buildInfinite(this.tv);
 
@@ -420,41 +579,61 @@ loadElectronics() {
   this.electronics = [
 
     {
-      name: 'Dell Laptop',
+      name: 'Dell Inspiron 15',
       price: 65999,
       discount: 15,
-      image: 'https://m.media-amazon.com/images/I/61fDHkQ6MqL._SX679_.jpg'
+      image: 'https://www.91-img.com/pictures/laptops/dell/dell-vostro-3530-vn3530kckc9002org1o-laptop-gb-gb-gb-ssd-mb-172820-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     },
 
-    {
-      name: 'Sony Headphones',
-      price: 19999,
-      discount: 20,
-      image: 'https://m.media-amazon.com/images/I/61CGHv6kmWL._SX679_.jpg'
-    },
+  
 
     {
-      name: 'Canon Camera',
+      name: 'Dell Vostro 5620',
       price: 55999,
       discount: 10,
-      image: 'https://m.media-amazon.com/images/I/71EWRyqzw0L._SX679_.jpg'
+      image: 'https://www.91-img.com/pictures/laptops/dell/dell-3530-oin353010031rins1m-163036-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     },
-
-    {
-      name: 'JBL Speaker',
-      price: 7999,
-      discount: 25,
-      image: 'https://m.media-amazon.com/images/I/61J9B4p8YkL._SX679_.jpg'
+ {
+      name: 'HP Pavilion x360',
+      price: 19999,
+      discount: 20,
+      image:'https://www.91-img.com/pictures/laptops/hp/hp-14-ek1152tu-b6pa4pa-167665-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
     },
-
+    
     {
-      name: 'Samsung Monitor',
-      price: 17999,
-      discount: 18,
-      image: 'https://m.media-amazon.com/images/I/81QpkIctqPL._SX679_.jpg'
-    }
-
+      name: 'Asus ROG Strix G635',
+      price: 55999,
+      discount: 10,
+      image: 'https://www.91-img.com/pictures/laptops/asus/asus-g635lw-rw157ws-168981-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+     {
+      name: 'Apple MacBook Air M2',
+      price: 119999,
+      discount: 10,
+      image: 'https://www.91-img.com/pictures/laptops/apple/apple-m4-mw1h3hn-a-167911-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+    {
+      name: 'Dell Alienware 16X',
+      price: 55999,
+      discount: 10,
+      image: 'https://www.91-img.com/pictures/laptops/dell/dell-oan1625101301mino-170746-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+    {
+      name: 'HP Victus 15',
+      price: 45999,
+      discount: 15,
+      image: 'https://www.91-img.com/pictures/laptops/hp/hp-15-fa1411tx-aq5h7pa-164261-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+    {
+      name: 'Acer Aspire 7',
+      price: 49999,
+      discount: 10,
+      image: 'https://www.91-img.com/pictures/laptops/acer/acer-a715-76g-nh-qmfsi-004-158007-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+    },
+   
   ];
+
+  this.electronics = this.applyBrandAndPrice(this.electronics, 'electronics');
 
   this.infiniteElectronics = this.buildInfinite(this.electronics);
 
@@ -567,41 +746,64 @@ loadFashion() {
   this.fashion = [
 
     {
-      name: 'Men Casual Shirt',
+      name: 'Snitch Slim Fit Shirt',
       price: 1999,
       discount: 30,
-      image: 'https://m.media-amazon.com/images/I/71T3K9ZB7WL._UY879_.jpg'
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20241002/GpyB/66fccb7b260f9c41e84d35e8/-473Wx593H-700521941-navy-MODEL.jpg'
     },
 
     {
-      name: 'Women Kurti',
+      name: ' H&M Floral Print Dress',
       price: 2499,
       discount: 35,
-      image: 'https://m.media-amazon.com/images/I/71G0C5GvMQL._UY879_.jpg'
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250225/BNky/67bd86ea2960820c49a64806/-473Wx593H-701263883-offwhite-MODEL4.jpg'
     },
 
     {
-      name: 'Men Jeans',
+      name: 'Adidas T-Shirt',
       price: 2999,
       discount: 25,
-      image: 'https://m.media-amazon.com/images/I/71F8d1kZ6ML._UY879_.jpg'
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240823/VmJp/66c8aaff6f60443f3124beb2/-473Wx593H-469662805-white-MODEL5.jpg'
     },
 
     {
-      name: 'Women Handbag',
+      name: 'Puma Hoodie',
       price: 3499,
       discount: 40,
-      image: 'https://m.media-amazon.com/images/I/61V+4WRoE3L._UY879_.jpg'
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240807/yBtF/66b382261d763220fa668616/-473Wx593H-469672134-purple-MODEL4.jpg'
     },
 
     {
-      name: 'Running Shoes',
+      name: 'Adidas Sneakers',
       price: 3999,
       discount: 20,
-      image: 'https://m.media-amazon.com/images/I/71p1C7P6lWL._UY879_.jpg'
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240827/7FDF/66cdde466f60443f312fb605/-473Wx593H-469651897-blue-MODEL2.jpg'
+    },
+
+    {
+      name: 'Swiss Military Hanowa',
+      price: 2899,
+      discount: 22,
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251124/04xw/692448f188d6d62ff8ffe02b/-473Wx593H-702534037-silver-MODEL3.jpg'
+    },
+
+    {
+      name: 'Armani Exchange Shirt',
+      price: 2199,
+      discount: 26,
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250825/GInF/68ac42578bfb9009aca7d9c0/-473Wx593H-410533250-ub101-MODEL.jpg'
+    },
+
+    {
+      name: 'Puma Backpack',
+      price: 3299,
+      discount: 24,
+      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251205/5Jjd/6932bae88945db77cf100e39/-473Wx593H-702588367-black-MODEL.jpg'
     }
 
   ];
+
+  this.fashion = this.applyBrandAndPrice(this.fashion, 'fashion');
 
   this.infiniteFashion = [
     ...this.fashion,
@@ -621,6 +823,101 @@ loadFashion() {
 
   getDiscountedPrice(price: number, discount: number): number {
     return Math.round(price - (price * discount / 100));
+  }
+
+  private applyBrandAndPrice(products: any[], category: string): any[] {
+    return products.map(product => {
+      const normalizedName = String(product?.name || '').trim();
+      const brand = this.resolveBrand(normalizedName, category);
+      const price = this.getPriceByBrandAndProduct(brand, normalizedName, Number(product?.price || 0));
+
+      return {
+        ...product,
+        name: normalizedName,
+        brand,
+        price
+      };
+    });
+  }
+
+  private getPriceByBrandAndProduct(brand: string, productName: string, fallbackPrice: number): number {
+    const key = `${brand}|${productName}`;
+    const exactPrice = this.explicitProductPrices[key];
+
+    if (exactPrice !== undefined) {
+      return exactPrice;
+    }
+
+    const multiplier = this.brandMultipliers[brand] ?? 1;
+    return Math.max(1, Math.round(fallbackPrice * multiplier));
+  }
+
+  private resolveBrand(productName: string, category: string): string {
+    const lowerName = productName.toLowerCase();
+
+    const nameToBrand: Array<{ token: string; brand: string }> = [
+      { token: 'samsung', brand: 'Samsung' },
+      { token: 'iphone', brand: 'Apple' },
+      { token: 'apple', brand: 'Apple' },
+      { token: 'oneplus', brand: 'OnePlus' },
+      { token: 'google', brand: 'Google' },
+      { token: 'pixel', brand: 'Google' },
+      { token: 'vivo', brand: 'Vivo' },
+      { token: 'redmi', brand: 'Redmi' },
+      { token: 'dell', brand: 'Dell' },
+      { token: 'hp', brand: 'HP' },
+      { token: 'asus', brand: 'Asus' },
+      { token: 'acer', brand: 'Acer' },
+      { token: 'snitch', brand: 'Snitch' },
+      { token: 'h&m', brand: 'H&M' },
+      { token: 'adidas', brand: 'Adidas' },
+      { token: 'puma', brand: 'Puma' },
+      { token: 'swiss military', brand: 'Swiss Military' },
+      { token: 'armani exchange', brand: 'Armani Exchange' },
+      { token: 'lg', brand: 'LG' },
+      { token: 'sony', brand: 'Sony' },
+      { token: 'xiaomi', brand: 'Xiaomi' },
+      { token: 'motorola', brand: 'Motorola' },
+      { token: 'toshiba', brand: 'Toshiba' },
+      { token: 'brimnes', brand: 'IKEA' },
+      { token: 'mossjoen', brand: 'IKEA' },
+      { token: 'variera', brand: 'IKEA' },
+      { token: 'loshult', brand: 'IKEA' },
+      { token: 'billy', brand: 'IKEA' },
+      { token: 'akterspring', brand: 'IKEA' },
+      { token: 'ytberg', brand: 'IKEA' },
+      { token: 'kent', brand: 'Kent' },
+      { token: 'crompton', brand: 'Crompton' },
+      { token: 'bajaj', brand: 'Bajaj' },
+      { token: 'prestige', brand: 'Prestige' },
+      { token: 'havells', brand: 'Havells' },
+      { token: 'philips', brand: 'Philips' },
+      { token: 'atomic habits', brand: 'Avery' },
+      { token: 'rich dad poor dad', brand: 'Plata' },
+      { token: 'psychology of money', brand: 'Jaico' },
+      { token: 'ikigai', brand: 'Westland' },
+      { token: 'think like a monk', brand: 'HarperCollins' },
+      { token: 'deep work', brand: 'Grand Central' },
+      { token: 'monk who sold his ferrari', brand: 'Jaico' },
+      { token: 'alchemist', brand: 'HarperOne' }
+    ];
+
+    const match = nameToBrand.find(entry => lowerName.includes(entry.token));
+    if (match) {
+      return match.brand;
+    }
+
+    const categoryDefaults: Record<string, string> = {
+      mobiles: 'Generic',
+      electronics: 'Generic',
+      fashion: 'Generic',
+      tv: 'Generic',
+      home: 'IKEA',
+      books: 'Generic Publisher',
+      kitchen: 'Generic'
+    };
+
+    return categoryDefaults[category] ?? 'Generic';
   }
 
   getRating(product: any): string {
@@ -651,7 +948,7 @@ loadFashion() {
     this.phones = [
 
       {
-        name: 'Samsung Galaxy S23',
+        name: 'Samsung Galaxy S25 Ultra',
         price: 74999,
         discount: 10,
         image: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s25-ultra-sm-s938.jpg'
@@ -681,19 +978,28 @@ loadFashion() {
         image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg'
       },
       {
-        name: 'Redmi Note 12',
-        price: 15999,
-        discount: 20,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-10-pro-fold--.jpg'
+        name: 'Google Pixel 10 ',
+        price: 109999,
+        discount: 18,
+        image:'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro-xl-.jpg'
       },
       {
         name: 'Vivo V27',
         price: 32999,
         discount: 8,
         image: 'https://fdn2.gsmarena.com/vv/bigpic/vivo-v27.jpg'
+      },
+      {
+        name: 'Redmi Note 12',
+        price: 15999,
+        discount: 20,
+        image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-10-pro-fold--.jpg'
       }
+      
 
     ];
+
+    this.phones = this.applyBrandAndPrice(this.phones, 'mobiles');
 
     this.infinitePhones = this.buildInfinite(this.phones);
 

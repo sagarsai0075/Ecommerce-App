@@ -127,12 +127,35 @@
   box-shadow: 0 6px 16px rgba(40, 116, 240, 0.2);
 }
 
+.edit-text-link {
+  background: transparent;
+  border: none;
+  color: var(--fk-blue);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.edit-text-link:hover {
+  color: var(--fk-blue-700);
+}
+
 /* Info Display */
 .info-display {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-bottom: 32px;
+}
+
+.personal-info-display {
+  grid-template-columns: 1fr;
+  max-width: 460px;
 }
 
 .info-item {
@@ -168,6 +191,73 @@
   min-height: 42px;
   display: flex;
   align-items: center;
+}
+
+.saved-details-preview {
+  margin-top: 0;
+  margin-bottom: 24px;
+  border: 1px solid rgba(40, 116, 240, 0.22);
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(40, 116, 240, 0.08);
+  padding: 14px;
+}
+
+.saved-address-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.saved-address-list .saved-details-preview {
+  margin-bottom: 0;
+}
+
+.empty-address {
+  margin-bottom: 24px;
+}
+
+.saved-details-preview label {
+  display: block;
+  font-size: 11px;
+  color: var(--fk-blue);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.saved-details-preview p {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--fk-ink);
+  word-break: break-word;
+}
+
+.saved-details-preview p:last-child {
+  margin-bottom: 0;
+}
+
+.saved-details-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(40, 116, 240, 0.2);
+}
+
+.danger-link {
+  color: #dc2626;
+}
+
+.danger-link:hover {
+  color: #b91c1c;
+}
+
+.inline-btn {
+  width: 100%;
+  justify-content: center;
 }
 
 /* Edit Form */
@@ -345,6 +435,19 @@
   background: #ecfdf3;
   color: #166534;
   border-color: #bbf7d0;
+}
+
+.saved-address {
+  margin-top: 28px;
+  border-top: 1px solid var(--fk-border);
+  padding-top: 22px;
+}
+
+.saved-address h3 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--fk-ink);
+  font-weight: 700;
 }
 
 /* Loading State */

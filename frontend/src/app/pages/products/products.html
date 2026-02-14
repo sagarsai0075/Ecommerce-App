@@ -173,7 +173,7 @@
       <div class="product-card" *ngFor="let p of displayedProducts; let i = index; trackBy: trackByProduct" role="article" [attr.aria-labelledby]="'product-title-' + i">
 
         <!-- IMAGE -->
-        <div class="img-box">
+        <div class="img-box" [class.img-box-large]="isLargeImageCategory()">
           <img [src]="p.image" [alt]="p.name || 'Product image'" />
         </div>
 
