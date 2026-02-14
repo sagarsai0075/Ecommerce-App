@@ -31,7 +31,13 @@ export class AuthService {
     password: string;
     number: string;
   }) {
-    return this.http.post(`${this.baseUrl}/register`, data);
+    return this.http.post<{ token: string; user: any }>(`${this.baseUrl}/register`, data).pipe(
+      tap(response => {
+        if (response?.user) {
+          this.setCurrentUser(response.user);
+        }
+      })
+    );
   }
 
   /* ================= LOGIN ================= */

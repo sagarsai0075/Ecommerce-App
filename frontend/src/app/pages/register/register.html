@@ -107,10 +107,12 @@
      
 
       <!-- SUBMIT BUTTON -->
-      <button type="submit" class="btn-register" [disabled]="form.invalid">
+      <button type="submit" class="btn-register" [disabled]="form.invalid || isSubmitting">
         <span>Create Account</span>
         <i class="bi bi-arrow-right"></i>
       </button>
+
+      <small class="error" *ngIf="submitError">{{ submitError }}</small>
 
     </form>
 

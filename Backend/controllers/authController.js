@@ -62,28 +62,33 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Check existing user (email OR number)
-    const existingUser = await User.findOne({
-      $or: [{ email }, { number }]
-    });
-
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exists' });
-    }
-
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
-    const user = await User.create({
-      name,
-      email,
-      number,                 // ✅ save number
-      password: hashedPassword
-    });
+    let user;
+    try {
+      user = await User.create({
+        name,
+        email,
+        number,
+        password: hashedPassword
+      });
+    } catch (createError) {
+      if (createError?.code === 11000) {
+        return res.status(400).json({ message: 'User already exists' });
+      }
+      throw createError;
+    }
+
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    );
 
     res.status(201).json({
       message: 'User registered successfully',
+      token,
       user: buildUserResponse(user)
     });
 

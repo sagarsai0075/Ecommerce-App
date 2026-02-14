@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/auth';
+import { finalize, of, switchMap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -14,6 +15,8 @@ import { AuthService } from '../../core/services/auth';
 export class Register {
 
   form: FormGroup;
+  submitError = '';
+  isSubmitting = false;
 
   constructor(
     private fb: FormBuilder,
@@ -59,21 +62,43 @@ export class Register {
   }
 
   register() {
+    this.submitError = '';
 
-    if (this.form.invalid) {
+    if (this.form.invalid || this.isSubmitting) {
       this.form.markAllAsTouched();
       return;
     }
 
-    this.authService.register(this.form.value).subscribe({
+    this.isSubmitting = true;
 
-      next: () => {
-        this.router.navigateByUrl('/login'); // after register
+    const payload = this.form.getRawValue();
+
+    this.authService.register(payload).pipe(
+      switchMap((registerRes: any) => {
+        if (registerRes?.token) {
+          return of(registerRes);
+        }
+
+        return this.authService.login({
+          email: payload.email,
+          password: payload.password
+        });
+      }),
+      finalize(() => {
+        this.isSubmitting = false;
+      })
+    ).subscribe({
+
+      next: (res: any) => {
+        this.authService.saveToken(res.token);
+        this.router.navigateByUrl('/');
       },
 
       error: (err) => {
-        console.log(err);
-      
+        const apiMessage = String(err?.error?.message || '').toLowerCase();
+        this.submitError = apiMessage.includes('already')
+          ? 'User already exists !!! Please Login'
+          : 'Registration failed. Please try again.';
       }
 
     });
