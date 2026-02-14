@@ -615,324 +615,106 @@
   font-size: 12px;
 }
 
-/* ==================== TABLET (768px - 1023px) ==================== */
-@media (max-width: 1023px) {
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1100px) {
   .page-layout {
     flex-direction: column;
-    width: 95%;
-    padding: 10px 15px;
-    gap: 16px;
+    padding: 10px 5px 40px;
+    gap: 0;
   }
-
   .filter-panel {
+    position: static;
     width: 100%;
     max-width: 100%;
-    order: -1;
-    position: static;
-    top: auto;
-    max-height: none;
-    overflow: visible;
-    transform: none;
-  }
-
-  .product-card {
-    flex-direction: column;
-    padding: 16px;
-    gap: 16px;
-  }
-
-  .img-box {
-    width: 100%;
-    max-width: 280px;
-    margin: 0 auto;
-  }
-
-  .img-box img {
-    height: 200px;
-  }
-
-  .info-box {
-    width: 100%;
-  }
-
-  .price-box {
-    width: 100%;
-    align-items: flex-start;
-    text-align: left;
-    padding-right: 0;
-  }
-
-  .info-box h3 {
-    font-size: 18px;
-  }
-
-  .price {
-    font-size: 22px;
+    height: auto;
+    margin-bottom: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(20,20,20,0.04);
   }
 }
 
-/* ==================== MOBILE (below 768px) ==================== */
-@media (max-width: 767px) {
+@media (max-width: 800px) {
   .page-layout {
+    flex-direction: column;
+    padding: 6px 0 30px;
+    gap: 0;
+  }
+  .filter-panel {
+    width: 100%;
+    max-width: 100%;
+    position: static;
+    height: auto;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(20,20,20,0.04);
+  }
+  .product-card {
     flex-direction: column;
     align-items: stretch;
-    width: 100%;
-    padding: 8px 12px;
-    gap: 12px;
+    gap: 14px;
+    padding: 12px;
   }
-
-  .filters-toggle-btn {
+  .img-box, .img-box.img-box-large {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+  }
+  .img-box img, .img-box.img-box-large img {
     width: 100%;
-    background: #ffffff;
-    color: #111;
-    border: 1px solid #e6e6e6;
-    border-radius: 10px;
-    padding: 10px 12px;
-    font-weight: 600;
-    cursor: pointer;
-    box-shadow: 0 6px 18px rgba(15, 30, 50, 0.04);
+    height: auto;
+    max-height: 180px;
   }
-
-  .filters-toggle-icon {
-    transition: transform 0.2s ease;
-  }
-
-  .filters-toggle:checked + .filters-toggle-btn .filters-toggle-icon {
-    transform: rotate(180deg);
-  }
-
-  .filter-panel {
-    display: none;
-  }
-
-  .filters-toggle:checked ~ .filter-panel {
-    display: block;
-  }
-
-  .filter-panel {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    order: -1;
-    margin-bottom: 8px;
-    position: static;
-    top: auto;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .filter-header {
-    margin-bottom: 8px;
-  }
-
-  .filter-header h3 {
-    font-size: 16px;
-  }
-
-  .filter-panel h4 {
-    font-size: 14px;
-    margin-bottom: 8px;
-  }
-
-  .filter-panel label {
-    font-size: 13px;
-    margin-bottom: 4px;
-  }
-
-  .filter-panel hr {
-    margin: 10px 0;
-  }
-
-  .content {
-    width: 100%;
-  }
-
-  .product-card {
-    flex-direction: column;
-    padding: 12px;
-    gap: 12px;
-    border-radius: 8px;
-  }
-
-  .img-box {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .img-box img {
-    width: 100%;
-    height: 180px;
-    border-radius: 6px;
-  }
-
-  .info-box {
-    width: 100%;
-  }
-
-  .info-box h3 {
-    font-size: 16px;
-    margin-bottom: 4px;
-  }
-
-  .info-box ul {
-    padding-left: 16px;
-    font-size: 13px;
-    margin-bottom: 6px;
-  }
-
-  .rating {
-    font-size: 13px;
-    margin-bottom: 4px;
-  }
-
-  .price {
-    font-size: 20px;
-    margin-bottom: 4px;
-  }
-
-  .old {
-    font-size: 12px;
-  }
-
-  .off {
-    font-size: 12px;
-  }
-
   .price-box {
     width: 100%;
     align-items: flex-start;
-    text-align: left;
     padding-right: 0;
-    gap: 6px;
   }
-
-  .price-box button {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 14px;
+  .compare-bar, .compare-panel {
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 8px;
   }
-
-  .compare {
-    font-size: 13px;
-    margin-top: 8px;
-  }
-
-  .compare input {
-    width: 14px;
-    height: 14px;
-  }
-
-  .content-header {
-    margin-bottom: 10px;
-  }
-
-  .content-header h2 {
-    font-size: 18px;
-  }
-
-  .count {
-    font-size: 12px;
-  }
-
-  .icon-btn {
-    padding: 4px 6px;
-    font-size: 12px;
-  }
-
-  .products-list {
-    gap: 12px;
-  }
-
-  .sponsored {
-    font-size: 11px;
+  .compare-hero, .compare-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
   }
 }
 
-/* ==================== SMALL MOBILE (below 480px) ==================== */
-@media (max-width: 479px) {
+@media (max-width: 600px) {
   .page-layout {
-    padding: 6px 10px;
+    padding: 0 0 20px;
   }
-
   .filter-panel {
-    padding: 10px;
-  }
-
-  .filter-header h3 {
-    font-size: 14px;
-  }
-
-  .clear-filters {
-    padding: 4px 6px;
+    padding: 10px 6px;
+    border-radius: 6px;
     font-size: 13px;
   }
-
-  .filter-panel h4 {
-    font-size: 13px;
-    margin-bottom: 6px;
+  .products-header, .content-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
-
-  .filter-panel label {
-    font-size: 12px;
-    margin-bottom: 3px;
-    gap: 6px;
-  }
-
   .product-card {
-    padding: 10px;
+    padding: 8px;
     gap: 10px;
   }
-
-  .img-box img {
-    height: 150px;
+  .img-box img, .img-box.img-box-large img {
+    max-height: 120px;
   }
-
   .info-box h3 {
-    font-size: 15px;
+    font-size: 16px;
   }
-
-  .info-box ul {
-    font-size: 12px;
-    padding-left: 14px;
-    margin-bottom: 4px;
-  }
-
-  .rating {
-    font-size: 12px;
-  }
-
   .price {
     font-size: 18px;
   }
-
-  .old {
-    font-size: 11px;
+  .compare-hero, .compare-row {
+    grid-template-columns: 1fr;
   }
-
-  .off {
-    font-size: 11px;
-  }
-
-  .price-box button {
-    padding: 8px 10px;
-    font-size: 13px;
-    margin-top: 4px;
-  }
-
-  .compare {
-    font-size: 12px;
-    margin-top: 6px;
-  }
-
-  .content-header h2 {
-    font-size: 16px;
-  }
-
-  .products-list {
-    gap: 10px;
+  .compare-panel, .compare-bar {
+    padding: 8px 4px;
   }
 }
+

@@ -366,47 +366,69 @@
 /* ===========================
    RESPONSIVE
    =========================== */
+/* ===========================
+   RESPONSIVE (OPTIMIZED)
+=========================== */
 
+/* ========== Laptops ========== */
+@media (max-width: 1200px) {
+
+  .product-card {
+    flex: 0 0 calc((100% - (12px * 5)) / 6);
+    min-width: calc((100% - (12px * 5)) / 6);
+  }
+
+  .p-arrow.left { left: -36px; }
+  .p-arrow.right { right: -36px; }
+}
+
+
+/* ========== Tablets ========== */
 @media (max-width: 1024px) {
+
   .products {
-    margin: 16px 12px;
-    padding: 16px 12px 18px;
+    margin: 14px 10px;
+    padding: 14px 10px 16px;
   }
 
   .product-card {
-    flex: 0 0 calc((100% - (12px * 4)) / 5);
-    min-width: calc((100% - (12px * 4)) / 5);
-    max-width: calc((100% - (12px * 4)) / 5);
+    flex: 0 0 calc((100% - (12px * 3)) / 4);
+    min-width: calc((100% - (12px * 3)) / 4);
+  }
+
+  .carousel {
+    height: 320px;
   }
 
   .p-arrow {
     width: 32px;
     height: 32px;
-    font-size: 16px;
+    font-size: 15px;
   }
 
-
-
- 
+  .p-arrow.left { left: -24px; }
+  .p-arrow.right { right: -24px; }
 }
 
+
+/* ========== Mobiles / Tablets ========== */
 @media (max-width: 768px) {
+
   .category-nav {
-    top: 65px;
+    top: 62px;
+  }
+
+  .menu {
+    padding: 0 8px;
   }
 
   .menu a {
-    padding: 12px 16px;
+    padding: 11px 14px;
     font-size: 13px;
   }
 
   .carousel {
-    height: 300px;
-  }
-
-  .products {
-    margin: 12px 10px;
-    padding: 14px 10px 16px;
+    height: 260px;
   }
 
   .section-head h2 {
@@ -414,14 +436,12 @@
   }
 
   .product-card {
-    flex: 0 0 calc((100% - (12px * 2)) / 3);
-    min-width: calc((100% - (12px * 2)) / 3);
-    max-width: calc((100% - (12px * 2)) / 3);
-    padding: 8px 8px 10px;
+    flex: 0 0 calc((100% - 12px) / 2);
+    min-width: calc((100% - 12px) / 2);
   }
 
   .product-card img {
-    height: 120px;
+    height: 115px;
   }
 
   .section-title {
@@ -430,72 +450,50 @@
   }
 
   .p-arrow {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-
-
- 
-
- 
-
-  
-}
-
-@media (max-width: 480px) {
-  .carousel {
-    height: 220px;
-  }
-
-  .arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 18px;
-  }
-
-  .products {
-    margin: 15px 10px;
-    padding: 15px 12px;
-  }
-
-
-  .products h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
-  }
-
-  .product-card {
-    flex: 0 0 calc((100% - 12px) / 2);
-    min-width: calc((100% - 12px) / 2);
-    max-width: calc((100% - 12px) / 2);
-    padding: 8px;
-  }
-
-  .product-card img {
-    height: 120px;
-    margin-bottom: 8px;
-  }
-
-  .section-title {
-    font-size: 12px;
-    min-height: 33px;
-    margin: 8px 0 6px;
-  }
-
-  .new-price {
-    font-size: 14px;
-  }
-
-  .product-card button {
-    padding: 8px 10px;
-    font-size: 12px;
-  }
-
-  .p-arrow {
     display: none;
   }
 }
 
 
+/* ========== Small Mobiles ========== */
+@media (max-width: 480px) {
+
+  .carousel {
+    height: 210px;
+  }
+
+  .arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .products {
+    margin: 12px 8px;
+    padding: 12px 8px 14px;
+  }
+
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .view-all {
+    font-size: 12px;
+  }
+
+  .product-card {
+    padding: 8px 6px;
+  }
+
+  .new-price {
+    font-size: 13px;
+  }
+
+  .product-card button {
+    font-size: 11px;
+    padding: 7px 8px;
+  }
+}
 

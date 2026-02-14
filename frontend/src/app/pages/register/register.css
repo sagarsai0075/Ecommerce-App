@@ -259,45 +259,78 @@
 .register-card::-webkit-scrollbar-thumb:hover {
   background: #764ba2;
 }
+/* ============================
+   REGISTER PAGE RESPONSIVE FIX
+============================ */
 
-/* ==================== RESPONSIVE ==================== */
-@media (max-width: 480px) {
+/* Fix mobile height + keyboard issues */
+.register-wrapper {
+  min-height: 100dvh; /* Dynamic viewport height */
+}
+
+
+/* Disable fixed background on mobile (performance) */
+@media (max-width: 768px) {
+
+  .register-wrapper {
+    background-attachment: scroll;
+    padding: 20px 12px;
+  }
+
+  /* Center card properly */
   .register-card {
-    padding: 24px 20px;
-    border-radius: 12px;
+    margin-top: 0;
   }
 
+  /* Improve readability */
   .form-title {
-    font-size: 19px;
-  }
-
-  .logo-circle {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-
-  .register-header {
-    margin-bottom: 18px;
-  }
-
-  .register-form {
-    gap: 10px;
-  }
-
-  .input-box label {
-    font-size: 10px;
+    font-size: 20px;
   }
 
   .form-input {
-    padding: 9px 11px;
-    font-size: 11px;
+    font-size: 13px;
+    padding: 11px 12px;
   }
 
-  .error {
-    font-size: 9px;
-    margin-top: 2px;
+  .btn-register {
+    font-size: 14px;
+    padding: 12px 16px;
   }
 }
+
+
+/* Small Mobile Optimization */
+@media (max-width: 480px) {
+
+  .register-card {
+    max-width: 100%;
+    border-radius: 12px;
+    padding: 22px 18px;
+  }
+
+  .logo-circle {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .form-title {
+    font-size: 18px;
+  }
+
+  .login-text {
+    font-size: 12px;
+  }
+}
+
+
+/* Enable decorative blobs on large screens */
+@media (min-width: 1024px) {
+
+  .blob {
+    display: block;
+  }
+}
+
+
 

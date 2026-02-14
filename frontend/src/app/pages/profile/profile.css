@@ -155,7 +155,6 @@
 
 .personal-info-display {
   grid-template-columns: 1fr;
-  max-width: 460px;
 }
 
 .info-item {
@@ -459,81 +458,70 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .profile-nav {
-    flex-wrap: wrap;
-  }
 
-  .nav-btn {
-    flex: 1 1 50%;
-    font-size: 13px;
-    padding: 15px 10px;
-  }
-
-  .nav-btn i {
-    display: none;
-  }
-
-  .info-display {
-    grid-template-columns: 1fr;
-  }
-
-  .edit-form {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-content {
-    padding: 24px 18px 32px;
-  }
-
-  .section h2 {
-    font-size: 20px;
-    margin-bottom: 18px;
-  }
-
-  .form-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .btn-save,
-  .btn-cancel {
-    flex: 1 1 auto;
-  }
-}
-
-@media (max-width: 480px) {
-  .profile-container {
-    padding: 20px 10px;
-  }
-
+@media (max-width: 900px) {
   .profile-wrapper {
-    border-radius: 5px;
+    max-width: 98vw;
+    margin: 0 1vw;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(40, 116, 240, 0.10);
   }
-
-  .nav-btn {
-    flex: 1 1 100%;
-    font-size: 14px;
-    padding: 12px 10px;
-  }
-
   .profile-content {
-    padding: 20px 15px;
+    padding: 24px 12px 28px;
   }
-
-  .info-item {
-    padding: 12px;
-  }
-
-  .form-actions {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
   }
+  .info-display, .edit-form {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
 
-  .btn-edit,
-  .btn-save,
-  .btn-cancel,
-  .btn-primary {
-    padding: 10px 15px;
+@media (max-width: 600px) {
+  .profile-container {
+    padding: 12px 2vw 18px;
+  }
+  .profile-wrapper {
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(40, 116, 240, 0.08);
+  }
+  .profile-content {
+    padding: 12px 2vw 16px;
+  }
+  .section h2, .saved-address h3 {
+    font-size: 17px;
+    margin-bottom: 18px;
+  }
+  .info-value, .form-input, .form-textarea {
+    font-size: 13px;
+    padding: 8px 8px;
+    min-height: 36px;
+  }
+  .edit-link, .edit-text-link, .btn-edit, .btn-save, .btn-cancel, .btn-primary {
+    font-size: 12px;
+    padding: 7px 10px;
+    border-radius: 6px;
+  }
+  .saved-details-preview {
+    padding: 8px;
+    border-radius: 6px;
+  }
+  .saved-details-actions {
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 6px;
+  }
+  .empty-state {
+    padding: 24px 6px;
+  }
+  .loading {
+    padding: 40px 6px;
     font-size: 13px;
   }
 }
+
+
+

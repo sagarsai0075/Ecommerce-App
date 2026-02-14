@@ -225,11 +225,42 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      margin-top: 6px;
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+    .auth-btn {
+      width: 100%;
+      margin-bottom: 4px;
+      font-size: 14px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,82,204,0.08);
+      background: #fff;
+      color: #2874f0;
+      border: 1px solid #2874f0;
+      text-align: center;
+    }
+    .register-btn {
+      background: #2874f0;
+      color: #fff;
+      border: 1px solid #2874f0;
+    }
+    .login-btn {
+      background: #fff;
+      color: #2874f0;
+      border: 1px solid #2874f0;
+    }
+    .auth-btn .bi {
+      color: inherit;
+    }
+    .auth-btn:last-child {
+      margin-bottom: 0;
+    }
 
 /* Dropdown Items */
 
@@ -434,58 +465,83 @@
   font-size: 16px;
   color: currentColor;
 }
-
 /* ==============================
-      RESPONSIVE
+      RESPONSIVE (IMPROVED)
 ============================== */
 
+/* ======================
+   Small Laptops
+====================== */
 @media (max-width: 1024px) {
   .nav {
     padding: 14px 25px;
-    gap: 20px;
+    gap: 18px;
   }
 
   .search {
-    max-width: 300px;
+    max-width: 280px;
   }
 
   .menu,
   .auth-box {
-    gap: 16px;
+    gap: 14px;
   }
 
   .menu a {
-    padding: 8px 10px;
     font-size: 14px;
+    padding: 7px 10px;
   }
 }
 
-@media (max-width: 768px) {
-  .nav:not(:has(.menu)) .auth-box {
-    position: static;
-    transform: none;
-    order: 3;
-    margin-left: 0;
-  }
 
-  .nav:not(:has(.menu)) .logo {
-    left: 15px;
-  }
+/* ======================
+   Tablets
+====================== */
+@media (max-width: 900px) {
 
-  .nav:not(:has(.menu)) .search {
-    max-width: 200px;
-  }
-}
-
-@media (max-width: 768px) {
   .nav {
-    padding: 12px 15px;
+    flex-wrap: wrap;
     gap: 12px;
   }
 
   .logo {
-    font-size: 22px;
+    order: 1;
+  }
+
+  .menu,
+  .auth-box {
+    order: 2;
+    margin-left: auto;
+    gap: 10px;
+  }
+
+  .search {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .search input {
+    width: 100%;
+  }
+
+  .search-suggestions {
+    top: 42px;
+  }
+}
+
+
+/* ======================
+   Large Mobiles
+====================== */
+@media (max-width: 768px) {
+  .menu,
+  .auth-box {
     gap: 6px;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-top: 6px;
   }
 
   .logo-img {
@@ -493,24 +549,14 @@
     height: 17px;
   }
 
-  .search {
-    max-width: 200px;
-  }
-
   .search input {
-    padding: 8px 32px 8px 12px;
     font-size: 14px;
-  }
-
-  .menu,
-  .auth-box {
-    gap: 12px;
+    padding: 8px 32px 8px 12px;
   }
 
   .menu a {
-    padding: 6px 8px;
     font-size: 13px;
-    gap: 4px;
+    padding: 6px 8px;
   }
 
   .bi:not(.search-icon) {
@@ -521,15 +567,14 @@
     min-width: 180px;
     top: 45px;
   }
-
-  .user-menu a,
-  .user-menu button {
-    padding: 10px 12px;
-    font-size: 13px;
-  }
 }
 
+
+/* ======================
+   Small Mobiles
+====================== */
 @media (max-width: 480px) {
+
   .nav {
     padding: 10px 12px;
   }
@@ -544,29 +589,23 @@
     height: 15px;
   }
 
-  .search {
-    max-width: 140px;
-    order: 3;
-  }
-
-  .search input {
-    padding: 6px 28px 6px 10px;
-    font-size: 12px;
-  }
-
-  .menu {
-    order: 2;
-    gap: 8px;
+  .menu,
+  .auth-box {
+    gap: 6px;
   }
 
   .menu a {
-    padding: 4px 6px;
     font-size: 12px;
-    gap: 3px;
+    padding: 4px 6px;
   }
 
-  .bi:not(.search-icon) {
-    font-size: 16px;
+  .search {
+    width: 100%;
+  }
+
+  .search input {
+    font-size: 12px;
+    padding: 6px 28px 6px 10px;
   }
 
   .user-name {
@@ -577,19 +616,12 @@
   .user-menu {
     min-width: 160px;
     top: 40px;
-    right: -5px;
+    right: 0;
   }
 
   .user-menu a,
   .user-menu button {
-    padding: 8px 10px;
     font-size: 12px;
-    gap: 8px;
-  }
-
-  .user-menu a i,
-  .user-menu button i {
-    font-size: 14px;
+    padding: 8px 10px;
   }
 }
-
