@@ -1,20 +1,21 @@
-import { Routes } from '@angular/router';
 
-import { adminGuard } from './core/guards/admin-guard';
-import { authGuard } from './core/guards/auth-guard';
+import { Home } from './pages/home/home/home';
+import { Register } from './pages/register/register';
+import { Login } from './pages/login/login';
+import { ForgotPassword } from './pages/forgot-password/forgot-password';
+import { Products } from './pages/products/products';
+import { CartPage } from './pages/cart/cart-page/cart-page';
+import { CheckoutPage } from './pages/checkout/checkout-page/checkout-page';
+import { OrderHistory } from './pages/orders/order-history/order-history';
+import { Profile } from './pages/profile/profile';
+import { Seller } from './pages/seller/seller';
 import { Dashboard } from './pages/admin/dashboard/dashboard';
 import { AddProduct } from './pages/admin/add-product/add-product';
 import { EditProduct } from './pages/admin/edit-product/edit-product';
-import { CartPage } from './pages/cart/cart-page/cart-page';
-import { CheckoutPage } from './pages/checkout/checkout-page/checkout-page';
-import { ForgotPassword } from './pages/forgot-password/forgot-password';
-import { Home } from './pages/home/home/home';
-import { Login } from './pages/login/login';
-import { OrderHistory } from './pages/orders/order-history/order-history';
-import { Products } from './pages/products/products';
-import { Profile } from './pages/profile/profile';
-import { Register } from './pages/register/register';
-import { Seller } from './pages/seller/seller';
+import { Routes } from '@angular/router';
+
+import { authGuard } from './core/guards/auth-guard';
+import { adminGuard } from './core/guards/admin-guard';
 export const routes: Routes = [
 
   // 🔥 DEFAULT

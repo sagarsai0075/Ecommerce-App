@@ -71,6 +71,34 @@
   background: #000;
 }
 
+@media (max-width: 1024px) {
+  .carousel {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 200px;
+  }
+  .arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel {
+    height: 120px;
+  }
+  .arrow {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+}
+
 .slides {
   display: flex;
   width: 100%;
@@ -83,26 +111,109 @@
   height: 100%;
   flex: 0 0 100%;
   object-fit: cover;
+  max-width: 100vw;
+  max-height: 100%;
+  display: block;
 }
 
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 45px;
-  height: 45px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #000;
-  border: none;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+/* Responsive aspect ratio for carousel banner */
+.carousel, .slides {
+  aspect-ratio: 16/5;
+  max-width: 100vw;
 }
+
+@media (max-width: 1024px) {
+  .carousel, .slides {
+    aspect-ratio: 16/7;
+  }
+}
+@media (max-width: 768px) {
+  .carousel, .slides {
+    aspect-ratio: 16/9;
+  }
+}
+@media (max-width: 480px) {
+  .carousel, .slides {
+    aspect-ratio: 2/1;
+  }
+  .slides img {
+    object-fit: cover;
+    min-height: 0;
+    min-width: 0;
+  }
+}
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45px;
+      height: 45px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #000;
+      border: none;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+  @media (max-width: 1024px) {
+    .arrow {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .arrow {
+      width: 36px;
+      height: 36px;
+      font-size: 18px;
+    }
+    .left {
+      left: 10px;
+    }
+    .right {
+      right: 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .arrow {
+      width: 28px;
+      height: 28px;
+      font-size: 15px;
+    }
+    .left {
+      left: 4px;
+    }
+    .right {
+      right: 4px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .arrow {
+      width: 20px;
+      height: 20px;
+      font-size: 11px;
+      min-width: 20px;
+      min-height: 20px;
+      padding: 0;
+    }
+    .left {
+      left: 2px;
+    }
+    .right {
+      right: 2px;
+    }
+  }
 
 .arrow:hover {
   background: white;
@@ -182,7 +293,38 @@
   gap: 12px;
   overflow-x: auto;
   scroll-behavior: smooth;
+  flex-wrap: nowrap;   /* Prevent wrapping */
   flex: 1;
+  scroll-snap-type: x mandatory;
+}
+
+.product-card {
+  min-width: 220px;
+  max-width: 220px;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  padding: 10px 10px 12px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+@media (max-width: 1024px) {
+  .product-card {
+    min-width: 180px;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    min-width: 140px;
+    max-width: 140px;
+  }
+}
 }
 
 .product-wrapper::-webkit-scrollbar {
@@ -194,6 +336,9 @@
 }
 
 .product-card {
+  min-width: 220px;   /* IMPORTANT */
+  max-width: 220px;   /* Keep consistent */
+  flex: 0 0 auto;     /* Prevent shrinking */
   background: #fff;
   border: 1px solid #f0f0f0;
   border-radius: 4px;
@@ -201,9 +346,6 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  flex: 0 0 calc((100% - (12px * 6)) / 7);
-  min-width: calc((100% - (12px * 6)) / 7);
-  max-width: calc((100% - (12px * 6)) / 7);
   transition: box-shadow 0.2s ease, transform 0.2s ease;
   cursor: pointer;
 }
@@ -362,129 +504,125 @@
 .p-arrow.left { left: -48px; }
 .p-arrow.right { right: -48px; }
 
-
 /* ===========================
-   RESPONSIVE
-   =========================== */
-/* ===========================
-   RESPONSIVE (OPTIMIZED)
+   RESPONSIVE DESIGN
 =========================== */
 
-/* ========== Laptops ========== */
-@media (max-width: 1200px) {
-
-  .product-card {
-    flex: 0 0 calc((100% - (12px * 5)) / 6);
-    min-width: calc((100% - (12px * 5)) / 6);
-  }
-
-  .p-arrow.left { left: -36px; }
-  .p-arrow.right { right: -36px; }
-}
-
-
-/* ========== Tablets ========== */
-@media (max-width: 1024px) {
-
-  .products {
-    margin: 14px 10px;
-    padding: 14px 10px 16px;
-  }
-
-  .product-card {
-    flex: 0 0 calc((100% - (12px * 3)) / 4);
-    min-width: calc((100% - (12px * 3)) / 4);
-  }
-
-  .carousel {
-    height: 320px;
-  }
-
-  .p-arrow {
-    width: 32px;
-    height: 32px;
-    font-size: 15px;
-  }
-
-  .p-arrow.left { left: -24px; }
-  .p-arrow.right { right: -24px; }
-}
-
-
-/* ========== Mobiles / Tablets ========== */
+/* 📱 Mobile (max-width: 768px) */
 @media (max-width: 768px) {
 
+  /* Category Nav */
   .category-nav {
-    top: 62px;
-  }
-
-  .menu {
-    padding: 0 8px;
+    top: 60px;
   }
 
   .menu a {
-    padding: 11px 14px;
+    padding: 12px 14px;
     font-size: 13px;
   }
 
+  /* Carousel */
   .carousel {
-    height: 260px;
+    height: 240px;
+  }
+
+  .arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
+  }
+
+  /* Products Section */
+  .products {
+    margin: 10px;
+    padding: 12px;
   }
 
   .section-head h2 {
     font-size: 16px;
   }
 
+  /* Product Cards */
   .product-card {
-    flex: 0 0 calc((100% - 12px) / 2);
-    min-width: calc((100% - 12px) / 2);
+    min-width: 160px;
+    max-width: 160px;
+    padding: 8px;
   }
 
   .product-card img {
-    height: 115px;
+    height: 120px;
   }
 
   .section-title {
-    font-size: 12px;
+    font-size: 13px;
     min-height: 32px;
   }
 
+  .new-price {
+    font-size: 14px;
+  }
+
+  /* Slider Arrows */
+  .p-arrow {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .p-arrow.left {
+    left: -32px;
+  }
+
+  .p-arrow.right {
+    right: -32px;
+  }
+
+  /* Hide slider arrows on very small screens */
   .p-arrow {
     display: none;
   }
 }
 
 
-/* ========== Small Mobiles ========== */
+/* 📱 Small Mobile (max-width: 480px) */
 @media (max-width: 480px) {
 
+  /* Navbar spacing */
+  .category-nav {
+    top: 55px;
+  }
+
+  .menu a {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  /* Carousel */
   .carousel {
-    height: 210px;
+    height: 200px;
   }
 
-  .arrow {
-    width: 32px;
-    height: 32px;
-    font-size: 16px;
+  /* Product Cards */
+  .product-card {
+    min-width: 140px;
+    max-width: 140px;
   }
 
-  .products {
-    margin: 12px 8px;
-    padding: 12px 8px 14px;
+  .product-card img {
+    height: 100px;
   }
 
-  .section-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .view-all {
+  .section-title {
     font-size: 12px;
   }
 
-  .product-card {
-    padding: 8px 6px;
+  .price-box {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .old-price {
+    font-size: 11px;
   }
 
   .new-price {
@@ -493,7 +631,30 @@
 
   .product-card button {
     font-size: 11px;
-    padding: 7px 8px;
+    padding: 7px;
   }
+
 }
 
+
+/* 💻 Tablet (769px to 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+
+  .carousel {
+    height: 320px;
+  }
+
+  .product-card {
+    min-width: 190px;
+    max-width: 190px;
+  }
+
+  .p-arrow.left {
+    left: -40px;
+  }
+
+  .p-arrow.right {
+    right: -40px;
+  }
+
+}

@@ -1,86 +1,73 @@
 <nav class="nav">
-
   <!-- LOGO -->
   <a href="/" class="logo">
-
     <img src="assets/icon.ico" class="logo-img" />
     <span>ShopEazy</span>
   </a>
 
-  <!-- SEARCH -->
-  <form class="search" (ngSubmit)="search()" (click)="$event.stopPropagation()">
-    <input type="text" placeholder="Search products..." [(ngModel)]="searchText" (ngModelChange)="updateSuggestions()" name="search" />
-    <i class="bi bi-search search-icon"></i>
-
-    <div class="search-suggestions" *ngIf="suggestions.length">
-      <ul>
-        <li *ngFor="let s of suggestions" (click)="selectSuggestion(s)">{{ s }}</li>
-      </ul>
-    </div>
-  </form>
-<!-- BEFORE LOGIN -->
-<div *ngIf="!authService.isLoggedIn()" class="auth-box">
-
-  <a routerLink="/login" class="auth-btn login-btn">
-    <i class="bi bi-box-arrow-in-right"></i>
-    Login
-  </a>
-
-  <a routerLink="/register" class="auth-btn register-btn">
-    <i class="bi bi-person-plus"></i>
-    Register
-  </a>
-
-</div>
-
-  <!-- AFTER LOGIN -->
-  <div *ngIf="authService.isLoggedIn()" class="menu">
-
- <a routerLink="/seller">
-      <i class="bi bi-shop"></i>
-      Become a Seller
-    </a>
-    <!-- CART -->
-    <a routerLink="/cart">
-      <i class="bi bi-cart3"></i>
-      Cart
-    </a>
-
-    <!-- BECOME A SELLER -->
-   
-    <!-- USER DROPDOWN -->
-    <div class="user-dropdown">
-
-      <span class="user-name" (click)="toggleDropdown($event)">
-        <i class="bi bi-person-circle"></i>
-        {{ userName }}
-      </span>
-
-      <!-- CUSTOM DROPDOWN (NO BOOTSTRAP CLASS) -->
-      <div class="user-menu" *ngIf="showDropdown" (click)="$event.stopPropagation()">
-        <a routerLink="/profile" [fragment]="'personal-info'" (click)="closeDropdown()">
-          <i class="bi bi-person"></i>
-          My Profile
-        </a>
-
-        <a routerLink="/profile" [fragment]="'orders'" (click)="closeDropdown()">
-          <i class="bi bi-bag"></i>
-          Orders
-        </a>
-
-        <a routerLink="/profile" [fragment]="'change-password'" (click)="closeDropdown()">
-          <i class="bi bi-geo-alt"></i>
-          Address
-        </a>
-
-        <hr />
-
-        <button (click)="logout()">
-          <i class="bi bi-box-arrow-right"></i>
-          Logout
-        </button>
+  <div class="navbar-center-flex">
+    <!-- SEARCH -->
+    <form class="search" (ngSubmit)="search()" (click)="$event.stopPropagation()">
+      <input type="text" placeholder="Search products..." [(ngModel)]="searchText" (ngModelChange)="updateSuggestions()" name="search" />
+      <i class="bi bi-search search-icon"></i>
+      <div class="search-suggestions" *ngIf="suggestions.length">
+        <ul>
+          <li *ngFor="let s of suggestions" (click)="selectSuggestion(s)">{{ s }}</li>
+        </ul>
       </div>
+    </form>
+  </div>
 
-    </div>
+  <!-- NAV ACTIONS: Cart & Profile/Login/Register -->
+  <div class="nav-actions">
+    <a
+  *ngIf="authService.isLoggedIn()"
+  routerLink="/cart"
+  class="cart-link"
+>
+  <i class="bi bi-cart3"></i>
+  Cart
+</a>
+    <ng-container *ngIf="!authService.isLoggedIn()">
+      <a routerLink="/login" class="auth-btn login-btn">
+        <i class="bi bi-box-arrow-in-right"></i>
+        Login
+      </a>
+      <a routerLink="/register" class="auth-btn register-btn">
+        <i class="bi bi-person-plus"></i>
+        Register
+      </a>
+    </ng-container>
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <div class="user-dropdown">
+        <span class="user-name" (click)="toggleDropdown($event)">
+          <i class="bi bi-person-circle"></i>
+          {{ userName }}
+        </span>
+        <div class="user-menu" *ngIf="showDropdown" (click)="$event.stopPropagation()">
+          <a routerLink="/profile" [fragment]="'personal-info'" (click)="closeDropdown()">
+            <i class="bi bi-person"></i>
+            My Profile
+          </a>
+          <a routerLink="/profile" [fragment]="'orders'" (click)="closeDropdown()">
+            <i class="bi bi-bag"></i>
+            Orders
+          </a>
+          <a routerLink="/profile" [fragment]="'change-password'" (click)="closeDropdown()">
+            <i class="bi bi-geo-alt"></i>
+            Address
+          </a>
+          <a routerLink="/seller" (click)="closeDropdown()">
+            <i class="bi bi-shop"></i>
+            Become a Seller
+          </a>
+          <hr />
+          <button (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i>
+            Logout
+          </button>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </nav>

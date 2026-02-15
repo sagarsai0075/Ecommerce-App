@@ -1,20 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-
 /* ==============================
-  NAVBAR
+   NAVBAR BASE
 ============================== */
 
 .nav {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
-  padding: 16px 40px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 30px;
 
-  box-shadow: 0 8px 32px rgba(0, 82, 204, 0.3);
+  padding: 12px 32px;
+
+  background: linear-gradient(135deg, #0052cc 0%, #0066ff 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
 
   position: sticky;
   top: 0;
@@ -22,70 +18,74 @@
 }
 
 /* ==============================
-        LOGO
+   LOGO
 ============================== */
 
 .logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 700;
-  color: #fff;
 
+  color: white;
   text-decoration: none;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
+
+  flex: 0 0 auto;
+}
+
+.logo-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
 }
 
 .logo:hover {
   transform: scale(1.05);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.logo .bi {
-  position: relative;
-  top: -2px;
-}
-
-.logo-img {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+  transition: 0.3s ease;
 }
 
 /* ==============================
-        SEARCH
+   CENTER SEARCH
 ============================== */
+
+.navbar-center-flex {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
 
 .search {
   position: relative;
-  flex: 1;
-  max-width: 400px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .search input {
   width: 100%;
   padding: 10px 40px 10px 16px;
+
   border-radius: 24px;
   border: none;
   outline: none;
-  font-size: 15px;
-  background: rgba(255, 255, 255, 0.95);
-  color: #333;
-  transition: all 0.3s ease;
-}
 
-.search input::placeholder {
-  color: #999;
+  font-size: 14px;
+
+  background: rgba(255,255,255,0.95);
+  color: #333;
+
+  transition: 0.3s ease;
 }
 
 .search input:focus {
   background: white;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.search input::placeholder {
+  color: #999;
 }
 
 .search-icon {
@@ -93,23 +93,26 @@
   right: 14px;
   top: 50%;
   transform: translateY(-50%);
+  font-size: 14px;
   color: #999;
-  font-size: 16px;
   pointer-events: none;
 }
 
-/* Search suggestions dropdown */
+/* ==============================
+   SEARCH SUGGESTIONS
+============================== */
+
 .search-suggestions {
   position: absolute;
+  top: 45px;
   left: 0;
   right: 0;
-  top: 46px;
+
   background: white;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
   z-index: 10001;
-  max-height: none;
-  overflow: visible;
 }
 
 .search-suggestions ul {
@@ -121,7 +124,7 @@
 .search-suggestions li {
   padding: 10px 12px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
   color: #2c3e50;
 }
 
@@ -130,149 +133,131 @@
 }
 
 /* ==============================
-        MENU
+   NAV ACTIONS
 ============================== */
 
-.menu,
-.auth-box {
+.nav-actions {
   display: flex;
   align-items: center;
-  gap: 24px;
-
-}
-
-.menu a {
-  
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  white-space: nowrap;
+  gap: 16px;
+  flex: 0 0 auto;
 }
 
 /* ==============================
-        LINKS
+   CART
 ============================== */
 
-.nav a {
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
   color: white;
   font-weight: 500;
+  font-size: 14px;
+
   text-decoration: none;
-  position: relative;
-  font-size: 15px;
+  transition: 0.2s ease;
 }
 
-/* Hover background for top-level menu links */
-
-.menu > a:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 8px;
+.cart-link:hover {
+  color: #ffd700;
 }
 
 /* ==============================
-        LOGOUT BUTTON
+   AUTH BUTTONS
 ============================== */
 
+.auth-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
 
+  font-size: 13px;
+  font-weight: 600;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.login-btn {
+  background: white;
+  color: #2874f0;
+  border: 1px solid white;
+}
+
+.login-btn:hover {
+  background: #f0f5ff;
+}
+
+.register-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.9);
+}
+
+.register-btn:hover {
+  background: rgba(255,255,255,0.12);
+}
 
 /* ==============================
-      USER DROPDOWN
+   USER DROPDOWN
 ============================== */
 
 .user-dropdown {
   position: relative;
-  cursor: pointer;
 }
 
 .user-name {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+
   color: white;
   font-weight: 500;
-  padding: 8px 12px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  font-size: 15px;
+  font-size: 14px;
+
+  padding: 6px 10px;
+  border-radius: 6px;
+
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-
 /* ==============================
-      DROPDOWN MENU
+   DROPDOWN MENU
 ============================== */
 
 .user-menu {
   position: absolute;
+  top: 45px;
   right: 0;
-  top: 50px;
-  margin-right: 0;
 
   background: white;
-  min-width: 220px;
+  min-width: 200px;
 
-  border-radius: 12px;
-  padding: 8px 0;
+  border-radius: 10px;
+  padding: 6px 0;
 
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
   z-index: 10000;
-  animation: slideDown 0.3s ease;
 }
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-      flex-direction: column;
-      align-items: stretch;
-      width: 100%;
-      margin-top: 6px;
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-    .auth-btn {
-      width: 100%;
-      margin-bottom: 4px;
-      font-size: 14px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,82,204,0.08);
-      background: #fff;
-      color: #2874f0;
-      border: 1px solid #2874f0;
-      text-align: center;
-    }
-    .register-btn {
-      background: #2874f0;
-      color: #fff;
-      border: 1px solid #2874f0;
-    }
-    .login-btn {
-      background: #fff;
-      color: #2874f0;
-      border: 1px solid #2874f0;
-    }
-    .auth-btn .bi {
-      color: inherit;
-    }
-    .auth-btn:last-child {
-      margin-bottom: 0;
-    }
-
-/* Dropdown Items */
 
 .user-menu a,
 .user-menu button {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 
-  padding: 12px 16px;
-  font-size: 14px;
+  padding: 10px 14px;
+
+  font-size: 13px;
   font-weight: 500;
 
   color: #2c3e50;
@@ -281,38 +266,22 @@
 
   text-align: left;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: 0.2s;
 }
 
 .user-menu a:hover,
 .user-menu button:hover {
   background: #f2f6fb;
-  color: #1a3a52;
 }
-
-
-.user-menu a i,
-.user-menu button i {
-  font-size: 16px;
-  color: #2c5aa0;
-}
-
-.user-menu a:hover i,
-.user-menu button:hover i {
-  color: #1a3a52;
-}
-
-
-/* Divider */
 
 .user-menu hr {
-  margin: 8px 0;
+  margin: 6px 0;
   border: none;
   border-top: 1px solid #e8eef5;
 }
 
 /* ==============================
-      BOOTSTRAP ICONS
+   ICONS
 ============================== */
 
 .bi {
@@ -321,307 +290,51 @@
 }
 
 .bi:not(.search-icon) {
-  font-size: 20px;
+  font-size: 18px;
 }
 
 /* ==============================
-   FIX AUTH BUTTON POSITION
+   MOBILE
 ============================== */
 
-.auth-box {
-  position: relative;
-}
-
-/* ==============================
-   CENTER SEARCH BEFORE LOGIN
-============================== */
-
-.nav:not(:has(.menu)) {
-  justify-content: center;
-}
-
-.nav:not(:has(.menu)) .logo {
-  position: absolute;
-  left: 40px;
-}
-
-.nav:not(:has(.menu)) .search {
-  width: 100%;
-  max-width: 500px;
-}
-
-.nav:not(:has(.menu)) .search input {
-  width: 100%;
-}
-
-/* Position auth buttons to the right when user is not logged in */
-.nav:not(:has(.menu)) .auth-box {
-  position: absolute;
-  right: 40px;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 0;
-  border-radius: 999px;
-  background: transparent;
-  border: none;
-}
-
-.nav:not(:has(.menu)) .auth-btn {
-  padding: 8px 16px;
-  border-radius: 999px;
-  box-shadow: none;
-  font-weight: 600;
-  letter-spacing: 0.1px;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-}
-
-.nav:not(:has(.menu)) .login-btn {
-  background: #ffffff;
-  border: 1px solid #ffffff;
-  color: #2874f0;
-}
-
-.nav:not(:has(.menu)) .login-btn:hover {
-  background: #f0f5ff;
-  border-color: #f0f5ff;
-  color: #1f6ae0;
-}
-
-.nav:not(:has(.menu)) .register-btn {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-}
-
-.nav:not(:has(.menu)) .register-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #ffffff;
-}
-
-.nav:not(:has(.menu)) .auth-btn .bi {
-  color: currentColor;
-}
-
-.nav:not(:has(.menu)) .register-btn .bi {
-  color: #ffffff;
-}
-
-/* ==============================
-      AUTH BUTTONS (BEFORE LOGIN)
-============================== */
-
-.auth-btn {
-  padding: 8px 16px;
-  border-radius: 999px;
-
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.1px;
-
-  text-decoration: none;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-  border: 1px solid transparent;
-  cursor: pointer;
-}
-
-/* Login Button */
-.login-btn {
-  border: 1px solid #ffffff;
-  color: #2874f0;
-  background: #ffffff;
-  box-shadow: none;
-}
-
-.login-btn:hover {
-  background: #f0f5ff;
-  border-color: #f0f5ff;
-  color: #1f6ae0;
-}
-
-/* Register Button */
-.register-btn {
-  background: transparent;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: none;
-}
-
-.register-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: #ffffff;
-}
-
-/* Icon size inside auth buttons */
-
-.auth-btn .bi {
-  font-size: 16px;
-  color: currentColor;
-}
-/* ==============================
-      RESPONSIVE (IMPROVED)
-============================== */
-
-/* ======================
-   Small Laptops
-====================== */
-@media (max-width: 1024px) {
-  .nav {
-    padding: 14px 25px;
-    gap: 18px;
-  }
-
-  .search {
-    max-width: 280px;
-  }
-
-  .menu,
-  .auth-box {
-    gap: 14px;
-  }
-
-  .menu a {
-    font-size: 14px;
-    padding: 7px 10px;
-  }
-}
-
-
-/* ======================
-   Tablets
-====================== */
-@media (max-width: 900px) {
-
-  .nav {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .logo {
-    order: 1;
-  }
-
-  .menu,
-  .auth-box {
-    order: 2;
-    margin-left: auto;
-    gap: 10px;
-  }
-
-  .search {
-    order: 3;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .search input {
-    width: 100%;
-  }
-
-  .search-suggestions {
-    top: 42px;
-  }
-}
-
-
-/* ======================
-   Large Mobiles
-====================== */
 @media (max-width: 768px) {
-  .menu,
-  .auth-box {
-    gap: 6px;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    margin-top: 6px;
-  }
-
-  .logo-img {
-    width: 17px;
-    height: 17px;
-  }
-
-  .search input {
-    font-size: 14px;
-    padding: 8px 32px 8px 12px;
-  }
-
-  .menu a {
-    font-size: 13px;
-    padding: 6px 8px;
-  }
-
-  .bi:not(.search-icon) {
-    font-size: 18px;
-  }
-
-  .user-menu {
-    min-width: 180px;
-    top: 45px;
-  }
-}
-
-
-/* ======================
-   Small Mobiles
-====================== */
-@media (max-width: 480px) {
 
   .nav {
-    padding: 10px 12px;
+    padding: 8px 12px;
+    gap: 6px;
   }
 
   .logo {
-    font-size: 18px;
-    gap: 4px;
+    font-size: 15px;
   }
 
   .logo-img {
-    width: 15px;
-    height: 15px;
-  }
-
-  .menu,
-  .auth-box {
-    gap: 6px;
-  }
-
-  .menu a {
-    font-size: 12px;
-    padding: 4px 6px;
-  }
-
-  .search {
-    width: 100%;
+    width: 20px;
+    height: 20px;
   }
 
   .search input {
+    height: 30px;
     font-size: 12px;
-    padding: 6px 28px 6px 10px;
+    padding: 5px 30px 5px 10px;
   }
 
+  .nav-actions {
+    gap: 8px;
+  }
+
+  /* Hide text on mobile */
+  .cart-link,
+  .auth-btn,
   .user-name {
-    font-size: 12px;
-    padding: 4px 6px;
+    font-size: 0;
+    padding: 4px;
+    justify-content: center;
   }
 
-  .user-menu {
-    min-width: 160px;
-    top: 40px;
-    right: 0;
-  }
-
-  .user-menu a,
-  .user-menu button {
-    font-size: 12px;
-    padding: 8px 10px;
+  .cart-link i,
+  .auth-btn i,
+  .user-name i {
+    font-size: 16px;
   }
 }

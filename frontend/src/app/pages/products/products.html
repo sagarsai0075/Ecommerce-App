@@ -1,17 +1,23 @@
 <div class="page-layout">
 
-  <input id="filters-toggle" class="filters-toggle" type="checkbox" aria-controls="filters-panel" />
-  <label class="filters-toggle-btn" for="filters-toggle">
+
+  <!-- Mobile Filters Toggle Button -->
+  <button class="filters-toggle-btn" type="button" (click)="toggleFilters()">
     Filters
     <span class="filters-toggle-icon" aria-hidden="true">▾</span>
-  </label>
+  </button>
+
+  <!-- Overlay for mobile filter panel -->
+  <div class="filters-overlay" *ngIf="showFilters" (click)="closeFilters()"></div>
 
   <!-- LEFT FILTER -->
-  <aside id="filters-panel" class="filter-panel" aria-label="Product filters">
+  <aside id="filters-panel" class="filter-panel" aria-label="Product filters" [class.open]="showFilters">
+
 
     <div class="filter-header">
       <h3>Filters</h3>
       <button type="button" class="clear-filters" title="Clear all filters" aria-label="Clear all filters" (click)="clearFilters()">Clear</button>
+      <button *ngIf="showFilters" class="close-filters-btn" type="button" aria-label="Close filters" (click)="closeFilters()">✕</button>
     </div>
 
     <form class="filters" (submit)="$event.preventDefault()">

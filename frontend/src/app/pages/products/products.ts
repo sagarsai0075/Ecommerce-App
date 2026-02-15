@@ -18,6 +18,14 @@ export class Products implements OnInit {
   filteredProducts: any[] = [];
   displayedProducts: any[] = [];
   allBrands: string[] = [];
+  showFilters = false;
+    // Toggle filter panel for mobile
+    toggleFilters() {
+      this.showFilters = !this.showFilters;
+    }
+    closeFilters() {
+      this.showFilters = false;
+    }
   availableBrands: string[] = [];
   availablePriceRanges: Array<{ id: string; label: string }> = [];
   availableRatings: number[] = [];
