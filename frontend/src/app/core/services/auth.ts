@@ -26,35 +26,57 @@ export class AuthService {
   /* ================= REGISTER ================= */
 
   register(data: {
-    name: string;
-    email: string;
-    password: string;
-    number: string;
-  }) {
-    return this.http.post<{ token: string; user: any }>(`${this.baseUrl}/register`, data).pipe(
-      tap(response => {
-        if (response?.user) {
-          this.setCurrentUser(response.user);
-        }
-      })
-    );
-  }
+  name: string;
+  email: string;
+  password: string;
+  number: string;
+}) {
+
+  return this.http.post<{ token: string; user: any }>(
+    `${this.baseUrl}/register`,
+    data
+  ).pipe(
+
+    tap(response => {
+
+      // ✅ Save token
+      if (response?.token) {
+        this.saveToken(response.token);
+      }
+
+      // ✅ Save user
+      if (response?.user) {
+        this.setCurrentUser(response.user);
+      }
+
+    })
+  );
+}
 
   /* ================= LOGIN ================= */
 
-  login(data: { email: string; password: string }) {
-    return this.http.post<{ token: string; user: any }>(
-      `${this.baseUrl}/login`,
-      data
-    ).pipe(
-      tap(response => {
-        if (response?.user) {
-          this.setCurrentUser(response.user);
-        }
-      })
-    );
-  }
+ login(data: { email: string; password: string }) {
 
+  return this.http.post<{ token: string; user: any }>(
+    `${this.baseUrl}/login`,
+    data
+  ).pipe(
+
+    tap(response => {
+
+      // ✅ Save token
+      if (response?.token) {
+        this.saveToken(response.token);
+      }
+
+      // ✅ Save user
+      if (response?.user) {
+        this.setCurrentUser(response.user);
+      }
+
+    })
+  );
+}
   saveToken(token: string) {
     localStorage.setItem('token', token);
     if (!this.getUser()) {

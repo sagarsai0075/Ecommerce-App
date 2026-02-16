@@ -337,4 +337,12 @@
   .user-name i {
     font-size: 16px;
   }
+ show text + icon */
+.cart-link,
+.auth-btn,
+.user-name {
+  font-size: 12px;   /* show text */
+
+  justify-content: center;
+}
 }

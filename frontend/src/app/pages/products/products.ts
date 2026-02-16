@@ -59,74 +59,74 @@ export class Products implements OnInit {
 
   homePageCatalog: Record<string, Array<{ name: string; price: number; discount: number; image: string }>> = {
     mobiles: [
-      { name: 'Samsung Galaxy S25 Ultra', price: 74999, discount: 10, image: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s25-ultra-sm-s938.jpg' },
-      { name: 'iPhone 17 Pro Max', price: 159999, discount: 12, image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-17-pro-max.jpg' },
-      { name: 'OnePlus Nord 5', price: 49999, discount: 15, image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord5.jpg' },
-      { name: 'iPhone 15', price: 69999, discount: 5, image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14.jpg' },
-      { name: 'OnePlus 11', price: 56999, discount: 12, image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg' },
-      { name: 'Google Pixel 10', price: 109999, discount: 18, image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro-xl-.jpg' },
-      { name: 'Vivo V27', price: 32999, discount: 8, image: 'https://fdn2.gsmarena.com/vv/bigpic/vivo-v27.jpg' },
-      { name: 'Redmi Note 12', price: 15999, discount: 20, image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-10-pro-fold--.jpg' }
+      { name: 'Samsung Galaxy S25 Ultra', price: 74999, discount: 10, image: 'assets/Mobiles/Samsung Galaxy S25 Ultra.jpg' },
+      { name: 'iPhone 17 Pro Max', price: 159999, discount: 12, image: 'assets/Mobiles/Iphone 17 pro max.jpg' },
+      { name: 'OnePlus Nord 5', price: 49999, discount: 15, image: 'assets/Mobiles/Oneplus Nord 5.jpg' },
+      { name: 'iPhone 15', price: 69999, discount: 5, image: 'assets/Mobiles/Iphone 15.jpg' },
+      { name: 'OnePlus 11', price: 56999, discount: 12, image: 'assets/Mobiles/Oneplus 11.jpg' },
+      { name: 'Google Pixel 10', price: 109999, discount: 18, image: 'assets/Mobiles/Google Pixel 10.jpg' },
+      { name: 'Vivo V27', price: 32999, discount: 8, image: 'assets/Mobiles/Vivo V27.jpg' },
+      { name: 'Redmi Note 12', price: 15999, discount: 20, image: 'assets/Mobiles/Redmi Note 12.jpg' }
     ],
     electronics: [
-      { name: 'Dell Inspiron 15', price: 65999, discount: 15, image: 'https://www.91-img.com/pictures/laptops/dell/dell-vostro-3530-vn3530kckc9002org1o-laptop-gb-gb-gb-ssd-mb-172820-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Dell Vostro 5620', price: 55999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/dell/dell-3530-oin353010031rins1m-163036-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'HP Pavilion x360', price: 19999, discount: 20, image: 'https://www.91-img.com/pictures/laptops/hp/hp-14-ek1152tu-b6pa4pa-167665-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Asus ROG Strix G635', price: 55999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/asus/asus-g635lw-rw157ws-168981-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Apple MacBook Air M2', price: 119999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/apple/apple-m4-mw1h3hn-a-167911-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Dell Alienware 16X', price: 55999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/dell/dell-oan1625101301mino-170746-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'HP Victus 15', price: 45999, discount: 15, image: 'https://www.91-img.com/pictures/laptops/hp/hp-15-fa1411tx-aq5h7pa-164261-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Acer Aspire 7', price: 49999, discount: 10, image: 'https://www.91-img.com/pictures/laptops/acer/acer-a715-76g-nh-qmfsi-004-158007-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' }
+      { name: 'Dell Inspiron 15', price: 65999, discount: 15, image: 'assets/Electronics/Dell Inspiron.avif' },
+      { name: 'Dell Vostro 5620', price: 55999, discount: 10, image: 'assets/Electronics/Dell Vostro 1.avif' },
+      { name: 'HP Pavilion x360', price: 19999, discount: 20, image: 'assets/Electronics/HP Pavilion.avif' },
+      { name: 'Asus ROG Strix G635', price: 55999, discount: 10, image: 'assets/Electronics/Asus Rog.avif' },
+      { name: 'Apple MacBook Air M2', price: 119999, discount: 10, image: 'assets/Electronics/Apple Macbook.avif' },
+      { name: 'Dell Alienware 16X', price: 55999, discount: 10, image: 'assets/Electronics/Dell Alien.avif' },
+      { name: 'HP Victus 15', price: 45999, discount: 15, image: 'assets/Electronics/HP Victus.avif' },
+      { name: 'Acer Aspire 7', price: 49999, discount: 10, image: 'assets/Electronics/Acer Aspire.avif' }
     ],
     fashion: [
-      { name: 'Snitch Slim Fit Shirt', price: 1999, discount: 30, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20241002/GpyB/66fccb7b260f9c41e84d35e8/-473Wx593H-700521941-navy-MODEL.jpg' },
-      { name: 'H&M Floral Print Dress', price: 2499, discount: 35, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250225/BNky/67bd86ea2960820c49a64806/-473Wx593H-701263883-offwhite-MODEL4.jpg' },
-      { name: 'Adidas T-Shirt', price: 2999, discount: 25, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240823/VmJp/66c8aaff6f60443f3124beb2/-473Wx593H-469662805-white-MODEL5.jpg' },
-      { name: 'Puma Hoodie', price: 3499, discount: 40, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240807/yBtF/66b382261d763220fa668616/-473Wx593H-469672134-purple-MODEL4.jpg' },
-      { name: 'Adidas Sneakers', price: 3999, discount: 20, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240827/7FDF/66cdde466f60443f312fb605/-473Wx593H-469651897-blue-MODEL2.jpg' },
-      { name: 'Swiss Military Hanowa', price: 2899, discount: 22, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251124/04xw/692448f188d6d62ff8ffe02b/-473Wx593H-702534037-silver-MODEL3.jpg' },
-      { name: 'Armani Exchange Shirt', price: 2199, discount: 26, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250825/GInF/68ac42578bfb9009aca7d9c0/-473Wx593H-410533250-ub101-MODEL.jpg' },
-      { name: 'Puma Backpack', price: 3299, discount: 24, image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251205/5Jjd/6932bae88945db77cf100e39/-473Wx593H-702588367-black-MODEL.jpg' }
+      { name: 'Snitch Slim Fit Shirt', price: 1999, discount: 30, image: 'assets/Fashion/Snitch shirt.avif' },
+      { name: 'H&M Floral Print Dress', price: 2499, discount: 35, image: 'assets/Fashion/H&M Floral.avif' },
+      { name: 'Adidas T-Shirt', price: 2999, discount: 25, image: 'assets/Fashion/Adidas T-Shirt.avif' },
+      { name: 'Puma Hoodie', price: 3499, discount: 40, image: 'assets/Fashion/Puma Hoodie.avif' },
+      { name: 'Adidas Sneakers', price: 3999, discount: 20, image: 'assets/Fashion/Adidas Sneakers.avif' },
+      { name: 'Swiss Military Hanowa', price: 2899, discount: 22, image: 'assets/Fashion/Swiss Military.avif' },
+      { name: 'Armani Exchange Shirt', price: 2199, discount: 26, image: 'assets/Fashion/Armani Exchange.avif' },
+      { name: 'Puma Backpack', price: 3299, discount: 24, image: 'assets/Fashion/Puma Backpack.avif' }
     ],
     tv: [
-      { name: 'LG Smart TV', price: 58999, discount: 22, image: 'https://www.91-img.com/pictures/television/lg/lg-50ua82006la-170103-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Sony Bravia 8 II OLED TV', price: 32999, discount: 18, image: 'https://www.91-img.com/pictures/television/sony/sony-bravia-8-ii-k-65xr80m2-65-inch-165-cm-oled-4k-tv-170070-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Samsung Crystal 4K TV', price: 39999, discount: 25, image: 'https://www.91-img.com/pictures/television/samsung/samsung-ua65ue81afu-168823-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Xiaomi 4K Smart TV', price: 28999, discount: 20, image: 'https://www.91-img.com/pictures/television/xiaomi/xiaomi-fx-l55mb-fin-169234-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Motorola UHD Smart TV', price: 26999, discount: 15, image: 'https://www.91-img.com/pictures/television/motorola/motorola-65uhdgqmvsaq-169205-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Toshiba C350 4K TV', price: 18999, discount: 20, image: 'https://www.91-img.com/pictures/television/toshiba/toshiba-55c350np-162978-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Xiaomi X Series TV', price: 13999, discount: 17, image: 'https://www.91-img.com/pictures/television/xiaomi/xiaomi-x-series-l55mb-ain-169208-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' },
-      { name: 'Acer M Series Smart TV', price: 64999, discount: 19, image: 'https://www.91-img.com/pictures/television/acer/acer-m-series-ar75udmgr2885at-75-inch-190-cm-tv-166136-v4-original-1.jpg?tr=h-180,c-at_max,q-70,t-true' }
+      { name: 'LG Smart TV', price: 58999, discount: 22, image: 'assets/TV/LG TV.avif' },
+      { name: 'Sony Bravia 8 II OLED TV', price: 32999, discount: 18, image: 'assets/TV/Sony TV.avif' },
+      { name: 'Samsung Crystal 4K TV', price: 39999, discount: 25, image: 'assets/TV/Samsung TV.avif' },
+      { name: 'Xiaomi 4K Smart TV', price: 28999, discount: 20, image: 'assets/TV/Xiaomi TV.avif' },
+      { name: 'Motorola UHD Smart TV', price: 26999, discount: 15, image: 'assets/TV/Moto TV.avif' },
+      { name: 'Toshiba C350 4K TV', price: 18999, discount: 20, image: 'assets/TV/Toshiba TV.avif' },
+      { name: 'Xiaomi X Series TV', price: 13999, discount: 17, image: 'assets/TV/Xiaomi TV 2.avif' },
+      { name: 'Acer M Series Smart TV', price: 64999, discount: 19, image: 'assets/TV/Acer TV.avif' }
     ],
     home: [
-      { name: 'Brimnes Day Bed Frame', price: 45999, discount: 25, image: 'https://www.ikea.com/in/en/images/products/brimnes-day-bed-frame-with-2-drawers-white__1092117_pe863030_s5.jpg?f=m' },
-      { name: 'Mossjoen Wall Cabinet', price: 38999, discount: 20, image: 'https://www.ikea.com/in/en/images/products/mossjoen-wall-cabinet-w-shelves-glass-door-anthracite__1257766_ph194652_s5.jpg?f=m' },
-      { name: 'Variera Shelf Insert', price: 8999, discount: 30, image: 'https://www.ikea.com/in/en/images/products/variera-shelf-insert-white__0867261_pe600476_s5.jpg?f=m' },
-      { name: 'Brimnes Wardrobe', price: 12999, discount: 35, image: 'https://www.ikea.com/in/en/images/products/brimnes-wardrobe-with-3-doors-white__0746973_pe744299_s5.jpg?f=m' },
-      { name: 'Loshult Trolley', price: 6999, discount: 15, image: 'https://www.ikea.com/in/en/images/products/loshult-trolley-pine__1394320_pe966492_s5.jpg?f=m' },
-      { name: 'Billy TV Storage Combination', price: 7999, discount: 18, image: 'https://www.ikea.com/in/en/images/products/billy-tv-storage-combination-white__0955664_pe803953_s5.jpg?f=m' },
-      { name: 'Akterspring Table Lamp', price: 24999, discount: 22, image: 'https://www.ikea.com/in/en/images/products/akterspring-table-lamp-opal-white-glass-brass-plated__1416331_pe975512_s5.jpg?f=m' },
-      { name: 'Ytberg LED Cabinet Lighting', price: 4999, discount: 16, image: 'https://www.ikea.com/in/en/images/products/ytberg-led-cabinet-lighting-white-dimmable__1081909_pe858443_s5.jpg?f=m' }
+      { name: 'Brimnes Day Bed Frame', price: 45999, discount: 25, image: 'assets/Home/Bed.avif' },
+      { name: 'Mossjoen Wall Cabinet', price: 38999, discount: 20, image: 'assets/Home/Wall Cabinet.avif' },
+      { name: 'Variera Shelf Insert', price: 8999, discount: 30, image: 'assets/Home/Variera Shelf Insert.avif' },
+      { name: 'Brimnes Wardrobe', price: 12999, discount: 35, image: 'assets/Home/Brimnes Wardrobe.avif' },
+      { name: 'Loshult Trolley', price: 6999, discount: 15, image: 'assets/Home/Trolley.avif' },
+      { name: 'Billy TV Storage Combination', price: 7999, discount: 18, image: 'assets/Home/Billy TV.avif' },
+      { name: 'Akterspring Table Lamp', price: 24999, discount: 22, image: 'assets/Home/Table lamp.avif' },
+      { name: 'Ytberg LED Cabinet Lighting', price: 4999, discount: 16, image: 'assets/Home/LED Cabin Light.avif' }
     ],
     books: [
-      { name: 'Atomic Habits', price: 599, discount: 40, image: 'https://m.media-amazon.com/images/I/91bYsX41DVL.jpg' },
-      { name: 'Rich Dad Poor Dad', price: 499, discount: 35, image: 'https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg' },
-      { name: 'The Psychology of Money', price: 699, discount: 30, image: 'https://m.media-amazon.com/images/I/71g2ednj0JL.jpg' },
-      { name: 'Ikigai', price: 399, discount: 25, image: 'https://m.media-amazon.com/images/I/81l3rZK4lnL.jpg' },
-      { name: 'Think Like a Monk', price: 499, discount: 20, image: 'https://m.media-amazon.com/images/I/81GlTN6QQrL._SY466_.jpg' },
-      { name: 'Deep Work', price: 549, discount: 18, image: 'https://m.media-amazon.com/images/I/61zt25yYrCL._AC_UY327_FMwebp_QL65_.jpg' },
-      { name: 'The Monk Who Sold His Ferrari', price: 549, discount: 18, image: 'https://m.media-amazon.com/images/I/61OByUf1TfL._SY466_.jpg' },
-      { name: 'The Alchemist', price: 399, discount: 25, image: 'https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg' }
+      { name: 'Atomic Habits', price: 599, discount: 40, image: 'assets/Books/Atomic Habits.jpg' },
+      { name: 'Rich Dad Poor Dad', price: 499, discount: 35, image: 'assets/Books/Rich Dad Poor Dad.jpg' },
+      { name: 'The Psychology of Money', price: 699, discount: 30, image: 'assets/Books/The Psychology of Money.jpg' },
+      { name: 'Ikigai', price: 399, discount: 25, image: 'assets/Books/Ikigai.jpg' },
+      { name: 'Think Like a Monk', price: 499, discount: 20, image: 'assets/Books/Think like a Monk.jpg' },
+      { name: 'Deep Work', price: 549, discount: 18, image: 'assets/Books/Deep Work.webp' },
+      { name: 'The Monk Who Sold His Ferrari', price: 549, discount: 18, image: 'assets/Books/The Monk Who Sold His Ferrari.jpg' },
+      { name: 'The Alchemist', price: 399, discount: 25, image: 'assets/Books/The Alchemist.jpg' }
     ],
     kitchen: [
-      { name: 'Kent Aqua RO Purifier', price: 3499, discount: 40, image: 'https://m.media-amazon.com/images/I/41YAylLzFUL.AC_SX250.jpg' },
-      { name: 'Crompton Arno Neo 15-L Geyser', price: 4999, discount: 30, image: 'https://m.media-amazon.com/images/I/515nNlnjmSL._AC_UL480_QL65_.jpg' },
-      { name: 'Bajaj DX-6 1000 Watts Dry Iron', price: 8999, discount: 35, image: 'https://m.media-amazon.com/images/I/51T1nHVTqYL._AC_UL480_QL65_.jpg' },
-      { name: 'Prestige 1.5L Stainless Steel Electric Kettle', price: 2999, discount: 25, image: 'https://m.media-amazon.com/images/I/51hAUIxb6qL._AC_UL480_QL65_.jpg' },
-      { name: 'Bajaj ATX 4 Pop-up Toaster', price: 1999, discount: 20, image: 'https://m.media-amazon.com/images/I/61fgJs4zIqL._AC_UL480_QL65_.jpg' },
-      { name: 'Havells High Speed Ceiling Fan', price: 1499, discount: 28, image: 'https://m.media-amazon.com/images/I/513I-old+qL._AC_UL480_QL65_.jpg' },
-      { name: 'Philips HL7756 Mixer Grinder', price: 2799, discount: 22, image: 'https://m.media-amazon.com/images/I/71mL2bdyRdL._AC_UL480_QL65_.jpg' },
-      { name: 'KENT Storm Vacuum Cleaner', price: 1699, discount: 18, image: 'https://m.media-amazon.com/images/I/41jxlxiTnGL._AC_UL480_QL65_.jpg' }
+      { name: 'Kent Aqua RO Purifier', price: 3499, discount: 40, image: 'assets/Kitchen/Kent Aqua.jpg' },
+      { name: 'Crompton Arno Neo 15-L Geyser', price: 4999, discount: 30, image: 'assets/Kitchen/Geyser.jpg' },
+      { name: 'Bajaj DX-6 1000 Watts Dry Iron', price: 8999, discount: 35, image: 'assets/Kitchen/Iron.jpg' },
+      { name: 'Prestige 1.5L Stainless Steel Electric Kettle', price: 2999, discount: 25, image: 'assets/Kitchen/Kettle.jpg' },
+      { name: 'Bajaj ATX 4 Pop-up Toaster', price: 1999, discount: 20, image: 'assets/Kitchen/Toaster.jpg' },
+      { name: 'Havells High Speed Ceiling Fan', price: 1499, discount: 28, image: 'assets/Kitchen/Fan.jpg' },
+      { name: 'Philips HL7756 Mixer Grinder', price: 2799, discount: 22, image: 'assets/Kitchen/Mixer.jpg' },
+      { name: 'KENT Storm Vacuum Cleaner', price: 1699, discount: 18, image: 'assets/Kitchen/Vaccum.jpg' }
     ]
   };
 
@@ -139,7 +139,7 @@ export class Products implements OnInit {
         brand: 'Samsung',
         price: 74999,
         discount: 10,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s25-ultra-sm-s938.jpg',
+        image: 'assets/Mobiles/Samsung Galaxy S25 Ultra.jpg',
         specifications: ['6.8" Dynamic AMOLED Display', 'Snapdragon 8 Gen 2 Processor', '50MP Triple Camera Setup', '5000mAh Battery with Fast Charging'],
         rating: 4.6,
         reviewsCount: 2847
@@ -149,7 +149,7 @@ export class Products implements OnInit {
         brand: 'Apple',
         price: 159999,
         discount: 12,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-17-pro-max.jpg',
+        image: 'assets/Mobiles/Iphone 17 pro max.jpg',
         specifications: ['6.7" ProMotion OLED Display', 'A18 Pro Chip with 8GB RAM', '48MP Pro Camera System with 8K Video', 'Titanium Frame with Ceramic Shield'],
         rating: 4.8,
         reviewsCount: 5621
@@ -159,7 +159,7 @@ export class Products implements OnInit {
         brand: 'OnePlus',
         price: 49999,
         discount: 15,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord5.jpg',
+        image: 'assets/Mobiles/Oneplus Nord 5.jpg',
         specifications: ['6.5" 120Hz AMOLED Display', 'MediaTek Dimensity 9000', '64MP Triple Camera', '4500mAh with 80W SuperVOOC Charging'],
         rating: 4.4,
         reviewsCount: 1523
@@ -169,7 +169,7 @@ export class Products implements OnInit {
         brand: 'Apple',
         price: 69999,
         discount: 5,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14.jpg',
+        image: 'assets/Mobiles/Iphone 15.jpg',
         specifications: ['6.1" Super Retina XDR Display', 'A16 Bionic Chip', '48MP Main + 12MP Ultra Wide Camera', 'USB-C Port with MagSafe Support'],
         rating: 4.7,
         reviewsCount: 4392
@@ -179,7 +179,7 @@ export class Products implements OnInit {
         brand: 'OnePlus',
         price: 56999,
         discount: 12,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg',
+        image: 'assets/Mobiles/Oneplus 11.jpg',
         specifications: ['6.7" QHD+ 120Hz AMOLED', 'Snapdragon 8 Gen 2', '50MP Hasselblad Camera System', '5000mAh with 100W SuperVOOC'],
         rating: 4.5,
         reviewsCount: 2156
@@ -189,7 +189,7 @@ export class Products implements OnInit {
         brand: 'Redmi',
         price: 15999,
         discount: 20,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-10-pro-fold--.jpg',
+        image: 'assets/Mobiles/Redmi Note 12.jpg',
         specifications: ['6.67" FHD+ 120Hz Display', 'Snapdragon 685 Processor', '48MP Triple Camera', '5000mAh with 33W Fast Charging'],
         rating: 4.3,
         reviewsCount: 8734
@@ -199,7 +199,7 @@ export class Products implements OnInit {
         brand: 'Vivo',
         price: 32999,
         discount: 8,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/vivo-v27.jpg',
+        image: 'assets/Mobiles/Vivo V27.jpg',
         specifications: ['6.78" AMOLED Display', 'MediaTek Dimensity 7200', '50MP OIS Camera + 50MP Selfie', 'Color Changing Design, 4600mAh Battery'],
         rating: 4.2,
         reviewsCount: 1876
@@ -212,7 +212,7 @@ export class Products implements OnInit {
         brand: 'Dell',
         price: 65999,
         discount: 15,
-        image: 'https://m.media-amazon.com/images/I/61fDHkQ6MqL._SX679_.jpg',
+        image: 'assets/Electronics/Dell Inspiron.avif',
         specifications: ['15.6" FHD Anti-Glare Display', 'Intel Core i5 12th Gen', '8GB RAM, 512GB SSD', 'Windows 11, 6 Hour Battery Life'],
         rating: 4.4,
         reviewsCount: 1245
@@ -222,7 +222,7 @@ export class Products implements OnInit {
         brand: 'Sony',
         price: 19999,
         discount: 20,
-        image: 'https://m.media-amazon.com/images/I/61CGHv6kmWL._SX679_.jpg',
+        image: 'assets/Electronics/HP Pavilion.avif',
         specifications: ['Active Noise Cancellation', 'Bluetooth 5.2 with LDAC Support', '30 Hour Battery Life', 'Premium Comfortable Over-Ear Design'],
         rating: 4.7,
         reviewsCount: 3562
@@ -232,7 +232,7 @@ export class Products implements OnInit {
         brand: 'Canon',
         price: 55999,
         discount: 10,
-        image: 'https://m.media-amazon.com/images/I/71EWRyqzw0L._SX679_.jpg',
+        image: 'assets/Electronics/Acer Aspire.avif',
         specifications: ['24.1MP APS-C CMOS Sensor', 'DIGIC 8 Image Processor', '45-Point All Cross-Type AF System', 'Full HD 1080p Video Recording'],
         rating: 4.6,
         reviewsCount: 987
@@ -242,7 +242,7 @@ export class Products implements OnInit {
         brand: 'JBL',
         price: 7999,
         discount: 25,
-        image: 'https://m.media-amazon.com/images/I/61J9B4p8YkL._SX679_.jpg',
+        image: 'assets/Electronics/Asus Rog.avif',
         specifications: ['Bluetooth 5.1 Connectivity', 'IPX7 Waterproof Rating', '12 Hours Playtime', 'PartyBoost for Speaker Pairing'],
         rating: 4.5,
         reviewsCount: 4521
@@ -252,7 +252,7 @@ export class Products implements OnInit {
         brand: 'Samsung',
         price: 17999,
         discount: 18,
-        image: 'https://m.media-amazon.com/images/I/81QpkIctqPL._SX679_.jpg',
+        image: 'assets/Electronics/Apple Macbook.avif',
         specifications: ['27" QHD 1440p Curved Display', '144Hz Refresh Rate', 'AMD FreeSync Premium', 'Height Adjustable Stand, HDMI & DP'],
         rating: 4.3,
         reviewsCount: 2134
@@ -265,7 +265,7 @@ export class Products implements OnInit {
         brand: 'Allen Solly',
         price: 1999,
         discount: 30,
-        image: 'https://m.media-amazon.com/images/I/71T3K9ZB7WL._UY879_.jpg',
+        image: 'assets/Fashion/Snitch shirt.avif',
         specifications: ['100% Premium Cotton Fabric', 'Slim Fit Design', 'Wrinkle-Resistant Material', 'Size: S, M, L, XL, XXL Available'],
         rating: 4.1,
         reviewsCount: 6782
@@ -275,7 +275,7 @@ export class Products implements OnInit {
         brand: 'Libas',
         price: 2499,
         discount: 35,
-        image: 'https://m.media-amazon.com/images/I/71G0C5GvMQL._UY879_.jpg',
+        image: 'assets/Fashion/H&M Floral.avif',
         specifications: ['Rayon Blend Fabric', 'A-Line Pattern with Embroidery', 'Machine Washable', 'Sizes: XS, S, M, L, XL, XXL'],
         rating: 4.4,
         reviewsCount: 5421
@@ -285,7 +285,7 @@ export class Products implements OnInit {
         brand: 'Levis',
         price: 2999,
         discount: 25,
-        image: 'https://m.media-amazon.com/images/I/71F8d1kZ6ML._UY879_.jpg',
+        image: 'assets/Fashion/Armani Exchange.avif',
         specifications: ['Stretchable Denim Fabric', 'Regular Fit Design', 'Mid Rise with 5 Pockets', 'Waist: 28-42 inches Available'],
         rating: 4.2,
         reviewsCount: 4932
@@ -295,7 +295,7 @@ export class Products implements OnInit {
         brand: 'Baggit',
         price: 3499,
         discount: 40,
-        image: 'https://m.media-amazon.com/images/I/61V+4WRoE3L._UY879_.jpg',
+        image: 'assets/Fashion/Puma Backpack.avif',
         specifications: ['Premium Vegan Leather Material', 'Multiple Compartments with Zipper', 'Adjustable Shoulder Strap', 'Dimensions: 35cm x 28cm x 12cm'],
         rating: 4.3,
         reviewsCount: 3298
@@ -305,7 +305,7 @@ export class Products implements OnInit {
         brand: 'Adidas',
         price: 3999,
         discount: 20,
-        image: 'https://m.media-amazon.com/images/I/71p1C7P6lWL._UY879_.jpg',
+        image: 'assets/Fashion/Adidas Sneakers.avif',
         specifications: ['Breathable Mesh Upper', 'EVA Midsole Cushioning', 'Anti-Slip Rubber Outsole', 'UK Size: 6-12 Available'],
         rating: 4.5,
         reviewsCount: 7856
@@ -318,7 +318,7 @@ export class Products implements OnInit {
         brand: 'Samsung',
         price: 58999,
         discount: 22,
-        image: 'https://m.media-amazon.com/images/I/71S8U9VzLTL._SX679_.jpg',
+        image: 'assets/TV/Samsung TV.avif',
         specifications: ['55" Crystal 4K UHD Display', 'Smart Hub with Streaming Apps', '3 HDMI & 2 USB Ports', '20W Dolby Digital Plus Audio'],
         rating: 4.6,
         reviewsCount: 3456
@@ -328,7 +328,7 @@ export class Products implements OnInit {
         brand: 'LG',
         price: 32999,
         discount: 18,
-        image: 'https://m.media-amazon.com/images/I/71+K9h5C5WL._SX679_.jpg',
+        image: 'assets/TV/LG TV.avif',
         specifications: ['7.5 kg Fully Automatic', 'AI Direct Drive Technology', '6 Motion DD & Smart Diagnosis', '5 Star Energy Rating'],
         rating: 4.4,
         reviewsCount: 2187
@@ -338,7 +338,7 @@ export class Products implements OnInit {
         brand: 'Voltas',
         price: 39999,
         discount: 25,
-        image: 'https://m.media-amazon.com/images/I/61C3zZJtGWL._SX679_.jpg',
+        image: 'assets/TV/Acer TV.avif',
         specifications: ['1.5 Ton Inverter Split AC', '5 Star Energy Rating', 'Copper Condenser, Turbo Mode', 'Smart Wi-Fi Control with App'],
         rating: 4.3,
         reviewsCount: 1654
@@ -348,7 +348,7 @@ export class Products implements OnInit {
         brand: 'Whirlpool',
         price: 28999,
         discount: 20,
-        image: 'https://m.media-amazon.com/images/I/71Zf9uUp+GL._SX679_.jpg',
+        image: 'assets/TV/Toshiba TV.avif',
         specifications: ['265L Double Door Refrigerator', 'Intellisense Inverter Technology', '3 Star Energy Rating', 'Convertible Freezer Mode'],
         rating: 4.2,
         reviewsCount: 2891
@@ -358,7 +358,7 @@ export class Products implements OnInit {
         brand: 'Mi',
         price: 26999,
         discount: 15,
-        image: 'https://m.media-amazon.com/images/I/71cYtZb8wDL._SX679_.jpg',
+        image: 'assets/TV/Xiaomi TV.avif',
         specifications: ['43" Full HD LED Display', 'Android TV 11 with Google Assistant', 'Built-in Chromecast', '20W Stereo Speakers, 3 HDMI Ports'],
         rating: 4.4,
         reviewsCount: 9234
@@ -371,7 +371,7 @@ export class Products implements OnInit {
         brand: 'Urban Ladder',
         price: 45999,
         discount: 25,
-        image: 'https://m.media-amazon.com/images/I/81Jzv5KJ7WL._SX679_.jpg',
+        image: 'assets/Home/Bed.avif',
         specifications: ['3+2 Seater Sheesham Wood', 'High-Density Foam Cushions', 'Fabric/Leatherette Upholstery', 'Dimensions: 180cm x 85cm x 90cm'],
         rating: 4.5,
         reviewsCount: 876
@@ -381,7 +381,7 @@ export class Products implements OnInit {
         brand: 'Wakefit',
         price: 38999,
         discount: 20,
-        image: 'https://m.media-amazon.com/images/I/81pZ7C8F6PL._SX679_.jpg',
+        image: 'assets/Home/Brimnes Wardrobe.avif',
         specifications: ['King Size: 183cm x 203cm', 'Engineered Wood Frame', 'Cushioned Headboard', 'Box Storage Option Available'],
         rating: 4.3,
         reviewsCount: 1234
@@ -391,7 +391,7 @@ export class Products implements OnInit {
         brand: 'Nilkamal',
         price: 8999,
         discount: 30,
-        image: 'https://m.media-amazon.com/images/I/71kQ9+KJZEL._SX679_.jpg',
+        image: 'assets/Home/Variera Shelf Insert.avif',
         specifications: ['Particle Board with Laminate Finish', '2 Drawers + Open Shelf', 'Cable Management System', 'Dimensions: 120cm x 60cm x 75cm'],
         rating: 4.1,
         reviewsCount: 2567
@@ -401,7 +401,7 @@ export class Products implements OnInit {
         brand: 'Green Soul',
         price: 12999,
         discount: 35,
-        image: 'https://m.media-amazon.com/images/I/71QqT7M2pKL._SX679_.jpg',
+        image: 'assets/Home/Table lamp.avif',
         specifications: ['Ergonomic Design with Lumbar Support', 'Height Adjustable: 45-53cm', 'Mesh Back, PU Leather Seat', '360° Swivel with Smooth Casters'],
         rating: 4.4,
         reviewsCount: 3421
@@ -411,7 +411,7 @@ export class Products implements OnInit {
         brand: 'Amazon Brand',
         price: 6999,
         discount: 15,
-        image: 'https://m.media-amazon.com/images/I/71aQpKJx+BL._SX679_.jpg',
+        image: 'assets/Home/Billy TV.avif',
         specifications: ['5-Tier Open Shelving Design', 'Engineered Wood Construction', 'Load Capacity: 15kg per shelf', 'Dimensions: 75cm x 30cm x 180cm'],
         rating: 4.2,
         reviewsCount: 1845
@@ -424,7 +424,7 @@ export class Products implements OnInit {
         brand: 'Penguin',
         price: 599,
         discount: 40,
-        image: 'https://m.media-amazon.com/images/I/91bYsX41DVL.jpg',
+        image: 'assets/Books/Atomic Habits.jpg',
         specifications: ['Author: James Clear', 'Paperback - 320 Pages', 'Publisher: Penguin Random House', 'Language: English ISBN: 9780735211292'],
         rating: 4.8,
         reviewsCount: 12453
@@ -434,7 +434,7 @@ export class Products implements OnInit {
         brand: 'Plata',
         price: 499,
         discount: 35,
-        image: 'https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg',
+        image: 'assets/Books/Rich Dad Poor Dad.jpg',
         specifications: ['Author: Robert T. Kiyosaki', 'Paperback - 336 Pages', 'Publisher: Plata Publishing', 'Language: English'],
         rating: 4.7,
         reviewsCount: 18762
@@ -444,7 +444,7 @@ export class Products implements OnInit {
         brand: 'Harriman House',
         price: 699,
         discount: 30,
-        image: 'https://m.media-amazon.com/images/I/71g2ednj0JL.jpg',
+        image: 'assets/Books/The Psychology of Money.jpg',
         specifications: ['Author: Morgan Housel', 'Paperback - 256 Pages', 'Publisher: Harriman House', 'Language: English'],
         rating: 4.6,
         reviewsCount: 9823
@@ -454,7 +454,7 @@ export class Products implements OnInit {
         brand: 'Penguin',
         price: 399,
         discount: 25,
-        image: 'https://m.media-amazon.com/images/I/81l3rZK4lnL.jpg',
+        image: 'assets/Books/Ikigai.jpg',
         specifications: ['Authors: Héctor García & Francesc Miralles', 'Paperback - 208 Pages', 'Publisher: Penguin Books', 'Language: English'],
         rating: 4.5,
         reviewsCount: 7654
@@ -464,7 +464,7 @@ export class Products implements OnInit {
         brand: 'Simon & Schuster',
         price: 499,
         discount: 20,
-        image: 'https://m.media-amazon.com/images/I/71b1cZV5jKL.jpg',
+        image: 'assets/Books/Think like a Monk.jpg',
         specifications: ['Author: Jay Shetty', 'Paperback - 352 Pages', 'Publisher: Simon & Schuster', 'Language: English'],
         rating: 4.6,
         reviewsCount: 6234
@@ -477,7 +477,7 @@ export class Products implements OnInit {
         brand: 'Prestige',
         price: 3499,
         discount: 40,
-        image: 'https://m.media-amazon.com/images/I/81+vY7fZsFL._SX679_.jpg',
+        image: 'assets/Kitchen/Kent Aqua.jpg',
         specifications: ['7-Piece Set (3 Pans, 3 Lids, 1 Kadai)', 'Non-Stick Coating, Induction Safe', 'Aluminum Body with Bakelite Handle', 'Dishwasher Safe, 2 Year Warranty'],
         rating: 4.3,
         reviewsCount: 5432
@@ -487,7 +487,7 @@ export class Products implements OnInit {
         brand: 'Philips',
         price: 4999,
         discount: 30,
-        image: 'https://m.media-amazon.com/images/I/71Zf9uUp+GL._SX679_.jpg',
+        image: 'assets/Kitchen/Mixer.jpg',
         specifications: ['750W Powerful Motor', '3 Stainless Steel Jars (0.4L, 1L, 1.5L)', 'Overload Protection', '2 Year Warranty on Motor'],
         rating: 4.4,
         reviewsCount: 3876
@@ -497,7 +497,7 @@ export class Products implements OnInit {
         brand: 'Philips',
         price: 8999,
         discount: 35,
-        image: 'https://m.media-amazon.com/images/I/71qKzqk6YFL._SX679_.jpg',
+        image: 'assets/Kitchen/Fan.jpg',
         specifications: ['4.5L Large Capacity', '1400W Rapid Air Technology', 'Digital Touch Controls with 8 Presets', 'Temperature Range: 80-200°C'],
         rating: 4.5,
         reviewsCount: 6892
@@ -507,7 +507,7 @@ export class Products implements OnInit {
         brand: 'Milton',
         price: 2999,
         discount: 25,
-        image: 'https://m.media-amazon.com/images/I/71kZcZk0nZL._SX679_.jpg',
+        image: 'assets/Kitchen/Iron.jpg',
         specifications: ['24-Piece Set (6 Each: Plates, Bowls, Glasses, Spoons)', 'Food Grade Stainless Steel', 'Mirror Finish, Rust Resistant', 'Dishwasher Safe'],
         rating: 4.2,
         reviewsCount: 4321
@@ -517,7 +517,7 @@ export class Products implements OnInit {
         brand: 'Prestige',
         price: 1999,
         discount: 20,
-        image: 'https://m.media-amazon.com/images/I/61s7y3JzLKL._SX679_.jpg',
+        image: 'assets/Kitchen/Kettle.jpg',
         specifications: ['1.8L Capacity, 1500W Power', 'Stainless Steel Body', 'Auto Shut-off & Boil Dry Protection', '360° Swivel Base, Cordless Design'],
         rating: 4.3,
         reviewsCount: 7821

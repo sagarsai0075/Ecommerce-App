@@ -190,56 +190,56 @@ loadKitchen() {
       name: 'Kent Aqua RO Purifier',
       price: 3499,
       discount: 40,
-      image: 'https://m.media-amazon.com/images/I/41YAylLzFUL.AC_SX250.jpg'
+      image: 'assets/Kitchen/Kent Aqua.jpg'
     },
 
     {
       name: 'Crompton Arno Neo 15-L Geyser',
       price: 4999,
       discount: 30,
-      image: 'https://m.media-amazon.com/images/I/515nNlnjmSL._AC_UL480_QL65_.jpg'
+      image: 'assets/Kitchen/Geyser.jpg'
     },
 
     {
       name: 'Bajaj DX-6 1000 Watts Dry Iron',
       price: 8999,
       discount: 35,
-      image: 'https://m.media-amazon.com/images/I/51T1nHVTqYL._AC_UL480_QL65_.jpg'
+      image: 'assets/Kitchen/Iron.jpg'
     },
 
     {
       name: 'Prestige 1.5L Stainless Steel Electric Kettle',
       price: 2999,
       discount: 25,
-      image: 'https://m.media-amazon.com/images/I/51hAUIxb6qL._AC_UL480_QL65_.jpg'
+      image: 'assets/Kitchen/Kettle.jpg'
     },
 
     {
       name: 'Bajaj ATX 4 Pop-up Toaster',
       price: 1999,
       discount: 20,
-      image: 'https://m.media-amazon.com/images/I/61fgJs4zIqL._AC_UL480_QL65_.jpg'
+      image: 'assets/Kitchen/Toaster.jpg'
     },
 
     {
       name: 'Havells High Speed Ceiling Fan',
       price: 1499,
       discount: 28,
-      image: 'https://m.media-amazon.com/images/I/513I-old+qL._AC_UL480_QL65_.jpg'
+      image: 'assets/Kitchen/Fan.jpg'
     },
 
     {
       name: 'Philips HL7756 Mixer Grinder',
       price: 2799,
       discount: 22,
-      image: 'https://m.media-amazon.com/images/I/71mL2bdyRdL._AC_UL480_QL65_.jpg'
+      image: 'assets/Kitchen/Mixer.jpg'
     },
 
     {
       name: 'KENT Storm Vacuum Cleaner',
       price: 1699,
       discount: 18,
-      image: 'https://m.media-amazon.com/images/I/41jxlxiTnGL._AC_UL480_QL65_.jpg'
+      image: 'assets/Kitchen/Vaccum.jpg'
     }
 
   ];
@@ -263,35 +263,35 @@ loadBooks() {
       name: 'Atomic Habits',
       price: 599,
       discount: 40,
-      image: 'https://m.media-amazon.com/images/I/91bYsX41DVL.jpg'
+      image: 'assets/Books/Atomic Habits.jpg'
     },
 
     {
       name: 'Rich Dad Poor Dad',
       price: 499,
       discount: 35,
-      image: 'https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg'
+      image: 'assets/Books/Rich Dad Poor Dad.jpg'
     },
 
     {
       name: 'The Psychology of Money',
       price: 699,
       discount: 30,
-      image: 'https://m.media-amazon.com/images/I/71g2ednj0JL.jpg'
+      image: 'assets/Books/The Psychology of Money.jpg'
     },
 
     {
       name: 'Ikigai',
       price: 399,
       discount: 25,
-      image: 'https://m.media-amazon.com/images/I/81l3rZK4lnL.jpg'
+      image: 'assets/Books/Ikigai.jpg'
     },
 
     {
       name: 'Think Like a Monk',
       price: 499,
       discount: 20,
-      image: 'https://m.media-amazon.com/images/I/81GlTN6QQrL._SY466_.jpg'
+      image: 'assets/Books/Think like a Monk.jpg'
     },
 
  
@@ -299,19 +299,19 @@ loadBooks() {
       name: 'Deep Work',
       price: 549,
       discount: 18,
-      image: 'https://m.media-amazon.com/images/I/61zt25yYrCL._AC_UY327_FMwebp_QL65_.jpg'
+      image: 'assets/Books/Deep Work.webp'
     },
     {
       name: 'The Monk Who Sold His Ferrari',
       price: 549,
       discount: 18,
-      image: 'https://m.media-amazon.com/images/I/61OByUf1TfL._SY466_.jpg'
+      image: 'assets/Books/The Monk Who Sold His Ferrari.jpg'
     },
     {
       name: 'The Alchemist',
       price: 399,
       discount: 25,
-      image: 'https://m.media-amazon.com/images/I/71aFt4+OTOL.jpg'
+      image: 'assets/Books/The Alchemist.jpg'
     }
 
   ];
@@ -349,56 +349,56 @@ loadHome() {
       name: 'Brimnes Day Bed Frame',
       price: 45999,
       discount: 25,
-      image: 'https://www.ikea.com/in/en/images/products/brimnes-day-bed-frame-with-2-drawers-white__1092117_pe863030_s5.jpg?f=m'
+      image: 'assets/Home/Bed.avif'
     },
 
     {
       name: 'Mossjoen Wall Cabinet',
       price: 38999,
       discount: 20,
-      image: 'https://www.ikea.com/in/en/images/products/mossjoen-wall-cabinet-w-shelves-glass-door-anthracite__1257766_ph194652_s5.jpg?f=m'
+      image: 'assets/Home/Wall Cabinet.avif'
     },
 
     {
       name: 'Variera Shelf Insert',
       price: 8999,
       discount: 30,
-      image: 'https://www.ikea.com/in/en/images/products/variera-shelf-insert-white__0867261_pe600476_s5.jpg?f=m'
+      image: 'assets/Home/Variera Shelf Insert.avif'
     },
 
     {
       name: 'Brimnes Wardrobe',
       price: 12999,
       discount: 35,
-      image: 'https://www.ikea.com/in/en/images/products/brimnes-wardrobe-with-3-doors-white__0746973_pe744299_s5.jpg?f=m'
+      image: 'assets/Home/Brimnes Wardrobe.avif'
     },
 
     {
       name: 'Loshult Trolley',
       price: 6999,
       discount: 15,
-      image: 'https://www.ikea.com/in/en/images/products/loshult-trolley-pine__1394320_pe966492_s5.jpg?f=m'
+      image: 'assets/Home/Trolley.avif'
     },
 
     {
       name: 'Billy TV Storage Combination',
       price: 7999,
       discount: 18,
-      image: 'https://www.ikea.com/in/en/images/products/billy-tv-storage-combination-white__0955664_pe803953_s5.jpg?f=m'
+      image: 'assets/Home/Billy TV.avif'
     },
 
     {
       name: 'Akterspring Table Lamp',
       price: 24999,
       discount: 22,
-      image: 'https://www.ikea.com/in/en/images/products/akterspring-table-lamp-opal-white-glass-brass-plated__1416331_pe975512_s5.jpg?f=m'
+      image: 'assets/Home/Table lamp.avif'
     },
 
     {
       name: 'Ytberg LED Cabinet Lighting',
       price: 4999,
       discount: 16,
-      image: 'https://www.ikea.com/in/en/images/products/ytberg-led-cabinet-lighting-white-dimmable__1081909_pe858443_s5.jpg?f=m'
+      image: 'assets/Home/LED Cabin Light.avif'
     }
 
   ];
@@ -434,56 +434,56 @@ loadTv() {
       name: 'LG Smart TV',
       price: 58999,
       discount: 22,
-      image: 'https://www.91-img.com/pictures/television/lg/lg-50ua82006la-170103-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/LG TV.avif'
     },
 
     {
       name: 'Sony Bravia 8 II OLED TV',
       price: 32999,
       discount: 18,
-      image: 'https://www.91-img.com/pictures/television/sony/sony-bravia-8-ii-k-65xr80m2-65-inch-165-cm-oled-4k-tv-170070-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/Sony TV.avif'
     },
 
     {
       name: 'Samsung Crystal 4K TV',
       price: 39999,
       discount: 25,
-      image: 'https://www.91-img.com/pictures/television/samsung/samsung-ua65ue81afu-168823-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/Samsung TV.avif'
     },
 
     {
       name: 'Xiaomi 4K Smart TV',
       price: 28999,
       discount: 20,
-      image:'https://www.91-img.com/pictures/television/xiaomi/xiaomi-fx-l55mb-fin-169234-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/Xiaomi TV.avif'
     },
 
     {
       name: 'Motorola UHD Smart TV',
       price: 26999,
       discount: 15,
-      image: 'https://www.91-img.com/pictures/television/motorola/motorola-65uhdgqmvsaq-169205-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/Moto TV.avif'
     },
 
     {
       name: 'Toshiba C350 4K TV',
       price: 18999,
       discount: 20,
-      image: 'https://www.91-img.com/pictures/television/toshiba/toshiba-55c350np-162978-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/Toshiba TV.avif'
     },
 
     {
       name: 'Xiaomi X Series TV',
       price: 13999,
       discount: 17,
-      image: 'https://www.91-img.com/pictures/television/xiaomi/xiaomi-x-series-l55mb-ain-169208-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/Xiaomi TV 2.avif'
     },
 
     {
       name: 'Acer M Series Smart TV',
       price: 64999,
       discount: 19,
-      image: 'https://www.91-img.com/pictures/television/acer/acer-m-series-ar75udmgr2885at-75-inch-190-cm-tv-166136-v4-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/TV/Acer TV.avif'
     }
 
   ];
@@ -582,7 +582,7 @@ loadElectronics() {
       name: 'Dell Inspiron 15',
       price: 65999,
       discount: 15,
-      image: 'https://www.91-img.com/pictures/laptops/dell/dell-vostro-3530-vn3530kckc9002org1o-laptop-gb-gb-gb-ssd-mb-172820-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/Dell Inspiron.avif'
     },
 
   
@@ -591,44 +591,44 @@ loadElectronics() {
       name: 'Dell Vostro 5620',
       price: 55999,
       discount: 10,
-      image: 'https://www.91-img.com/pictures/laptops/dell/dell-3530-oin353010031rins1m-163036-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/Dell Vostro 1.avif'
     },
  {
       name: 'HP Pavilion x360',
       price: 19999,
       discount: 20,
-      image:'https://www.91-img.com/pictures/laptops/hp/hp-14-ek1152tu-b6pa4pa-167665-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/HP Pavilion.avif'
     },
     
     {
       name: 'Asus ROG Strix G635',
       price: 55999,
       discount: 10,
-      image: 'https://www.91-img.com/pictures/laptops/asus/asus-g635lw-rw157ws-168981-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/Asus Rog.avif'
     },
      {
       name: 'Apple MacBook Air M2',
       price: 119999,
       discount: 10,
-      image: 'https://www.91-img.com/pictures/laptops/apple/apple-m4-mw1h3hn-a-167911-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/Apple Macbook.avif'
     },
     {
       name: 'Dell Alienware 16X',
       price: 55999,
       discount: 10,
-      image: 'https://www.91-img.com/pictures/laptops/dell/dell-oan1625101301mino-170746-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/Dell Alien.avif'
     },
     {
       name: 'HP Victus 15',
       price: 45999,
       discount: 15,
-      image: 'https://www.91-img.com/pictures/laptops/hp/hp-15-fa1411tx-aq5h7pa-164261-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/HP Victus.avif'
     },
     {
       name: 'Acer Aspire 7',
       price: 49999,
       discount: 10,
-      image: 'https://www.91-img.com/pictures/laptops/acer/acer-a715-76g-nh-qmfsi-004-158007-v1-original-1.jpg?tr=h-180,c-at_max,q-70,t-true'
+      image: 'assets/Electronics/Acer Aspire.avif'
     },
    
   ];
@@ -749,56 +749,56 @@ loadFashion() {
       name: 'Snitch Slim Fit Shirt',
       price: 1999,
       discount: 30,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20241002/GpyB/66fccb7b260f9c41e84d35e8/-473Wx593H-700521941-navy-MODEL.jpg'
+      image: 'assets/Fashion/Snitch shirt.avif'
     },
 
     {
       name: ' H&M Floral Print Dress',
       price: 2499,
       discount: 35,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20250225/BNky/67bd86ea2960820c49a64806/-473Wx593H-701263883-offwhite-MODEL4.jpg'
+      image: 'assets/Fashion/H&M Floral.avif'
     },
 
     {
       name: 'Adidas T-Shirt',
       price: 2999,
       discount: 25,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240823/VmJp/66c8aaff6f60443f3124beb2/-473Wx593H-469662805-white-MODEL5.jpg'
+      image: 'assets/Fashion/Adidas T-Shirt.avif'
     },
 
     {
       name: 'Puma Hoodie',
       price: 3499,
       discount: 40,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240807/yBtF/66b382261d763220fa668616/-473Wx593H-469672134-purple-MODEL4.jpg'
+      image: 'assets/Fashion/Puma Hoodie.avif'
     },
 
     {
       name: 'Adidas Sneakers',
       price: 3999,
       discount: 20,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root/20240827/7FDF/66cdde466f60443f312fb605/-473Wx593H-469651897-blue-MODEL2.jpg'
+      image: 'assets/Fashion/Adidas Sneakers.avif'
     },
 
     {
       name: 'Swiss Military Hanowa',
       price: 2899,
       discount: 22,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251124/04xw/692448f188d6d62ff8ffe02b/-473Wx593H-702534037-silver-MODEL3.jpg'
+      image: 'assets/Fashion/Swiss Military.avif'
     },
 
     {
       name: 'Armani Exchange Shirt',
       price: 2199,
       discount: 26,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20250825/GInF/68ac42578bfb9009aca7d9c0/-473Wx593H-410533250-ub101-MODEL.jpg'
+      image: 'assets/Fashion/Armani Exchange.avif'
     },
 
     {
       name: 'Puma Backpack',
       price: 3299,
       discount: 24,
-      image: 'https://assets-jiocdn.ajio.com/medias/sys_master/root1/20251205/5Jjd/6932bae88945db77cf100e39/-473Wx593H-702588367-black-MODEL.jpg'
+      image: 'assets/Fashion/Puma Backpack.avif'
     }
 
   ];
@@ -951,49 +951,49 @@ loadFashion() {
         name: 'Samsung Galaxy S25 Ultra',
         price: 74999,
         discount: 10,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s25-ultra-sm-s938.jpg'
+        image: 'assets/Mobiles/Samsung Galaxy S25 Ultra.jpg'
       },
       {
         name: 'iPhone 17 Pro Max',
         price: 159999,
         discount: 12,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-17-pro-max.jpg'
+        image: 'assets/Mobiles/Iphone 17 pro max.jpg'
       },
       {
         name: 'OnePlus Nord 5',
         price: 49999,
         discount: 15,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-nord5.jpg'
+        image: 'assets/Mobiles/Oneplus Nord 5.jpg'
       },
       {
         name: 'iPhone 15',
         price: 69999,
         discount: 5,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-14.jpg'
+        image: 'assets/Mobiles/Iphone 15.jpg'
       },
       {
         name: 'OnePlus 11',
         price: 56999,
         discount: 12,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/oneplus-11.jpg'
+        image: 'assets/Mobiles/Oneplus 11.jpg'
       },
       {
         name: 'Google Pixel 10 ',
         price: 109999,
         discount: 18,
-        image:'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-9-pro-xl-.jpg'
+        image: 'assets/Mobiles/Google Pixel 10.jpg'
       },
       {
         name: 'Vivo V27',
         price: 32999,
         discount: 8,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/vivo-v27.jpg'
+        image: 'assets/Mobiles/Vivo V27.jpg'
       },
       {
         name: 'Redmi Note 12',
         price: 15999,
         discount: 20,
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-10-pro-fold--.jpg'
+        image: 'assets/Mobiles/Redmi Note 12.jpg'
       }
       
 

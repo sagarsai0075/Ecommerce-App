@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth';
@@ -10,7 +10,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
-export class Login {
+export class Login implements OnInit {
 
   form: FormGroup;
 
@@ -21,7 +21,22 @@ export class Login {
   ) {
     this.form = this.fb.group({
       email: [''],
-      password: ['']
+      password: [''],
+      rememberMe: [false]
+    });
+  }
+
+  ngOnInit(): void {
+    const remembered = localStorage.getItem('rememberMe') === 'true';
+    if (!remembered) return;
+
+    const savedEmail = localStorage.getItem('rememberedEmail') || '';
+    const savedPassword = localStorage.getItem('rememberedPassword') || '';
+
+    this.form.patchValue({
+      email: savedEmail,
+      password: savedPassword,
+      rememberMe: true
     });
   }
 
@@ -31,6 +46,17 @@ export class Login {
 
   this.authService.login(this.form.value).subscribe({
     next: (res: any) => {
+      const { email, password, rememberMe } = this.form.value;
+      if (rememberMe) {
+        localStorage.setItem('rememberMe', 'true');
+        localStorage.setItem('rememberedEmail', email || '');
+        localStorage.setItem('rememberedPassword', password || '');
+      } else {
+        localStorage.removeItem('rememberMe');
+        localStorage.removeItem('rememberedEmail');
+        localStorage.removeItem('rememberedPassword');
+      }
+
       this.authService.saveToken(res.token);
       this.router.navigate(['/']);
     },
