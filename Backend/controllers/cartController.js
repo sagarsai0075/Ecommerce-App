@@ -13,7 +13,7 @@ const addToCart = async (req, res) => {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    let cart = await Cart.findOne({ user: req.user });
+    let cart = await Cart.findOne({ user: req.user.id });
 
     if (!cart) {
       // Create new cart
@@ -60,7 +60,7 @@ const addToCart = async (req, res) => {
 // @access Private
 const getCart = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ user: req.user });
+    const cart = await Cart.findOne({ user: req.user.id });
 
     if (!cart) {
       return res.json({ cartItems: [] });
@@ -76,7 +76,7 @@ const getCart = async (req, res) => {
 // @access Private
 const removeFromCart = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ user: req.user });
+    const cart = await Cart.findOne({ user: req.user.id });
 
     if (!cart) {
       return res.status(404).json({ message: 'Cart not found' });
@@ -105,7 +105,7 @@ const updateCartItem = async (req, res) => {
       return res.status(400).json({ message: 'Quantity is required' });
     }
 
-    const cart = await Cart.findOne({ user: req.user });
+    const cart = await Cart.findOne({ user: req.user.id });
 
     if (!cart) {
       return res.status(404).json({ message: 'Cart not found' });
@@ -133,7 +133,7 @@ const updateCartItem = async (req, res) => {
 // @access Private
 const clearCart = async (req, res) => {
   try {
-    const cart = await Cart.findOne({ user: req.user });
+    const cart = await Cart.findOne({ user: req.user.id });
 
     if (!cart) {
       return res.status(404).json({ message: 'Cart not found' });

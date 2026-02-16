@@ -4,6 +4,9 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './app/core/interceptors/auth-interceptor';
 import { App } from './app/app';
 import { routes } from './app/app.routes';
+import { provideImageKitLoader } from '@angular/common';
+
+
 
 bootstrapApplication(App, {
   providers: [

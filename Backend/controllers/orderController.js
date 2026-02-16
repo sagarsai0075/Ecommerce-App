@@ -34,7 +34,7 @@ const createOrder = async (req, res) => {
 
 // 🧹 CLEAR USER CART AFTER ORDER
 const Cart = require('../models/cart');
-const cart = await Cart.findOne({ user: req.user });
+const cart = await Cart.findOne({ user: req.user.id });
 
 if (cart) {
   cart.cartItems = [];
@@ -52,7 +52,7 @@ res.status(201).json(createdOrder);
 // @access Private
 const getMyOrders = async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.user });
+    const orders = await Order.find({ user: req.user.id });
     res.json(orders);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
@@ -70,7 +70,7 @@ const getOrders = async (req, res) => {
       return res.json(orders);
     }
 
-    const orders = await Order.find({ user: req.user });
+    const orders = await Order.find({ user: req.user.id });
     return res.json(orders);
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
